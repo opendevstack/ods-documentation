@@ -77,8 +77,8 @@ or
 The difference is that the latter will take into account all branches, the first option will only build the last branch.
 Both assume that all ods projects are located side-by-side.
 
-Both two playbooks _site-workspace.yml_ and _site-workspace-full.yml_ are configured to write the outout
-in the local directory _docs_local_, wich is ignored by git. This directory is only for local
+Both playbooks _site-workspace.yml_ and _site-workspace-full.yml_ are configured to write the outout
+in the local directory _docs_local_, which is ignored by git. This directory is only for local
 preview and verification.
 
 
