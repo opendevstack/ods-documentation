@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euxo pipefail
 
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
