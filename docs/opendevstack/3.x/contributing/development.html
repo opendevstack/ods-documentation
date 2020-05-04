@@ -466,9 +466,22 @@ ensured by <a href="https://github.com/google/google-java-format">google-java-fo
 <p>Next sequence diagram provides a graphical understanding on the steps to follow in order to add a new functionality to the OpenDevStack official repository from ACME&#8217;s private fork.
 The example is based on the assumption you want to contribute with a new feature from branch <em>2.x</em> or tag <em>v2.0</em></p>
 </div>
-<div class="imageblock plantuml">
+<div class="listingblock">
 <div class="content">
-<img src="_images/88ec0585b2e3a3417e93c6e62b9d2e677fdf1e84.png" alt="diagram">
+<pre>participant OpenDevStack as A
+participant "ACME GitHub OpenDevStack fork" as B
+participant "ACME private repo" as C
+A-&gt;&gt;C: 2.x/v2.0 checkout
+
+C-&gt;&gt;C: new feature branch X
+rnote right of C: develop and test
+
+C--&gt;&gt;C: PR: branch X to production branch
+rnote right of C: test production
+
+C-&gt;&gt;B: push branch X
+
+B--&gt;&gt;A: PR: branch X to 2.x/v2.0</pre>
 </div>
 </div>
 </div>
