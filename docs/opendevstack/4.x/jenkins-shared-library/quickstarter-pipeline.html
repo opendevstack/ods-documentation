@@ -507,11 +507,19 @@ odsQuickstarterPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">odsImageTag</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag used for the agent pod, retrieved from <code>ODS_IMAGE_TAG</code> build parameter.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ODS image tag. Retrieved from <code>ODS_IMAGE_TAG</code> build parameter. If not set, defaults to <code>latest</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">odsGitRef</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Git ref, retrieved from <code>ODS_GIT_REF</code> build parameter.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ODS Git ref. Retrieved from <code>ODS_GIT_REF</code> build parameter. If not set, defaults to <code>master</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agentImageTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag used for the agent pod, retrieved from <code>odsImageTag</code> unless the <code>AGENT_IMAGE_TAG</code> build parameter is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sharedLibraryRef</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git reference used for the Jenkins shared library, retrieved from <code>odsImageTag</code> unless the <code>SHARED_LIBRARY_REF</code> build parameter is set.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketUrl</p></td>
@@ -678,6 +686,12 @@ documentation for possible configuration.</p>
 </li>
 <li>
 <p><code>@ods_git_ref@</code> &#8658; <code>context.odsGitRef</code></p>
+</li>
+<li>
+<p><code>@agent_image_tag@</code> &#8658; <code>context.agentImageTag</code></p>
+</li>
+<li>
+<p><code>@shared_library_ref@</code> &#8658; <code>context.sharedLibraryRef</code></p>
 </li>
 </ul>
 </div>
