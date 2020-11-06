@@ -214,7 +214,13 @@
     <a class="nav-link" href="administration.html">SonarQube</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../nexus/administration.html">Nexus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#jenkins:image-lifecycle.adoc">Image Lifecycles</a>
   </li>
 </ul>
   </li>
@@ -303,18 +309,72 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_building_a_new_sonarqube_image"><a class="anchor" href="#_building_a_new_sonarqube_image"></a>Building a new SonarQube image</h2>
+<h2 id="_modifying_configurations_plugins_etc"><a class="anchor" href="#_modifying_configurations_plugins_etc"></a>Modifying configurations, plugins, etc.</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Run <code>make start-sonarqube-build</code>.</p>
+<p>There is an <code>admin</code> user which is allowed to change settings, install plugins, etc. The password is located in the OpenShift project <code>cd</code>, inside the <code>sonarqube-app</code> secret.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_administration"><a class="anchor" href="#_administration"></a>Administration</h2>
+<h2 id="_updating_sonarqube_to_a_new_version"><a class="anchor" href="#_updating_sonarqube_to_a_new_version"></a>Updating SonarQube to a new version</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There is an <code>admin</code> user which is allowed to change settings, install plugins, etc. The password is located in the OpenShift project <code>cd</code>, inside the <code>sonarqube-app</code> secret.</p>
+<p>The SonarQube deployment is using an image built in the central ODS namespace. This image is not based on the <a href="https://hub.docker.com/_/sonarqube">official SonarQube image on DockerHub</a>, because that requires a specific user to be run under. However, the approach ODS takes is similar to the official image, as can be seen in the <a href="https://github.com/opendevstack/ods-core/blob/master/sonarqube/docker/Dockerfile">ODS Dockerfile</a>.</p>
+</div>
+<div class="paragraph">
+<p>The SonarQube version which is used is determined by which ZIP file is used.</p>
+</div>
+<div class="paragraph">
+<p>To update SonarQube, the following steps need to be taken:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure new version</p>
+</li>
+<li>
+<p>Update <code>BuildConfig</code></p>
+</li>
+<li>
+<p>Create new image</p>
+</li>
+<li>
+<p>Rollout new deployment</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following will guide you through this process.</p>
+</div>
+<div class="paragraph">
+<p>To configure a new version of SonarQube, you need to update the configuration of ODS, which is located in the <code>ods-configuration</code> repository of your ODS project in Bitbucket. You need to have the latest <code>master</code> of this repository, as well as the <code>ods-core</code> repository in your current ODS version available locally. If you don&#8217;t want to do this manually, you can make use the <code>repos.sh</code> script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">UMBRELLA_DIR=~/opendevstack
+BITBUCKET_HOST=bitbucket.acme.org
+BITBUCKET_PROJECT=opendevstack
+GIT_REF=v3.0.0
+mkdir -p $UMBRELLA_DIR &amp;&amp; cd $UMBRELLA_DIR
+curl -LO https://raw.githubusercontent.com/opendevstack/ods-core/$GIT_REF/scripts/repos.sh
+chmod +x repos.sh
+./repos.sh --git-ref $GIT_REF --repos="ods-core,ods-configuration" --source-project https://$BITBUCKET_HOST/scm/$BITBUCKET_PROJECT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script can also be used in an umbrella directory in which the repositories already exist. Once the repositories are at the desired revision, change <code>SONAR_VERSION</code> and <code>SONAR_DISTRIBUTION_URL</code> in <code>ods-configuration/ods-core.env</code> to your desired version. Commit the change and push it to Bitbucket.</p>
+</div>
+<div class="paragraph">
+<p>Next, you should ensure that the SonarQube <code>BuildConfig</code> resource in the central ODS namespace is up-to-date, then trigger a new build so that a new image gets built. Finally, a new deployment should be rolled out which uses the newly built image. All of this can be done from the <code>ods-core</code> repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-sonarqube</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This target depends on the targets <code>apply-sonarqube-build</code>, <code>start-sonarqube-build</code>, <code>apply-sonarqube-deploy</code> and <code>configure-sonarqube</code> which execute the steps described above (and can of course also be executed individually).</p>
 </div>
 </div>
 </div>
