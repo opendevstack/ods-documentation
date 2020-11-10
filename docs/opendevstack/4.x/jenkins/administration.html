@@ -301,42 +301,100 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Jenkins Administration</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <code>ods-core</code> repository contains a <code>Makefile</code> with several targets to maintain Jenkins images.</p>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="_managing_jenkins_build_resources"><a class="anchor" href="#_managing_jenkins_build_resources"></a>Managing Jenkins build resources</h2>
+<h2 id="_updating_jenkins_to_a_new_version"><a class="anchor" href="#_updating_jenkins_to_a_new_version"></a>Updating Jenkins to a new version</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Run <code>make apply-jenkins-build</code>.</p>
+<p>Jenkins master deployments are using an image built in the central ODS namespace. This image is a <a href="https://github.com/opendevstack/ods-core/blob/master/jenkins/master/Dockerfile">customisation</a> of an upstream Jenkins master image provided by RedHat. Jenkins agent images are also built in the central ODS namespace, and are also based on upstream images provided by RedHat.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_building_a_new_jenkins_master_image"><a class="anchor" href="#_building_a_new_jenkins_master_image"></a>Building a new Jenkins Master image</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Run <code>make start-jenkins-build-master</code>.</p>
+<p>The exact Jenkins version which is used is determined by which RedHat base image tag is used, and depending on the used tag, at which time the ODS image is built.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_building_a_new_jenkins_agent_base_image"><a class="anchor" href="#_building_a_new_jenkins_agent_base_image"></a>Building a new Jenkins Agent Base image</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Run <code>make start-jenkins-build-agent-base</code>.</p>
+<p>To update Jenkins (master and agents), the following steps need to be taken:</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure new versions</p>
+</li>
+<li>
+<p>Update <code>BuildConfig</code> resources</p>
+</li>
+<li>
+<p>Create new images</p>
+</li>
+<li>
+<p>Rollout new deployments</p>
+</li>
+</ol>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_building_a_new_jenkins_webhook_proxy_image"><a class="anchor" href="#_building_a_new_jenkins_webhook_proxy_image"></a>Building a new Jenkins Webhook Proxy image</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Run <code>make start-jenkins-build-webhook-proxy</code>.</p>
+<p>The following will guide you through this process.</p>
+</div>
+<div class="paragraph">
+<p>To configure a new version of Jenkins, you need to update the configuration of ODS, which is located in the <code>ods-configuration</code> repository of your ODS project in Bitbucket. You need to have the latest <code>master</code> of this repository, as well as the <code>ods-core</code> and <code>ods-quickstarters</code> repository in your current ODS version available locally. If you don&#8217;t want to do this manually, you can make use the <code>repos.sh</code> script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">UMBRELLA_DIR=~/opendevstack
+BITBUCKET_HOST=bitbucket.acme.org
+BITBUCKET_PROJECT=opendevstack
+GIT_REF=v3.0.0
+mkdir -p $UMBRELLA_DIR &amp;&amp; cd $UMBRELLA_DIR
+curl -LO https://raw.githubusercontent.com/opendevstack/ods-core/$GIT_REF/scripts/repos.sh
+chmod +x repos.sh
+./repos.sh --git-ref $GIT_REF --repos="ods-core,ods-quickstarters,ods-configuration" --source-project https://$BITBUCKET_HOST/scm/$BITBUCKET_PROJECT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script can also be used in an umbrella directory in which the repositories already exist. Once the repositories are at the desired revision, change <code>JENKINS_MASTER_BASE_FROM_IMAGE</code> and <code>JENKINS_AGENT_BASE_FROM_IMAGE</code> in <code>ods-configuration/ods-core.env</code> to your desired image tags. Commit the change and push it to Bitbucket.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the configured tag is a moving target, you might not need to change it at all and you can simply continue with the next step.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, you should ensure that the Jenkins <code>BuildConfig</code> resources in the central ODS namespace are up-to-date, then trigger new builds so that new images with the changed base images get built. Finally, new deployments should be rolled out which use the newly built image. All of this can be done from the <code>ods-core</code> repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-jenkins</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This target depends on the targets <code>apply-jenkins-build</code>, <code>start-jenkins-build</code>, and <code>apply-jenkins-deploy</code> which execute the steps described above (and can of course also be executed individually).</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Only the Jenkins master deployment in the central ODS namespace gets updated automatically using this command. Updating Jenkins master deployments in each <code>*-cd</code> namespace is a separate task for which no ODS automation exists at the moment.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Finally, you also need to rebuild all technology-specific Jenkins agent images. For the Jenkins agent images delivered with the official quickstarters, this can be done from the <code>ods-quickstarters</code> repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-jenkins-agent</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you have other quickstarters which use custom Jenkins agents, you will also have to rebuild those.</p>
 </div>
 </div>
 </div>
