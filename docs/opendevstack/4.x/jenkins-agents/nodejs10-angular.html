@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Nodejs 10 - Angular Jenkins agent :: OpenDevStack</title>
+    <title>Nodejs 12 - Jenkins agent :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/3.x/jenkins-agents/nodejs10-angular.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -116,8 +116,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="maven.html">Maven</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="nodejs10-angular.html">Nodejs10 Angular</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#jenkins-agents:nodejs12.adoc">Nodejs12 Angular</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="python.html">Python</a>
@@ -283,9 +283,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="../quickstarters/index.html">Quickstarters</a></li>
-    <li>Jenkins agent Images</li>
-    <li><a href="nodejs10-angular.html">Nodejs10 Angular</a></li>
+    <li><a href="nodejs10-angular.html">Nodejs 12 - Jenkins agent</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -301,7 +299,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Nodejs 10 - Angular Jenkins agent</h1>
+<h1 class="page">Nodejs 12 - Jenkins agent</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
@@ -309,8 +307,8 @@
 <p>This agent is used to build Nodejs based projects, through <code>npm</code> or <code>yarn</code>.</p>
 </div>
 <div class="paragraph">
-<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-nodejs10-angular</code>.
-It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-nodejs10-angular</code>.</p>
+<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-nodejs12</code>.
+It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-nodejs12</code>.</p>
 </div>
 </div>
 </div>
@@ -326,7 +324,7 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <p>HTTP proxy awareness</p>
 </li>
 <li>
-<p>Angular CLI &amp; Cypress dependencies pre-installed</p>
+<p>Angular CLI 8.0.1, Yarn &amp; Cypress dependencies pre-installed</p>
 </li>
 </ol>
 </div>
