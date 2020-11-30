@@ -430,10 +430,6 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">Define which branches are deployed to which environments, see <a href="#_git_workflow_branch_to_environment_mapping">Git Workflow / Branch to Environment Mapping</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">autoCloneEnvironmentsFromSourceMapping</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Define which environments are cloned from which source environments.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">projectId</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Project ID, e.g. <code>foo</code>.</p></td>
 </tr>
@@ -541,10 +537,6 @@ odsComponentPipeline(
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sonarQubeEdition</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Edition of SonarQube in use, determined by <code>SONARQUBE_EDITION</code> (defaults to <code>community</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cloneSourceEnv</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the clone source.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">environment</p></td>
@@ -957,77 +949,6 @@ def sayHello(def context) {
 <h3 id="_skipping_pipeline_runs"><a class="anchor" href="#_skipping_pipeline_runs"></a>Skipping pipeline runs</h3>
 <div class="paragraph">
 <p>If the message of the built commit contains <code>[ci skip]</code>, the pipeline is skipped. The Jenkins build status will be set to <code>NOT_BUILT</code>, the Bitbucket build status to <code>SUCCESSFUL</code> (as there is no "skipped" state). The pipeline will start to execute initially, but abort before launching any agent nodes or starting any of the stages defined in the <code>Jenkinsfile</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_automatically_cloning_environments_on_the_fly"><a class="anchor" href="#_automatically_cloning_environments_on_the_fly"></a>Automatically cloning environments on the fly</h3>
-<div class="paragraph">
-<p>Caution! Cloning environments on-the-fly is an advanced feature and should only be used if you understand OpenShift well, as there are many moving parts and things can go wrong in multiple places.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>autoCloneEnvironmentsFromSourceMapping: [
-  "hotfix": "prod",
-  "review": "dev"
-]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Instead of deploying multiple branches to the same environment, individual environments can be created on-the-fly. For example, the mapping <code>"*": "review"</code> deploys all branches to the <code>review</code> environment. To have one environment per branch / ticket ID, you can add the <code>review</code> environment to <code>autoCloneEnvironmentsFromSourceMapping</code>, e.g. like this: <code>"review": "dev"</code>. This will create individual environments (named e.g. <code>review-123</code> or <code>review-foobar</code>), each cloned from the <code>dev</code> environment.</p>
-</div>
-<div class="sect3">
-<h4 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h4>
-<div class="paragraph">
-<p>If you use git-flow, the following config fits well:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>branchToEnvironmentMapping: [
-  'master': 'prod',
-  'develop': 'dev',
-  'release/': 'rel',
-  'hotfix/': 'hotfix',
-  '*': 'preview'
-]
-autoCloneEnvironmentsFromSourceMapping: [
-  'rel': 'dev',
-  'hotfix': 'prod',
-  'preview': 'dev'
-]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you use GitHub Flow, the following config fits well:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>branchToEnvironmentMapping: [
-  'master': 'prod',
-  '*': 'preview'
-]
-autoCloneEnvironmentsFromSourceMapping: [
-  'preview': 'prod'
-]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you use a custom workflow, the config could look like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>branchToEnvironmentMapping: [
-  'production': 'prod',
-  'master': 'dev',
-  'staging': 'uat'
-]
-autoCloneEnvironmentsFromSourceMapping: [
-  'uat': 'prod'
-]</pre>
-</div>
-</div>
 </div>
 </div>
 </div>
