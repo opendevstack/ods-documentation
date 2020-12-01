@@ -1013,8 +1013,8 @@ set to the shortened Git SHA.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">branch</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. This can be a comma separated list. Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">branch / branches</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. Option can be either a string (<code>branch: 'master'</code>) or a list (<code>branches: ['master', 'develop']</code>). Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code><strong></code>). Defaults to <code>master</code> or <code></strong></code>, depending on the SonarQube server capabilities.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">requireQualityGatePass</p></td>
@@ -1077,6 +1077,10 @@ set to the shortened Git SHA.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">branch / branches</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. Option can be either a string (<code>branch: 'master'</code>) or a list (<code>branches: ['master', 'develop']</code>). Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code><strong></code>). Defaults to <code></strong></code>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">snykAuthenticationCode</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Required! Authentication token of a service account within your organisation.</p></td>
 </tr>
@@ -1095,10 +1099,6 @@ set to the shortened Git SHA.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">buildFile</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Build file from which to gather dependency information. Defaults to <code>build.gradle</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">branch</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. This can be a comma separated list. Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code><strong></code>). Defaults to <code></strong></code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">severityThreshold</p></td>
