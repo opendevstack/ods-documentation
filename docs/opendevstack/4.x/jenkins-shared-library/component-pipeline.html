@@ -859,7 +859,6 @@ def suffixedComponent = context.componentId + componentSuffix</code></pre>
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentStageRolloutOpenShiftDeployment(
   context,
   [
-    resourceName: "${suffixedComponent}",
     tailorSelector: "app=${context.projectId}-${suffixedComponent}",
     tailorParams: ["COMPONENT_SUFFIX=${componentSuffix}"]
   ]
@@ -1337,8 +1336,8 @@ being built.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>DeploymentConfig</code> to use (defaults to <code>context.componentId</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">selector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used to determine which resources are part of a component (defaults to <code>app=&lt;PROJECT&gt;-&lt;COMPONENT&gt;</code>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">imageTag</p></td>
@@ -1362,7 +1361,7 @@ being built.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to <code>app=&lt;PROJECT&gt;-&lt;COMPONENT&gt;</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to config option <code>selector</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tailorVerify</p></td>
