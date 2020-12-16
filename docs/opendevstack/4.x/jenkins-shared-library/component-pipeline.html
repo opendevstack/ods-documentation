@@ -446,10 +446,6 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">The docker directory to use when building the image in openshift. Defaults to <code>docker</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">imagePromotionSequences</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sequence of environments between which images can be promoted in <code>odsComponentStageImportOpenShiftImageOrElse</code>. Defaults to <code>['dev&#8594;test', 'test&#8594;prod']</code>.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sonarQubeBranch</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Please use option <code>branch</code> on <code>odsComponentStageScanWithSonar</code>.</p></td>
 </tr>
@@ -547,6 +543,10 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">Target project, based on the environment. E.g. <code>foo-dev</code>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cdProject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CD project. E.g. <code>foo-cd</code>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">groupId</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Group ID, defaults to: org.opendevstack.<projectID>.</projectID></p></td>
 </tr>
@@ -609,10 +609,6 @@ odsComponentPipeline(
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The docker directory to use when building the image in openshift. Defaults to <code>docker</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">imagePromotionSequences</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sequence of environments between which images can be promoted. Used e.g. in <code>odsComponentStageImportOpenShiftImageOrElse</code>. Defaults to <code>['dev&#8594;test', 'test&#8594;prod']</code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -981,6 +977,47 @@ def sayHello(def context) {
 </div>
 </div>
 <div class="sect2">
+<h3 id="_odscomponentfindopenshiftimageorelse"><a class="anchor" href="#_odscomponentfindopenshiftimageorelse"></a>odsComponentFindOpenShiftImageOrElse</h3>
+<div class="paragraph">
+<p>Checks if an image for the current commit exists already, otherwise executes the given closure.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentFindOpenShiftImageOrElse(context) {
+  stage('Build') {
+    // custom stage to build your application package
+  }
+  odsComponentStageBuildOpenShiftImage(context)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The step can be customized using the options <code>resourceName</code> and <code>imageTag</code>.</p>
+</div>
+<div class="paragraph">
+<p>Using this step in your <code>Jenkinsfile</code> allows you to avoid building a container image for the same Git commit multiple times, reducing build times and increasing reliability as you can promote the exact same image from one environment to another.</p>
+</div>
+<div class="paragraph">
+<p>Keep in mind that image lookup works by finding an image tagged with the current Git commit. If you merge a branch into another using a merge commit, the current Git commit SHA will differ from the previously built image tag, even if the actual contents of the repository are the same. To ensure image importing kicks in, use the <a href="https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---ff">--ff-only</a> option on <code>git merge</code> (this can also be enabled for pull requests in Bitbucket under "Merge strategies"). There are a few consequences when doing so, which should be kept in mind:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No merge commit is created, which has the downside that you do not see when a PR was merged, and that the merge commit is a convenient way to find the associated PR. Further, if the latest commit on a branch which you want to merge contains <code>[ci skip]</code>, beware that the build on the target branch will also be skipped. That siad, having no merge commit has the upside that your Git history is not polluted by merge commits.</p>
+</li>
+<li>
+<p>Enforcing a fast-forward merge prevents you from merging a branch which is not up-to-date with the target branch. This has the downside that before merging, you may need to rebase your branch or merge the target branch into your branch if someone else updated the target branch in the meantime. While this may cause extra work, it has the upside that you cannot accidentally break the target branch (e.g. tests on your branch may work based on the outdated target branch, but fail after the merge).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In summary, using <code>git merge --ff-only</code> provides safety, a clean history and allows to promote the exact same image between environments.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_odscomponentstagescanwithsonar"><a class="anchor" href="#_odscomponentstagescanwithsonar"></a>odsComponentStageScanWithSonar</h3>
 <div class="paragraph">
 <p>The "SonarQube Analysis" stage scans your source code and reports findings to
@@ -1124,9 +1161,6 @@ being built.</p>
 <p>The resulting image is tagged with <code>context.shortGitCommit</code>.</p>
 </div>
 <div class="paragraph">
-<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
-</div>
-<div class="paragraph">
 <p>Available options:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1168,38 +1202,6 @@ being built.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Docker context directory (defaults to <code>docker</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPrivateKeyCredentialsId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the secret key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to <code>app=&lt;PROJECT&gt;-&lt;COMPONENT&gt;</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorVerify</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state after application (defaults to <code>false</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorInclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind restriction used by Tailor (defaults to <code>bc,is</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParamFile</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPreserve</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>['bc:/spec/output/imageLabels', 'bc:/spec/output/to/name']</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParams</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1247,76 +1249,6 @@ being built.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_odscomponentstageimportopenshiftimageorelse"><a class="anchor" href="#_odscomponentstageimportopenshiftimageorelse"></a>odsComponentStageImportOpenShiftImageOrElse</h3>
-<div class="paragraph">
-<p>Imports an image from another namespace if possible,
-otherwise execute the given closure.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentStageImportOpenShiftImageOrElse(context) {
-  stage('Build') {
-    // custom stage to build your application package
-  }
-  odsComponentStageBuildOpenShiftImage(context)
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The stage takes the exact same options as <code>odsComponentStageImportOpenShiftImage</code>.</p>
-</div>
-<div class="paragraph">
-<p>Before running the image import, it checks whether the image (identified by the
-<code>sourceTag</code>) is present in a suitable project. This is the current
-target project, and potentially one or more specified by the pipeline option
-<code>imagePromotionSequences</code>. For example, if <code>imagePromotionSequences</code> is
-<code>['dev&#8594;test', 'test&#8594;prod']</code> (which is the default setting), then, given the
-current target environment is <code>test</code>, suitable environments are <code>dev</code> (based on
-<code>dev&#8594;test</code>), and <code>test</code> itself.</p>
-</div>
-<div class="paragraph">
-<p>If the image is not present in a suitable project, the given closure is executed.</p>
-</div>
-<div class="paragraph">
-<p>Using this "stage" allows you to avoid building a container image for the same
-Git commit multiple times, reducing build times and increasing reliability as
-you can promote the exact same image from one environment to another. Keep in
-mind that image lookup works by finding an image tagged with the current Git
-commit. If you merge a branch into another using a merge commit, the current Git
-commit will differ from the previously built image tag, even if the actual
-contents of the repository are the same. To ensure image importing kicks in, use
-the <a href="https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---ff">--ff-only</a> option on <code>git merge</code> (this can also be enabled for pull
-requests in Bitbucket under "Merge strategies"). There are a few consequences
-when doing so, which should be kept in mind:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>No merge commit is created, which has the downside that you do not see when
-a PR was merged, and that the merge commit is a convenient way to find the
-associated PR. However, it has the upside that your Git history is not
-polluted by merge commits.</p>
-</li>
-<li>
-<p>Enforcing a fast-forward merge prevents you from merging a branch which is
-not up-to-date with the target branch. This has the downside that before
-merging, you may need to rebase your branch or merge the target branch into
-your branch if someone else updated the target branch in the meantime. While
-this may cause extra work, it has the upside that you cannot accidentally
-break the target branch (e.g. tests on your branch may work based on the
-outdated target branch, but fail after the merge).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In summary, using <code>git merge --ff-only</code> provides safety, a clean history and
-allows to promote the exact same image between environments.</p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_odscomponentstagerolloutopenshiftdeployment"><a class="anchor" href="#_odscomponentstagerolloutopenshiftdeployment"></a>odsComponentStageRolloutOpenShiftDeployment</h3>
 <div class="paragraph">
 <p>Triggers (and follows) a rollout of the <code>DeploymentConfig</code> related to the repository
@@ -1360,12 +1292,44 @@ being built.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adjust retries to wait for the pod during a rollout (defaults to 5).</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chartDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory of Helm chart (defaults to <code>chart</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">helmReleaseName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Helm release (defaults to <code>context.componentId</code>). Change this value if you want to install separate instances of the Helm chart in the same namespace. In that case, make sure to use <code>{{ .Release.Name }}</code> in resource names to avoid conflicts.  Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">helmValues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of key/value pairs to pass as values (by default, the key <code>imageTag</code> is set to the config option <code>imageTag</code>). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">helmValuesFiles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of paths to values files (empty by default). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">helmDefaultFlags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of default flags to be passed verbatim to to <code>helm upgrade</code> (defaults to <code>['--install', '--atomic']</code>). Typically these should not be modified - if you want to pass more flags, use <code>helmAdditionalFlags</code> instead. Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">helmAdditionalFlags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of additional flags to be passed verbatim to to <code>helm upgrade</code> (empty by default). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">helmDiff</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to show diff explaining changes to the release before running <code>helm upgrade</code> (<code>true</code> by default). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">helmPrivateKeyCredentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by helm-secrets (defaults to <code>&lt;PROJECT&gt;-cd-helm-private-key</code>). The fingerprint must match the one specified in <code>.sops.yaml</code>. Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tailorPrivateKeyCredentialsId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the secret key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
