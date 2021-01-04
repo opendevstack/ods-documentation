@@ -1037,9 +1037,8 @@ at the time of the Jenkins pipeline run).</p>
 <p>If no <code>sonar.projectVersion</code> is specified in <code>sonar-project.properties</code>, it is
 set to the shortened Git SHA.</p>
 </div>
-<div class="paragraph">
-<p>Available options:</p>
-</div>
+<div class="sect3">
+<h4 id="_options"><a class="anchor" href="#_options"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1053,23 +1052,44 @@ set to the shortened Git SHA.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">branch / branches</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. Option can be either a string (<code>branch: 'master'</code>) or a list (<code>branches: ['master', 'develop']</code>). Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code><strong></code>). Defaults to <code>master</code> or <code></strong></code>, depending on the SonarQube server capabilities.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>analyzePullRequests</strong><br>
+<em>boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to analyze pull requests and decorate them in Bitbucket. Turned
+ on by default, however a scan is only performed if the <code>branch</code> property
+ allows it.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">requireQualityGatePass</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build if the quality gate defined in the SonarQube project is not reached. Defaults to <code>false</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to scan.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">analyzePullRequests</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to analyze pull requests and decorate them in Bitbucket. Turned on by default, however a scan is only performed if the <code>branch</code> property allows it.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to scan.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and \
+ all branches (<code><strong></code>).
+ Defaults to <code>master</code> for the community edition of SonarQube, and <code></strong></code> for
+ all other editions (which are capable of handling multiple branches).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">longLivedBranches</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) for which no PR analysis should be performed. If not set, it will be extracted from  <code>branchToEnvironmentMapping</code> of the <code>context</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>longLivedBranches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) for which no PR analysis should be performed. If not set, it
+ will be extracted from  <code>branchToEnvironmentMapping</code> of the <code>context</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>requireQualityGatePass</strong><br>
+<em>boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build if the quality gate defined in the SonarQube
+ project is not reached. Defaults to <code>false</code>.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_odscomponentstagescanwithsnyk"><a class="anchor" href="#_odscomponentstagescanwithsnyk"></a>odsComponentStageScanWithSnyk</h3>
@@ -1101,9 +1121,8 @@ set to the shortened Git SHA.</p>
 <div class="paragraph">
 <p>It is recommended to read your authentication token dynamically, e.g. from an environment variable or a credential in your Jenkins master.</p>
 </div>
-<div class="paragraph">
-<p>Available options:</p>
-</div>
+<div class="sect3">
+<h4 id="_options_2"><a class="anchor" href="#_options_2"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1117,39 +1136,65 @@ set to the shortened Git SHA.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">branch / branches</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. Option can be either a string (<code>branch: 'master'</code>) or a list (<code>branches: ['master', 'develop']</code>). Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code><strong></code>). Defaults to <code></strong></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>additionalFlags</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional flags for the Snyk CLI. Please refer to the official Snyk CLI
+ reference for possible options and don&#8217;t forget to take the CLI version
+ of your ODS installation into account. The value of <code>additionalFlags</code>
+ must be a list in which the entries have the official flag name and a
+ possible value.
+ Example: <code>['--all-sub-projects', '--show-vulnerable-paths=all']</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">snykAuthenticationCode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required! Authentication token of a service account within your organisation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">failOnVulnerabilities</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build when vulnerabilities are found. Defaults to <code>true</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">organisation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk organisation. Default to <code>context.projectId</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">projectName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk project name. Default to <code>context.componentId</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">buildFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildFile</strong><br>
+<em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Build file from which to gather dependency information. Defaults to <code>build.gradle</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">severityThreshold</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Severity threshold for failing. If any found vulnerability has a severity equal or higher to the threshold, the snyk test will return with a failure status. Possible values are <code>low</code>, <code>medium</code>, <code>high</code>. Defaults to <code>low</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>failOnVulnerabilities</strong><br>
+<em>boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build when vulnerabilities are found. Defaults to <code>true</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">additionalFlags</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Additional flags for the Snyk CLI. Please refer to the official Snyk CLI reference for possible options and don&#8217;t forget to take the CLI version of your ODS installation into account. The value of <code>additionalFlags</code> must be a list in which the entries have the official flag name and a possible value. Example: ['--all-sub-projects', '--show-vulnerable-paths=all']</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>organisation</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk organisation. Default to <code>context.projectId</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>projectName</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk project name. Default to <code>context.componentId</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>severityThreshold</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Severity threshold for failing. If any found vulnerability has a severity
+ equal or higher to the threshold, the snyk test will return with a
+ failure status. Possible values are <code>low</code>, <code>medium</code>, <code>high</code>.
+ Defaults to <code>low</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>snykAuthenticationCode</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required! Authentication token of a service account within your organisation.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_odscomponentstagebuildopenshiftimage"><a class="anchor" href="#_odscomponentstagebuildopenshiftimage"></a>odsComponentStageBuildOpenShiftImage</h3>
@@ -1160,9 +1205,8 @@ being built.</p>
 <div class="paragraph">
 <p>The resulting image is tagged with <code>context.shortGitCommit</code>.</p>
 </div>
-<div class="paragraph">
-<p>Available options:</p>
-</div>
+<div class="sect3">
+<h4 id="_options_3"><a class="anchor" href="#_options_3"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1176,35 +1220,58 @@ being built.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">imageTag</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to apply (defaults to <code>context.shortGitCommit</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">buildArgs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildArgs</strong><br>
+<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pass build arguments to the image build process.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">imageLabels</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pass labels which should be aded on the image. Each label will be prefixed with <code>ext.</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">extensionImageLabels</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Extra image labels added into <code>imageLabels</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">buildTimeoutMinutes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildTimeoutMinutes</strong><br>
+<em>Integer</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Timeout of build (defaults to 15 minutes).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>dockerDir</strong><br>
+<em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Docker context directory (defaults to <code>docker</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>extensionImageLabels</strong><br>
+<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra image labels added into <code>imageLabels</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imageLabels</strong><br>
+<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass labels which should be added on the image.
+ Each label will be prefixed with <code>ext.</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imageTag</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to apply (defaults to <code>context.shortGitCommit</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resourceName</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_odscomponentstageimportopenshiftimage"><a class="anchor" href="#_odscomponentstageimportopenshiftimage"></a>odsComponentStageImportOpenShiftImage</h3>
@@ -1214,9 +1281,8 @@ being built.</p>
 <div class="paragraph">
 <p>By default, the source image is identified using the commit which triggered the pipeline run.</p>
 </div>
-<div class="paragraph">
-<p>Available options:</p>
-</div>
+<div class="sect3">
+<h4 id="_options_4"><a class="anchor" href="#_options_4"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1230,23 +1296,47 @@ being built.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sourceProject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imagePullerSecret</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of image-puller secret (optional, used when pulling images from an external source cluster).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resourceName</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceProject</strong><br>
+<em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift project from which to import the image identified by <code>resourceName</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sourceTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceTag</strong><br>
+<em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to look for in the <code>sourceProject</code> (defaults to <code>context.shortGitCommit</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">targetTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>targetTag</strong><br>
+<em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to apply to the imported image in the target project (defaults to <code>sourceTag</code>).</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_odscomponentstagerolloutopenshiftdeployment"><a class="anchor" href="#_odscomponentstagerolloutopenshiftdeployment"></a>odsComponentStageRolloutOpenShiftDeployment</h3>
@@ -1260,9 +1350,8 @@ being built.</p>
 <div class="paragraph">
 <p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In this case, it is recommended to remove any image triggers to avoid duplicate rollouts (one when configuration changes due to a config trigger and one when the image is tagged to <code>latest</code>). In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
 </div>
-<div class="paragraph">
-<p>Available options:</p>
-</div>
+<div class="sect3">
+<h4 id="_options_5"><a class="anchor" href="#_options_5"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1276,96 +1365,159 @@ being built.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">selector</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used to determine which resources are part of a component (defaults to <code>context.selector</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">imageTag</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag on which to apply the <code>latest</code> tag (defaults to <code>context.shortGitCommit</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutMinutes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to be aligned with the deployment strategy timeout (timeoutSeconds) and the readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutRetries</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust retries to wait for the pod during a rollout (defaults to 5).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">chartDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>chartDir</strong><br>
+<em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Directory of Helm chart (defaults to <code>chart</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">helmReleaseName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Helm release (defaults to <code>context.componentId</code>). Change this value if you want to install separate instances of the Helm chart in the same namespace. In that case, make sure to use <code>{{ .Release.Name }}</code> in resource names to avoid conflicts.  Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>deployTimeoutMinutes</strong><br>
+<em>Integer</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to
+ be aligned with the deployment strategy timeout (timeoutSeconds) and the
+ readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">helmValues</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Map of key/value pairs to pass as values (by default, the key <code>imageTag</code> is set to the config option <code>imageTag</code>). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>deployTimeoutRetries</strong><br>
+<em>Integer</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust retries to wait for the pod during a rollout (defaults to 5).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">helmValuesFiles</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of paths to values files (empty by default). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmAdditionalFlags</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of additional flags to be passed verbatim to to <code>helm upgrade</code>
+(empty by default). Only relevant if the directory referenced by
+<code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">helmDefaultFlags</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of default flags to be passed verbatim to to <code>helm upgrade</code> (defaults to <code>['--install', '--atomic']</code>). Typically these should not be modified - if you want to pass more flags, use <code>helmAdditionalFlags</code> instead. Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmDefaultFlags</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of default flags to be passed verbatim to to <code>helm upgrade</code>
+ (defaults to <code>['--install', '--atomic']</code>). Typically these should not be
+ modified - if you want to pass more flags, use <code>helmAdditionalFlags</code>
+ instead. Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">helmAdditionalFlags</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of additional flags to be passed verbatim to to <code>helm upgrade</code> (empty by default). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmDiff</strong><br>
+<em>boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to show diff explaining changes to the release before running
+ <code>helm upgrade</code> (<code>true</code> by default). Only relevant if the directory
+ referenced by <code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">helmDiff</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to show diff explaining changes to the release before running <code>helm upgrade</code> (<code>true</code> by default). Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmPrivateKeyCredentialsId</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by helm-secrets (defaults to
+ <code>${context.cdProject}-helm-private-key</code>). The fingerprint must match the
+ one specified in <code>.sops.yaml</code>. Only relevant if the directory referenced
+ by <code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">helmPrivateKeyCredentialsId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by helm-secrets (defaults to <code>&lt;PROJECT&gt;-cd-helm-private-key</code>). The fingerprint must match the one specified in <code>.sops.yaml</code>. Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmReleaseName</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Helm release (defaults to <code>context.componentId</code>). Change this
+ value if you want to install separate instances of the Helm chart in the
+ same namespace. In that case, make sure to use <code>{{ .Release.Name }}</code> in
+ resource names to avoid conflicts.  Only relevant if the directory
+ referenced by <code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmValues</strong><br>
+<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key/value pairs to pass as values (by default, the key <code>imageTag</code> is set
+ to the config option <code>imageTag</code>). Only relevant if the directory
+ referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmValuesFiles</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of paths to values files (empty by default). Only relevant if the
+ directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imageTag</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag on which to apply the <code>latest</code> tag (defaults to <code>context.shortGitCommit</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>openshiftDir</strong><br>
+<em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPrivateKeyCredentialsId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>selector</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used to determine which resources are part of a component
+ (defaults to <code>context.selector</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to config option <code>selector</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorExclude</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind exclusion used by Tailor (defaults to <code>bc,is</code>). Only
+ relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorVerify</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state after application (defaults to <code>false</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorParamFile</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the
+ directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorExclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind exclusion used by Tailor (defaults to <code>bc,is</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorParams</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only
+ relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParamFile</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorPreserve</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>[]</code>). Only
+ relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPreserve</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorPrivateKeyCredentialsId</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by Tailor (defaults to
+ <code>${context.cdProject}-tailor-private-key</code>). Only relevant if the
+ directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParams</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorSelector</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to config option <code>selector</code>).
+ Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorVerify</strong><br>
+<em>boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state
+ after application (defaults to <code>false</code>). Only relevant if the directory
+ referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_odscomponentstageuploadtonexus"><a class="anchor" href="#_odscomponentstageuploadtonexus"></a>odsComponentStageUploadToNexus</h3>
 <div class="paragraph">
 <p>Triggers the upload of an artifact to Nexus. Implementation is based on <a href="https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api" class="bare">https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api</a></p>
 </div>
-<div class="paragraph">
-<p>Available options:</p>
-</div>
+<div class="sect3">
+<h4 id="_options_6"><a class="anchor" href="#_options_6"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1379,35 +1531,58 @@ being built.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">repositoryType</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>maven2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>artifactId</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=maven2</code>: default is <code>context.componentId</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">distributionFile</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default is <code>${componentId}-${tagversion}.tar.gz</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">repository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the nexus repository name, default is <code>candidates</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">for 'maven2' groupId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>groupId</code> on project level, or in case not set at all <code>org.opendevstack.${projectId}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>distributionFile</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filename. Defaults to <code>${context.componentId}-${context.tagversion}.tar.gz</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">for 'maven2' version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>${tagVersion}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>groupId</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=maven2</code>: default is the <code>groupId</code> on project level,
+ or in case not set at all <code>org.opendevstack.${context.projectId}</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">for 'maven2' artifactId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>${componentId}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repository</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Nexus repository. Defaults to <code>candidates</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">for 'raw' targetDirectory</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>${projectId}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repositoryType</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of the Nexus repository. Defaults to <code>maven2</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>targetDirectory</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=raw</code>: default is  <code>context.projectId</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=maven2</code>: default is  <code>context.tagversion</code></p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>
