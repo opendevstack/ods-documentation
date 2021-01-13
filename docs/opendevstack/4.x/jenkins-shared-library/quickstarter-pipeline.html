@@ -365,11 +365,11 @@ odsQuickstarterPipeline(
 <h2 id="_pipeline_options"><a class="anchor" href="#_pipeline_options"></a>Pipeline Options</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>odsQuickstgarterPipeline</code> can be customized by passing configuration options like this:</p>
+<p><code>odsQuickstarterPipeline</code> can be customized by passing configuration options like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>odsQuickstgarterPipeline(
+<pre>odsQuickstarterPipeline(
   imageStreamTag: 'ods/jenkins-agent-golang:3.x'
 )</pre>
 </div>
@@ -449,7 +449,7 @@ odsQuickstarterPipeline(
 <h2 id="_pipeline_context"><a class="anchor" href="#_pipeline_context"></a>Pipeline Context</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you write custom stages inside the closure passed to <code>odsQuickstgarterPipeline</code>, you have access to the <code>context</code>, which is assembled for you on the master node. The <code>context</code> can be influenced by changing the config map passed to <code>odsQuickstgarterPipeline</code>, see <a href="#_pipeline_options">Pipeline Options</a>.</p>
+<p>When you write custom stages inside the closure passed to <code>odsQuickstarterPipeline</code>, you have access to the <code>context</code>, which is assembled for you on the master node. The <code>context</code> can be influenced by changing the config map passed to <code>odsQuickstarterPipeline</code>, see <a href="#_pipeline_options">Pipeline Options</a>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>context</code> object contains the following properties:</p>
@@ -480,7 +480,7 @@ odsQuickstarterPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">buildTime</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time of the build, collected when the odsQuickstgarterPipeline starts.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time of the build, collected when the odsQuickstarterPipeline starts.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cdUserCredentialsId</p></td>
@@ -569,7 +569,7 @@ determine whether this image should be refreshed on each build.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>odsQuickstgarterPipeline(
+<pre>odsQuickstarterPipeline(
   projectId: projectId,
   podContainers: [
     containerTemplate(
