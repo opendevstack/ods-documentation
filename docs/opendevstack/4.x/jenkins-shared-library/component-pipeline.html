@@ -950,643 +950,610 @@ def sayHello(def context) {
 <div class="sect2">
 <h3 id="_skipping_pipeline_runs"><a class="anchor" href="#_skipping_pipeline_runs"></a>Skipping pipeline runs</h3>
 <div class="paragraph">
-<p>If the message of the built commit contains <code>[ci skip]</code>, the pipeline is skipped. The Jenkins build status will be set to <code>NOT_BUILT</code>, the Bitbucket build status to <code>SUCCESSFUL</code> (as there is no "skipped" state). The pipeline will start to execute initially, but abort before launching any agent nodes or starting any of the stages defined in the <code>Jenkinsfile</code>.</p>
+<p>If the subject of the built commit message contains <code>[ci skip]</code>, <code>[skip ci]</code> or <code>***NO_CI***</code>, the pipeline is skipped.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stages"><a class="anchor" href="#_stages"></a>Stages</h2>
+<h2 id="_skip"><a class="anchor" href="#_skip"></a>skip</h2>
 <div class="sectionbody">
+
+</div>
+</div>
+<h1 id="_skip_pipeline_one_line_commit" class="sect0"><a class="anchor" href="#_skip_pipeline_one_line_commit"></a>skip pipeline (one-line commit)</h1>
 <div class="paragraph">
-<p>Each built-in stage (like <code>odsComponentStageScanWithSonar</code>) takes two arguments:</p>
+<p>$ git commit -m "docs: update README [ci skip]"</p>
+</div>
+<h1 id="_run_pipeline_multi_line_commit_as_it_is_not_part_of_the_subject" class="sect0"><a class="anchor" href="#_run_pipeline_multi_line_commit_as_it_is_not_part_of_the_subject"></a>run pipeline (multi-line commit) as it is not part of the subject</h1>
+<div class="paragraph">
+<p>$ git commit -m "docs: update README</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>context</code> (required, this is the <a href="#_pipeline_context">pipeline context</a>)</p>
+<p>add section installation</p>
 </li>
 <li>
-<p><code>config</code> (optional, a map of configuration options)</p>
+<p>[ci skip]"</p>
 </li>
 </ul>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>The Jenkins build status will be set to `NOT_BUILT`, the Bitbucket build status to `SUCCESSFUL` (as there is no "skipped" state). The pipeline will start to execute initially, but abort before launching any agent nodes or starting any of the stages defined in the `Jenkinsfile`.
+
+== Stages
+
+Each built-in stage (like `odsComponentStageScanWithSonar`) takes two arguments:
+
+- `context` (required, this is the &lt;&lt;_pipeline_context,pipeline context&gt;&gt;)
+- `config` (optional, a map of configuration options)
+
+Example:</pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Example:</p>
+<p>odsComponentStageScanWithSonar(context, [branch: 'production'])</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>odsComponentStageScanWithSonar(context, [branch: 'production'])</pre>
+<pre>=== odsComponentFindOpenShiftImageOrElse
+
+:leveloffset: +2
+
+Checks if an image for the current commit exists already, otherwise executes the given closure.
+
+Example:
+[source,groovy]</pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_odscomponentfindopenshiftimageorelse"><a class="anchor" href="#_odscomponentfindopenshiftimageorelse"></a>odsComponentFindOpenShiftImageOrElse</h3>
 <div class="paragraph">
-<p>Checks if an image for the current commit exists already, otherwise executes the given closure.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentFindOpenShiftImageOrElse(context) {
+<p>odsComponentFindOpenShiftImageOrElse(context) {
   stage('Build') {
     // custom stage to build your application package
   }
   odsComponentStageBuildOpenShiftImage(context)
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The step can be customized using the options <code>resourceName</code> and <code>imageTag</code>.</p>
-</div>
-<div class="paragraph">
-<p>Using this step in your <code>Jenkinsfile</code> allows you to avoid building a container image for the same Git commit multiple times, reducing build times and increasing reliability as you can promote the exact same image from one environment to another.</p>
-</div>
-<div class="paragraph">
-<p>Keep in mind that image lookup works by finding an image tagged with the current Git commit. If you merge a branch into another using a merge commit, the current Git commit SHA will differ from the previously built image tag, even if the actual contents of the repository are the same. To ensure image importing kicks in, use the <a href="https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---ff">--ff-only</a> option on <code>git merge</code> (this can also be enabled for pull requests in Bitbucket under "Merge strategies"). There are a few consequences when doing so, which should be kept in mind:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>No merge commit is created, which has the downside that you do not see when a PR was merged, and that the merge commit is a convenient way to find the associated PR. Further, if the latest commit on a branch which you want to merge contains <code>[ci skip]</code>, beware that the build on the target branch will also be skipped. That siad, having no merge commit has the upside that your Git history is not polluted by merge commits.</p>
-</li>
-<li>
-<p>Enforcing a fast-forward merge prevents you from merging a branch which is not up-to-date with the target branch. This has the downside that before merging, you may need to rebase your branch or merge the target branch into your branch if someone else updated the target branch in the meantime. While this may cause extra work, it has the upside that you cannot accidentally break the target branch (e.g. tests on your branch may work based on the outdated target branch, but fail after the merge).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In summary, using <code>git merge --ff-only</code> provides safety, a clean history and allows to promote the exact same image between environments.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_odscomponentstagescanwithsonar"><a class="anchor" href="#_odscomponentstagescanwithsonar"></a>odsComponentStageScanWithSonar</h3>
-<div class="paragraph">
-<p>The "SonarQube Analysis" stage scans your source code and reports findings to
-SonarQube. The configuration of the scan happens via the
-<code>sonar-project.properties</code> file in the repository being built.</p>
-</div>
-<div class="paragraph">
-<p>If your SonarQube server edition allows to scan multiple branches (any
-commercial edition does), then this stage will automatically decorate pull
-requests in Bitbucket with feedback from SonarQube (if the PR already exists
-at the time of the Jenkins pipeline run).</p>
-</div>
-<div class="paragraph">
-<p>In debug mode, the <code>sonar-scanner</code> binary is started with the <code>-X</code> flag.</p>
-</div>
-<div class="paragraph">
-<p>If no <code>sonar.projectVersion</code> is specified in <code>sonar-project.properties</code>, it is
-set to the shortened Git SHA.</p>
-</div>
-<div class="sect3">
-<h4 id="_options"><a class="anchor" href="#_options"></a>Options</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>analyzePullRequests</strong><br>
-<em>boolean</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to analyze pull requests and decorate them in Bitbucket. Turned
- on by default, however a scan is only performed if the <code>branch</code> property
- allows it.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to scan.
- Example: <code>'master'</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to scan.
- Example: <code>['master', 'develop']</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and \
- all branches (<code><strong></code>).
- Defaults to <code>master</code> for the community edition of SonarQube, and <code></strong></code> for
- all other editions (which are capable of handling multiple branches).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>longLivedBranches</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) for which no PR analysis should be performed. If not set, it
- will be extracted from  <code>branchToEnvironmentMapping</code> of the <code>context</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>requireQualityGatePass</strong><br>
-<em>boolean</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build if the quality gate defined in the SonarQube
- project is not reached. Defaults to <code>false</code>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_odscomponentstagescanwithsnyk"><a class="anchor" href="#_odscomponentstagescanwithsnyk"></a>odsComponentStageScanWithSnyk</h3>
-<div class="paragraph">
-<p>The "Snyk Security Scan" stage performs two tasks:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>It uploads your 3rd party dependencies including their licenses for monitoring. Snyk will then notify developers about new vulnerabilities per email once they are reported to the Snyk Vulnerability Database.</p>
-</li>
-<li>
-<p>It analyses your 3rd party dependencies including their licenses and breaks the build if vulnerable versions are found.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>To get started, setup an organisation in <a href="https://snyk.io">snyk.io</a> with exactly the same name as your ODS project name. Under "Settings", create a service account for this organisation and make a note of the displayed token. Edit your <code>Jenkinsfile</code> and add the Snyk stage:</p>
+}</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>) { context -&gt;
-    ...
-    odsComponentStageScanWithSnyk(context, [snykAuthenticationCode: &lt;your token&gt;])
-    ...
-}</pre>
+<pre>The step can be customized using the options `resourceName` and `imageTag`.
+
+Using this step in your `Jenkinsfile` allows you to avoid building a container image for the same Git commit multiple times, reducing build times and increasing reliability as you can promote the exact same image from one environment to another.
+
+Keep in mind that image lookup works by finding an image tagged with the current Git commit. If you merge a branch into another using a merge commit, the current Git commit SHA will differ from the previously built image tag, even if the actual contents of the repository are the same. To ensure image importing kicks in, use the https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---ff[--ff-only] option on `git merge` (this can also be enabled for pull requests in Bitbucket under "Merge strategies"). There are a few consequences when doing so, which should be kept in mind:
+
+* No merge commit is created, which has the downside that you do not see when a PR was merged, and that the merge commit is a convenient way to find the associated PR. Further, if the latest commit on a branch which you want to merge contains `[ci skip]`, beware that the build on the target branch will also be skipped. That siad, having no merge commit has the upside that your Git history is not polluted by merge commits.
+* Enforcing a fast-forward merge prevents you from merging a branch which is not up-to-date with the target branch. This has the downside that before merging, you may need to rebase your branch or merge the target branch into your branch if someone else updated the target branch in the meantime. While this may cause extra work, it has the upside that you cannot accidentally break the target branch (e.g. tests on your branch may work based on the outdated target branch, but fail after the merge).
+
+In summary, using `git merge --ff-only` provides safety, a clean history and allows to promote the exact same image between environments.
+
+:leveloffset!:
+
+=== odsComponentStageScanWithSonar
+
+:leveloffset: +2
+
+// Document generated by render-adoc.go from odsComponentStageScanWithSonar.adoc.tmpl; DO NOT EDIT.
+
+The "SonarQube Analysis" stage scans your source code and reports findings to
+SonarQube. The configuration of the scan happens via the
+`sonar-project.properties` file in the repository being built.
+
+If your SonarQube server edition allows to scan multiple branches (any
+commercial edition does), then this stage will automatically decorate pull
+requests in Bitbucket with feedback from SonarQube (if the PR already exists
+at the time of the Jenkins pipeline run).
+
+In debug mode, the `sonar-scanner` binary is started with the `-X` flag.
+
+If no `sonar.projectVersion` is specified in `sonar-project.properties`, it is
+set to the shortened Git SHA.
+
+== Options
+
+[cols="1,2"]
+|===
+| Option | Description
+
+
+| *analyzePullRequests* +
+_boolean_
+|Whether to analyze pull requests and decorate them in Bitbucket. Turned
+ on by default, however a scan is only performed if the `branch` property
+ allows it.
+
+
+| *branch* +
+_String_
+|Branch to scan.
+ Example: `'master'`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *branches* +
+_List&lt;String&gt;_
+|Branches to scan.
+ Example: `['master', 'develop']`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and \
+ all branches (`*`).
+ Defaults to `master` for the community edition of SonarQube, and `*` for
+ all other editions (which are capable of handling multiple branches).
+
+
+| *longLivedBranches* +
+_List&lt;String&gt;_
+|Branch(es) for which no PR analysis should be performed. If not set, it
+ will be extracted from  `branchToEnvironmentMapping` of the `context`.
+
+
+| *requireQualityGatePass* +
+_boolean_
+|Whether to fail the build if the quality gate defined in the SonarQube
+ project is not reached. Defaults to `false`.
+
+|===
+
+:leveloffset!:
+
+=== odsComponentStageScanWithSnyk
+
+:leveloffset: +2
+
+// Document generated by render-adoc.go from odsComponentStageScanWithSnyk.adoc.tmpl; DO NOT EDIT.
+
+The "Snyk Security Scan" stage performs two tasks:
+
+. It uploads your 3rd party dependencies including their licenses for monitoring. Snyk will then notify developers about new vulnerabilities per email once they are reported to the Snyk Vulnerability Database.
+. It analyses your 3rd party dependencies including their licenses and breaks the build if vulnerable versions are found.
+
+To get started, setup an organisation in https://snyk.io[snyk.io] with exactly the same name as your ODS project name. Under "Settings", create a service account for this organisation and make a note of the displayed token. Edit your `Jenkinsfile` and add the Snyk stage:</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It is recommended to read your authentication token dynamically, e.g. from an environment variable or a credential in your Jenkins master.</p>
+<p>) { context &#8594;
+    &#8230;&#8203;
+    odsComponentStageScanWithSnyk(context, [snykAuthenticationCode: &lt;your token&gt;])
+    &#8230;&#8203;
+}</p>
 </div>
-<div class="sect3">
-<h4 id="_options_2"><a class="anchor" href="#_options_2"></a>Options</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>additionalFlags</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Additional flags for the Snyk CLI. Please refer to the official Snyk CLI
- reference for possible options and don&#8217;t forget to take the CLI version
- of your ODS installation into account. The value of <code>additionalFlags</code>
+<div class="listingblock">
+<div class="content">
+<pre>It is recommended to read your authentication token dynamically, e.g. from an environment variable or a credential in your Jenkins master.
+
+== Options
+
+[cols="1,2"]
+|===
+| Option | Description
+
+
+| *additionalFlags* +
+_List&lt;String&gt;_
+|Additional flags for the Snyk CLI. Please refer to the official Snyk CLI
+ reference for possible options and don't forget to take the CLI version
+ of your ODS installation into account. The value of `additionalFlags`
  must be a list in which the entries have the official flag name and a
  possible value.
- Example: <code>['--all-sub-projects', '--show-vulnerable-paths=all']</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
- Example: <code>'master'</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
- Example: <code>['master', 'develop']</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildFile</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Build file from which to gather dependency information. Defaults to <code>build.gradle</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>failOnVulnerabilities</strong><br>
-<em>boolean</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build when vulnerabilities are found. Defaults to <code>true</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>organisation</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk organisation. Default to <code>context.projectId</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>projectName</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk project name. Default to <code>context.componentId</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>severityThreshold</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Severity threshold for failing. If any found vulnerability has a severity
+ Example: `['--all-sub-projects', '--show-vulnerable-paths=all']`
+
+
+| *branch* +
+_String_
+|Branch to run stage for.
+ Example: `'master'`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *branches* +
+_List&lt;String&gt;_
+|Branches to run stage for.
+ Example: `['master', 'develop']`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *buildFile* +
+_String_
+|Build file from which to gather dependency information. Defaults to `build.gradle`.
+
+
+| *failOnVulnerabilities* +
+_boolean_
+|Whether to fail the build when vulnerabilities are found. Defaults to `true`.
+
+
+| *organisation* +
+_String_
+|Name of the Snyk organisation. Default to `context.projectId`.
+
+
+| *projectName* +
+_String_
+|Name of the Snyk project name. Default to `context.componentId`.
+
+
+| *severityThreshold* +
+_String_
+|Severity threshold for failing. If any found vulnerability has a severity
  equal or higher to the threshold, the snyk test will return with a
- failure status. Possible values are <code>low</code>, <code>medium</code>, <code>high</code>.
- Defaults to <code>low</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>snykAuthenticationCode</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required! Authentication token of a service account within your organisation.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_odscomponentstagebuildopenshiftimage"><a class="anchor" href="#_odscomponentstagebuildopenshiftimage"></a>odsComponentStageBuildOpenShiftImage</h3>
-<div class="paragraph">
-<p>Triggers (and follows) a build in the <code>BuildConfig</code> related to the repository
-being built.</p>
-</div>
-<div class="paragraph">
-<p>The resulting image is tagged with <code>context.shortGitCommit</code>.</p>
-</div>
-<div class="sect3">
-<h4 id="_options_3"><a class="anchor" href="#_options_3"></a>Options</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
- Example: <code>'master'</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
- Example: <code>['master', 'develop']</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildArgs</strong><br>
-<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pass build arguments to the image build process.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildTimeoutMinutes</strong><br>
-<em>Integer</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout of build (defaults to 15 minutes).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>dockerDir</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Docker context directory (defaults to <code>docker</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>extensionImageLabels</strong><br>
-<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Extra image labels added into <code>imageLabels</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imageLabels</strong><br>
-<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pass labels which should be added on the image.
- Each label will be prefixed with <code>ext.</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imageTag</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to apply (defaults to <code>context.shortGitCommit</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resourceName</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_odscomponentstageimportopenshiftimage"><a class="anchor" href="#_odscomponentstageimportopenshiftimage"></a>odsComponentStageImportOpenShiftImage</h3>
-<div class="paragraph">
-<p>Imports an image from another namespace.</p>
-</div>
-<div class="paragraph">
-<p>By default, the source image is identified using the commit which triggered the pipeline run.</p>
-</div>
-<div class="sect3">
-<h4 id="_options_4"><a class="anchor" href="#_options_4"></a>Options</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
- Example: <code>'master'</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
- Example: <code>['master', 'develop']</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imagePullerSecret</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of image-puller secret (optional, used when pulling images from an external source cluster).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resourceName</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceProject</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift project from which to import the image identified by <code>resourceName</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceTag</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to look for in the <code>sourceProject</code> (defaults to <code>context.shortGitCommit</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>targetTag</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to apply to the imported image in the target project (defaults to <code>sourceTag</code>).</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_odscomponentstagerolloutopenshiftdeployment"><a class="anchor" href="#_odscomponentstagerolloutopenshiftdeployment"></a>odsComponentStageRolloutOpenShiftDeployment</h3>
-<div class="paragraph">
-<p>Triggers (and follows) a rollout of the <code>DeploymentConfig</code> related to the repository
-being built.</p>
-</div>
-<div class="paragraph">
-<p>It achieves this by tagging the image built in <code>odsComponentStageBuildOpenShiftImage</code> with <code>latest</code>. This might already trigger a rollout based on an existing <code>ImageTrigger</code>. If none is set, the stage will start a manual rollout.</p>
-</div>
-<div class="paragraph">
-<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In this case, it is recommended to remove any image triggers to avoid duplicate rollouts (one when configuration changes due to a config trigger and one when the image is tagged to <code>latest</code>). In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
-</div>
-<div class="sect3">
-<h4 id="_options_5"><a class="anchor" href="#_options_5"></a>Options</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
- Example: <code>'master'</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
- Example: <code>['master', 'develop']</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>chartDir</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Directory of Helm chart (defaults to <code>chart</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>deployTimeoutMinutes</strong><br>
-<em>Integer</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to
+ failure status. Possible values are `low`, `medium`, `high`.
+ Defaults to `low`.
+
+
+| *snykAuthenticationCode* +
+_String_
+|Required! Authentication token of a service account within your organisation.
+
+|===
+
+:leveloffset!:
+
+=== odsComponentStageBuildOpenShiftImage
+
+:leveloffset: +2
+
+// Document generated by render-adoc.go from odsComponentStageBuildOpenShiftImage.adoc.tmpl; DO NOT EDIT.
+
+Triggers (and follows) a build in the `BuildConfig` related to the repository
+being built.
+
+The resulting image is tagged with `context.shortGitCommit`.
+
+== Options
+
+[cols="1,2"]
+|===
+| Option | Description
+
+
+| *branch* +
+_String_
+|Branch to run stage for.
+ Example: `'master'`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *branches* +
+_List&lt;String&gt;_
+|Branches to run stage for.
+ Example: `['master', 'develop']`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *buildArgs* +
+_Map&lt;String,&amp;nbsp;String&gt;_
+|Pass build arguments to the image build process.
+
+
+| *buildTimeoutMinutes* +
+_Integer_
+|Timeout of build (defaults to 15 minutes).
+
+
+| *dockerDir* +
+_String_
+|Docker context directory (defaults to `docker`).
+
+
+| *extensionImageLabels* +
+_Map&lt;String,&amp;nbsp;String&gt;_
+|Extra image labels added into `imageLabels`
+
+
+| *imageLabels* +
+_Map&lt;String,&amp;nbsp;String&gt;_
+|Pass labels which should be added on the image.
+ Each label will be prefixed with `ext.`.
+
+
+| *imageTag* +
+_String_
+|Image tag to apply (defaults to `context.shortGitCommit`).
+
+
+| *resourceName* +
+_String_
+|Name of `BuildConfig`/`ImageStream` to use (defaults to `context.componentId`).
+
+|===
+
+:leveloffset!:
+
+=== odsComponentStageImportOpenShiftImage
+
+:leveloffset: +2
+
+// Document generated by render-adoc.go from odsComponentStageImportOpenShiftImage.adoc.tmpl; DO NOT EDIT.
+
+Imports an image from another namespace.
+
+By default, the source image is identified using the commit which triggered the pipeline run.
+
+== Options
+
+[cols="1,2"]
+|===
+| Option | Description
+
+
+| *branch* +
+_String_
+|Branch to run stage for.
+ Example: `'master'`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *branches* +
+_List&lt;String&gt;_
+|Branches to run stage for.
+ Example: `['master', 'develop']`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *imagePullerSecret* +
+_String_
+|Name of image-puller secret (optional, used when pulling images from an external source cluster).
+
+
+| *resourceName* +
+_String_
+|Name of `BuildConfig`/`ImageStream` to use (defaults to `context.componentId`).
+
+
+| *sourceProject* +
+_String_
+|OpenShift project from which to import the image identified by `resourceName`.
+
+
+| *sourceTag* +
+_String_
+|Image tag to look for in the `sourceProject` (defaults to `context.shortGitCommit`).
+
+
+| *targetTag* +
+_String_
+|Image tag to apply to the imported image in the target project (defaults to `sourceTag`).
+
+|===
+
+:leveloffset!:
+
+=== odsComponentStageRolloutOpenShiftDeployment
+
+:leveloffset: +2
+
+// Document generated by render-adoc.go from odsComponentStageRolloutOpenShiftDeployment.adoc.tmpl; DO NOT EDIT.
+
+Triggers (and follows) a rollout of the `DeploymentConfig` related to the repository
+being built.
+
+It achieves this by tagging the image built in `odsComponentStageBuildOpenShiftImage` with `latest`. This might already trigger a rollout based on an existing `ImageTrigger`. If none is set, the stage will start a manual rollout.
+
+If the directory referenced by `openshiftDir` exists, the templates in there will be applied using https://github.com/opendevstack/tailor[Tailor]. In this case, it is recommended to remove any image triggers to avoid duplicate rollouts (one when configuration changes due to a config trigger and one when the image is tagged to `latest`). In addition to the configuration options below, one can use e.g. a `Tailorfile` to adjust the behaviour of Tailor as needed.
+
+== Options
+
+[cols="1,2"]
+|===
+| Option | Description
+
+
+| *branch* +
+_String_
+|Branch to run stage for.
+ Example: `'master'`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *branches* +
+_List&lt;String&gt;_
+|Branches to run stage for.
+ Example: `['master', 'develop']`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *chartDir* +
+_String_
+|Directory of Helm chart (defaults to `chart`).
+
+
+| *deployTimeoutMinutes* +
+_Integer_
+|Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to
  be aligned with the deployment strategy timeout (timeoutSeconds) and the
- readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>deployTimeoutRetries</strong><br>
-<em>Integer</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust retries to wait for the pod during a rollout (defaults to 5).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmAdditionalFlags</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of additional flags to be passed verbatim to to <code>helm upgrade</code>
+ readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).
+
+
+| *deployTimeoutRetries* +
+_Integer_
+|Adjust retries to wait for the pod during a rollout (defaults to 5).
+
+
+| *helmAdditionalFlags* +
+_List&lt;String&gt;_
+|List of additional flags to be passed verbatim to to `helm upgrade`
 (empty by default). Only relevant if the directory referenced by
-<code>chartDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmDefaultFlags</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of default flags to be passed verbatim to to <code>helm upgrade</code>
- (defaults to <code>['--install', '--atomic']</code>). Typically these should not be
- modified - if you want to pass more flags, use <code>helmAdditionalFlags</code>
- instead. Only relevant if the directory referenced by <code>chartDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmDiff</strong><br>
-<em>boolean</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to show diff explaining changes to the release before running
- <code>helm upgrade</code> (<code>true</code> by default). Only relevant if the directory
- referenced by <code>chartDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmPrivateKeyCredentialsId</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by helm-secrets (defaults to
- <code>${context.cdProject}-helm-private-key</code>). The fingerprint must match the
- one specified in <code>.sops.yaml</code>. Only relevant if the directory referenced
- by <code>chartDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmReleaseName</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Helm release (defaults to <code>context.componentId</code>). Change this
+`chartDir` exists.
+
+
+| *helmDefaultFlags* +
+_List&lt;String&gt;_
+|List of default flags to be passed verbatim to to `helm upgrade`
+ (defaults to `['--install', '--atomic']`). Typically these should not be
+ modified - if you want to pass more flags, use `helmAdditionalFlags`
+ instead. Only relevant if the directory referenced by `chartDir` exists.
+
+
+| *helmDiff* +
+_boolean_
+|Whether to show diff explaining changes to the release before running
+ `helm upgrade` (`true` by default). Only relevant if the directory
+ referenced by `chartDir` exists.
+
+
+| *helmPrivateKeyCredentialsId* +
+_String_
+|Credentials name of the private key used by helm-secrets (defaults to
+ `${context.cdProject}-helm-private-key`). The fingerprint must match the
+ one specified in `.sops.yaml`. Only relevant if the directory referenced
+ by `chartDir` exists.
+
+
+| *helmReleaseName* +
+_String_
+|Name of the Helm release (defaults to `context.componentId`). Change this
  value if you want to install separate instances of the Helm chart in the
- same namespace. In that case, make sure to use <code>{{ .Release.Name }}</code> in
+ same namespace. In that case, make sure to use `{{ .Release.Name }}` in
  resource names to avoid conflicts.  Only relevant if the directory
- referenced by <code>chartDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmValues</strong><br>
-<em>Map&lt;String,&nbsp;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Key/value pairs to pass as values (by default, the key <code>imageTag</code> is set
- to the config option <code>imageTag</code>). Only relevant if the directory
- referenced by <code>chartDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmValuesFiles</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of paths to values files (empty by default). Only relevant if the
- directory referenced by <code>chartDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imageTag</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag on which to apply the <code>latest</code> tag (defaults to <code>context.shortGitCommit</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>openshiftDir</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>selector</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used to determine which resources are part of a component
- (defaults to <code>context.selector</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorExclude</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind exclusion used by Tailor (defaults to <code>bc,is</code>). Only
- relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorParamFile</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the
- directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorParams</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only
- relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorPreserve</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>[]</code>). Only
- relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorPrivateKeyCredentialsId</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by Tailor (defaults to
- <code>${context.cdProject}-tailor-private-key</code>). Only relevant if the
- directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorSelector</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to config option <code>selector</code>).
- Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tailorVerify</strong><br>
-<em>boolean</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state
- after application (defaults to <code>false</code>). Only relevant if the directory
- referenced by <code>openshiftDir</code> exists.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_odscomponentstageuploadtonexus"><a class="anchor" href="#_odscomponentstageuploadtonexus"></a>odsComponentStageUploadToNexus</h3>
-<div class="paragraph">
-<p>Triggers the upload of an artifact to Nexus. Implementation is based on <a href="https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api" class="bare">https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api</a></p>
-</div>
-<div class="sect3">
-<h4 id="_options_6"><a class="anchor" href="#_options_6"></a>Options</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>artifactId</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=maven2</code>: default is <code>context.componentId</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
- Example: <code>'master'</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
-<em>List&lt;String&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
- Example: <code>['master', 'develop']</code>.
- Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>distributionFile</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Filename. Defaults to <code>${context.componentId}-${context.tagversion}.tar.gz</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>groupId</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=maven2</code>: default is the <code>groupId</code> on project level,
- or in case not set at all <code>org.opendevstack.${context.projectId}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repository</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Nexus repository. Defaults to <code>candidates</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repositoryType</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type of the Nexus repository. Defaults to <code>maven2</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>targetDirectory</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=raw</code>: default is  <code>context.projectId</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=maven2</code>: default is  <code>context.tagversion</code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+ referenced by `chartDir` exists.
+
+
+| *helmValues* +
+_Map&lt;String,&amp;nbsp;String&gt;_
+|Key/value pairs to pass as values (by default, the key `imageTag` is set
+ to the config option `imageTag`). Only relevant if the directory
+ referenced by `chartDir` exists.
+
+
+| *helmValuesFiles* +
+_List&lt;String&gt;_
+|List of paths to values files (empty by default). Only relevant if the
+ directory referenced by `chartDir` exists.
+
+
+| *imageTag* +
+_String_
+|Image tag on which to apply the `latest` tag (defaults to `context.shortGitCommit`).
+
+
+| *openshiftDir* +
+_String_
+|Directory with OpenShift templates (defaults to `openshift`).
+
+
+| *selector* +
+_String_
+|Selector scope used to determine which resources are part of a component
+ (defaults to `context.selector`).
+
+
+| *tailorExclude* +
+_String_
+|Resource kind exclusion used by Tailor (defaults to `bc,is`). Only
+ relevant if the directory referenced by `openshiftDir` exists.
+
+
+| *tailorParamFile* +
+_String_
+|Path to Tailor parameter file (defaults to none). Only relevant if the
+ directory referenced by `openshiftDir` exists.
+
+
+| *tailorParams* +
+_List&lt;String&gt;_
+|Additional parameters to pass to Tailor (defaults to `[]`). Only
+ relevant if the directory referenced by `openshiftDir` exists.
+
+
+| *tailorPreserve* +
+_List&lt;String&gt;_
+|Paths to preserve in the live configuration (defaults to `[]`). Only
+ relevant if the directory referenced by `openshiftDir` exists.
+
+
+| *tailorPrivateKeyCredentialsId* +
+_String_
+|Credentials name of the private key used by Tailor (defaults to
+ `${context.cdProject}-tailor-private-key`). Only relevant if the
+ directory referenced by `openshiftDir` exists.
+
+
+| *tailorSelector* +
+_String_
+|Selector scope used by Tailor (defaults to config option `selector`).
+ Only relevant if the directory referenced by `openshiftDir` exists.
+
+
+| *tailorVerify* +
+_boolean_
+|Whether Tailor verifies the live configuration against the desired state
+ after application (defaults to `false`). Only relevant if the directory
+ referenced by `openshiftDir` exists.
+
+|===
+
+:leveloffset!:
+
+=== odsComponentStageUploadToNexus
+
+:leveloffset: +2
+
+// Document generated by render-adoc.go from odsComponentStageUploadToNexus.adoc.tmpl; DO NOT EDIT.
+
+:page-partial:
+
+Triggers the upload of an artifact to Nexus. Implementation is based on https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api
+
+== Options
+
+[cols="1,2"]
+|===
+| Option | Description
+
+
+| *artifactId* +
+_String_
+|For `repositoryType=maven2`: default is `context.componentId`
+
+
+| *branch* +
+_String_
+|Branch to run stage for.
+ Example: `'master'`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *branches* +
+_List&lt;String&gt;_
+|Branches to run stage for.
+ Example: `['master', 'develop']`.
+ Next to exact matches, it also supports prefixes (e.g. `feature/`) and all branches (`*`).
+
+
+| *distributionFile* +
+_String_
+|Filename. Defaults to `${context.componentId}-${context.tagversion}.tar.gz`
+
+
+| *groupId* +
+_String_
+|For `repositoryType=maven2`: default is the `groupId` on project level,
+ or in case not set at all `org.opendevstack.${context.projectId}`
+
+
+| *repository* +
+_String_
+|Name of the Nexus repository. Defaults to `candidates`.
+
+
+| *repositoryType* +
+_String_
+|Type of the Nexus repository. Defaults to `maven2`.
+
+
+| *targetDirectory* +
+_String_
+|For `repositoryType=raw`: default is  `context.projectId`
+
+
+| *version* +
+_String_
+|For `repositoryType=maven2`: default is  `context.tagversion`
+
+|===
+
+:leveloffset!:</pre>
 </div>
 </div>
 </article>
