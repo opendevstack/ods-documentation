@@ -534,7 +534,7 @@ odsComponentPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sonarQubeEdition</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Edition of SonarQube in use, determined by <code>SONARQUBE_EDITION</code> (defaults to <code>community</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edition of SonarQube in use, determined by <code>SONAR_EDITION</code> (defaults to <code>community</code>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cloneSourceEnv</p></td>
@@ -582,7 +582,11 @@ odsComponentPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit message (sanitized).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitRawMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit message (raw).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitTime</p></td>
@@ -884,7 +888,7 @@ def suffixedComponent = context.componentId + componentSuffix</code></pre>
   if (context.environment != 'dev') {
     echo "Not performing cleanup outside dev environment"; return
   }
-  def mergedIssueId = org.ods.services.GitService.mergedIssueId(context.projectId, context.repoName, context.gitCommitMessage)
+  def mergedIssueId = org.ods.services.GitService.mergedIssueId(context.projectId, context.repoName, context.gitCommitRawMessage)
   if (mergedIssueId) {
     echo "Perform cleanup of suffix '-${mergedIssueId}'"
     sh("oc -n ${context.targetProject} delete all -l app=${context.projectId}-${context.componentId}-${mergedIssueId}")

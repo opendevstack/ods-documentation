@@ -86,10 +86,7 @@
     <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learning Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+    <a class="nav-link" href="ds-jupyter-lab.html">Data Science Jupyter Lab</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
@@ -316,7 +313,7 @@ installation and integration of it with OpenShift CD pipelines.</p>
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The quickstarter is simmple WEB-server written on Python using Flask framework.
+<p>The quickstarter comes with a simple API-server example written in Python and using Flask framework.
 The package allows easily build a Python project, using different Python modules
 and frameworks.
 It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
@@ -334,17 +331,16 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 │   ├── Dockerfile
 │   └── run.sh - This bash script solves issue with permissions for a container user
 ├── src
-│    ├── main.py - This file is the main entry point in the project.
-│    └── requirements.txt - This file contains a list of required Python modules to run application
+│   └── main.py - This file is the main entry point in the project.
 ├── tests
-│        ├── __init__.py
-│        ├── main_test.py - Unit testing src/main.py
-│        ├── pytest.ini - pytest configuration file
-│        └── requirements.txt - required Python modules for the Test Suite and IDE integration
+│   ├── __init__.py
+│   └── main_test.py - Unit testing src/main.py
 ├── .coveragerc - Coverage configuration file
 ├── metadata.yml - Component metadata
 ├── mypy.ini - mypy configuration file
 ├── release-manager.yml - Configuration file for the Release Manager
+├── requirements.txt - This file contains a list of required Python modules to run your application
+├── tests_requirements.txt - required Python modules for the Test Suite (includes requirements.txt) and IDE integration
 └── sonar-project.properties - This file contains SonarQube configuration settings</pre>
 </div>
 </div>
@@ -384,26 +380,35 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <p>The project is production ready when deployed in OpenShift thanks to gunicorn.</p>
 </div>
 <div class="paragraph">
-<p>It is recommended when you are developing a Python project to use separated environments.
-For this purpose usually one can use
-<a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> package.</p>
+<p>It is strongly recommended when you are developing a Python project to use separated environments.
+For this purpose usually one can use Python&#8217;s
+<a href="https://docs.python.org/3.8/library/venv.html">venv</a> core package (check how to use it in the next steps).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+since the version of Python is 3.8, ensure your system&#8217;s python executable is also in version 3.8
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Command install virtualenv package (run only once)
-pip install virtualenv
-
-# Creates virtual environment 'mylocaldevelopment' (will be located in the folder mylocaldevelopment) (run only once)
-virtualenv mylocaldevelopment
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Create virtual environment 'mylocaldevelopment' (will be located in the folder mylocaldevelopment) (run only once)
+python -m venv mylocaldevelopment
 
 # Initiate virtual environment for the project (every time)
 source mylocaldevelopment/bin/activate
 
 # Runs installation of required modules in the virtual environment (run only once)
-pip install -r src/requirements.txt
+pip install -r requirements.txt
 
 # Start your application
-python src/main.py</code></pre>
+PYTHONPATH=src python src/main.py</code></pre>
 </div>
 </div>
 </div>
@@ -420,7 +425,7 @@ python src/main.py</code></pre>
 <p><strong>Prepare Test Suite</strong> - Prepares the virtual environment for testing and linting:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  pip install -r tests/requirements.txt</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  pip install -r tests_requirements.txt</code></pre>
 </div>
 </div>
 </li>
@@ -437,8 +442,7 @@ python src/main.py</code></pre>
 <p><strong>Test</strong> - Runs pytest and generates xUnit and code coverage reports:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cd src/
-  python -m pytest --junitxml=tests.xml --cov-report term-missing --cov-report xml --cov=. ../tests/</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  PYTHONPATH=src python -m pytest --junitxml=tests.xml -o junit_family=xunit2 --cov-report term-missing --cov-report xml --cov=src -o testpaths=tests</code></pre>
 </div>
 </div>
 </li>
@@ -461,7 +465,7 @@ python src/main.py</code></pre>
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NA</p>
+<p>Let us know if you find any, thanks!</p>
 </div>
 </div>
 </div>
