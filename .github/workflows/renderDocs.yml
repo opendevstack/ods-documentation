@@ -1,0 +1,34 @@
+name: Render Project Docs
+
+on:
+    workflow_dispatch:
+    push:
+    schedule:
+      - cron:  '10-20/51 1 * * *'
+
+jobs:
+  build:
+
+    if: "! contains(toJSON(github.event.commits.*.message), '[ci skip]')"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - uses: rlespinasse/github-slug-action@v3.x
+    - name: Install antora
+      run: |
+        npm i @antora/cli@2.3 antora-site-generator-lunr
+        npm install
+    - name: Render docs
+      run: |
+        rm -rf docs/*
+        DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr $(npm bin)/antora generate --silent --clean --fetch site.yml --generator antora-site-generator-lunr
+    - name: Publish docs
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        ./.github/workflows/push.sh
