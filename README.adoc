@@ -52,6 +52,6 @@ A search index is created by integration of https://github.com/Mogztter/antora-l
 
 Whenever this repository is pushed to GitHub, it triggers a build using GitHub Actions,
 that regenerates the antora documentation based on the `site.yml` playbook (which fetches the different referenced repositories from GitHub). The
-updated content in directory `docs` will be pushed back to the GitHub repository during the build. The build environment requires access to a GitHub Token (env: GH_TOKEN) with write privileges to the repository.
+updated content in directory `docs` will be pushed back to the GitHub repository during the build. The build environment uses the GitHub Token (env: GITHUB_TOKEN) with write privileges to the repository.
 
 See xref:.github/workflows/renderDocs.yml[.github/workflows/renderDocs.yml] for details.
