@@ -320,12 +320,78 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <div class="olist arabic">
 <ol class="arabic">
 <li>
+<p>Gradlew distribution version preinstalled in gradle cache (/home/jenkins/.gradle/wrapper/dists/)</p>
+</li>
+<li>
 <p>Nexus configuration for Maven &amp; Gradle</p>
 </li>
 <li>
 <p>HTTP proxy awareness for both builders</p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_supported_java_versions"><a class="anchor" href="#_supported_java_versions"></a>Supported Java Versions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This agent provides 2 JDKs: <code>java 11</code> and <code>java 17</code>.</p>
+</div>
+<div class="paragraph">
+<p>For backwards compatibility <code>java 11</code> is the default version. Java projects migrating from previous ODS version will not require any change. A migration to <code>java 17</code> can be done afterwards.</p>
+</div>
+<div class="paragraph">
+<p>To switch the environment to <code>java 17</code> the script <code>use-j17.sh</code> is provided at the jenkins home folder.
+Following command shows how the jenkins build script from the springboot quickstarter switches the java version before calling the gradle wrapper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>def status = sh(script: "$HOME/use-j17.sh &amp;&amp; ./gradlew clean build --stacktrace --no-daemon &amp;&amp; $HOME/use-j11.sh", returnStatus: true)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+like this example, you will need to switch back to <code>java 11</code> after running the gradlew build. This is required because the maven agent environment still does not support the latest java version. E.g. the <code>sonar scanner</code> is not compatible with the latest java version.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installed_packages"><a class="anchor" href="#_installed_packages"></a>Installed packages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dockerfile.ubi8 installs:
+- java-17-openjdk-devel &amp; java-17-openjdk-jmods
+- java-11-openjdk-devel &amp; java-11-openjdk-jmods
+- maven-3.5.4
+- gradle wrapper distribution version 7.3.2 (<a href="https://services.gradle.org/" class="bare">https://services.gradle.org/</a>)</p>
+</div>
+<div class="paragraph">
+<p>Dockerfile.centos7 installs
+- java-11-openjdk-devel &amp; java-11-openjdk-jmods
+- java-17-openjdk-devel &amp; java-17-openjdk-jmods
+- maven 3.5.4 from apache distribution directory (<a href="https://apache.osuosl.org/maven/maven-3" class="bare">https://apache.osuosl.org/maven/maven-3</a>)
+- gradle wrapper distribution version 7.3.2 (<a href="https://services.gradle.org/" class="bare">https://services.gradle.org/</a>)</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+detail about java and maven installed packages can be found in <a href="https://centos.pkgs.org" class="bare">https://centos.pkgs.org</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

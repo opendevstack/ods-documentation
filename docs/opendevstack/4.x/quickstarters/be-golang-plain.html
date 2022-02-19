@@ -347,6 +347,23 @@ should be necessary. Typically, you&#8217;d want to use Go modules:</p>
 <pre>go mod init example.com/project/component</pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_metadata"><a class="anchor" href="#_metadata"></a>Metadata</h3>
+<div class="paragraph">
+<p>The following are typical <a href="metadata.html" class="page">metadata</a> values that can be used for components based on this quickstarter:
+Note that the <a href="../jenkins-shared-library/labelling.html" class="page">OpenShift resources will be labeled</a> based on this metadata.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: &lt;the component id (this is the default, if omitted)&gt;
+description: "Some microservice implemented in golang"
+supplier: https://example.com
+version: 1.0.1
+type: ods
+role: backend</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
