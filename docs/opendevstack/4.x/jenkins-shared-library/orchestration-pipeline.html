@@ -355,7 +355,7 @@ repositories:
 </div>
 </div>
 <div class="paragraph">
-<p>The library supports the following repository types: <code>ods</code>, <code>ods-service</code>, and <code>ods-test</code>. Setting a repository type is required so the orchestrator can make correct assumptions based on the nature of the component at hand:</p>
+<p>The library supports the following repository types: <code>ods</code>, <code>ods-infra</code>, <code>ods-service</code>, <code>ods-saas-service</code>, <code>ods-test</code> and <code>ods-library</code>. Setting a repository type is required so the orchestrator can make correct assumptions based on the nature of the component at hand:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -385,15 +385,33 @@ repositories:
 </div>
 </div>
 <div class="sect3">
+<h4 id="_repository_type_ods_infra"><a class="anchor" href="#_repository_type_ods_infra"></a>Repository Type: ods-infra</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>consuming on-prem or cloud services</em> of arbitrary type using infrastructure as code. Such components are based on quickstarters whose names start with <code>infra-</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods_saas_service"><a class="anchor" href="#_repository_type_ods_saas_service"></a>Repository Type: ods-saas-service</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>documenting vendor-provided SaaS services</em>.</p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_repository_type_ods_service"><a class="anchor" href="#_repository_type_ods_service"></a>Repository Type: ods-service</h4>
 <div class="paragraph">
-<p>This type designates ODS components designed for <em>running some service</em>. Examples include repositories based on the <code>airflow-cluster</code> quickstarter.</p>
+<p>This type designates ODS components designed for <em>running services</em> of arbitrary type. Examples include repositories based on the <code>airflow-cluster</code> quickstarter.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_repository_type_ods_test"><a class="anchor" href="#_repository_type_ods_test"></a>Repository Type: ods-test</h4>
 <div class="paragraph">
-<p>This type designates ODS components designed for <em>running automated tests against a live application</em>. Such repositories are based on quickstarters whose names start with <code>e2e-</code>.</p>
+<p>This type designates ODS components designed for <em>running automated tests against a live application</em>. Such components are based on quickstarters whose names start with <code>e2e-</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods_library"><a class="anchor" href="#_repository_type_ods_library"></a>Repository Type: ods-library</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>library components</em>. Such components are only build in dev (WIP and assemble mode), and are needed for other components to be built.</p>
 </div>
 </div>
 </div>

@@ -357,6 +357,10 @@ The <code>&lt;project-key&gt;-dev</code> and <code>&lt;project-key&gt;-test</cod
 In contrast to this, the <code>&lt;project-key&gt;-cd</code> namespace hosts a project-specific instance of <a href="../jenkins/master.html" class="page">Jenkins Master</a> and <a href="../jenkins/webhook-proxy.html" class="page">Webhook Proxy</a>. When a build is triggered, builder pods (= deployments of <a href="#jenkins:slave-base.adoc" class="page unresolved">Jenkins slaves</a>) are created in this project.<br>
 This was a cautious design choice to give a project team as much power as possible when it comes to configuration of Jenkins.</p>
 </li>
+<li>
+<p>What permissions are assigned when a new Bitbucket project or repository is created?<br>
+The assigned permissions are detailed <a href="configuration.html#_bitbucket_permissions" class="page">here</a>.</p>
+</li>
 </ol>
 </div>
 </div>

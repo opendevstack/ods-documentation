@@ -465,6 +465,10 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">testResults</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Configurable location for xunit test results, in case the build does not put them into <code>build/test-results/test</code>.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">commitGitWorkingTree</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defaulting to false, if set to true, any changes in the working directory added with <code>git add</code> will be committed to the current branch and pushed.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1111,6 +1115,87 @@ set to the shortened Git SHA.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_odscomponentstagescanwithaqua"><a class="anchor" href="#_odscomponentstagescanwithaqua"></a>odsComponentStageScanWithAqua</h3>
+<div class="paragraph">
+<p>The "Aqua Security Scan" stage scans an image that was previously built in that same pipeline run.</p>
+</div>
+<div class="paragraph">
+<p>As a result, a Bitbucket Code Insight entry is added to the git commit (in Bitbucket) that basically
+contains a link to the scan result on the Aqua platform. The Bitbucket Code Insight entry can be seen in a pull request.
+The pull request in Bitbucket shows the Code Insight of the latest commit of the PR.</p>
+</div>
+<div class="paragraph">
+<p>To get started, make sure you have a <code>ConfigMap</code> in OpenDevStack project namespace (usually ods) in OpenShift that has these fields:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>...
+metadata:
+  name: aqua
+...
+data:
+  registry: &lt;registry-name-in-aqua-platform&gt;
+  secretName: &lt;secret-name-of-aqua-user-credentials&gt;
+  url: &lt;aqua-platform-url&gt;
+  enabled: &lt;true/false&gt;
+  nexusRepository: &lt;name-repository-in-nexus-to-store-the-results&gt;
+  alertEmails: &lt;emails-to-send-notifications&gt;</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>registry</code>: Refers to a name for the image registry given in the Aqua platform by an Aqua platform admin.</p>
+</li>
+<li>
+<p><code>secretName</code>: Name of a <code>Secret</code> that contains the credentials of the Aqua platform user that is used for executing the scan. That user needs to have scanner rights. This field is optional, if the property doesn&#8217;t exists the system will use the credential 'cd-user-with-password'.</p>
+</li>
+<li>
+<p><code>url</code>: Base URL of the Aqua platform (including scheme).</p>
+</li>
+<li>
+<p><code>enabled</code>: If true, the scan always occur in all projects. False to disable the scan.</p>
+</li>
+<li>
+<p><code>nexusRepository</code>: Name of the repository in Nexus instance to store the results of analysis in HTML format.</p>
+</li>
+<li>
+<p><code>alertEmails</code>: Optional field. It contains the emails splitted by ',' to send error notifications regarding with Aqua analysis (misconfigurations, etc&#8230;&#8203;). The mail server must be configured in Jenkins to send the emails.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Is possible to disable the analysis at project level. for that is necessary to add in the <code>ConfigMap</code> new properties e.g. like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>...
+metadata:
+  name: aqua
+...
+data:
+  registry: &lt;registry-name-in-aqua-platform&gt;
+  secretName: &lt;secret-name-of-aqua-user-credentials&gt;
+  url: &lt;aqua-platform-url&gt;
+  enabled: &lt;true/false&gt;
+  nexusRepository: &lt;name-repository-in-nexus-to-store-the-results&gt;
+  alertEmails: &lt;emails-to-send-notifications&gt;
+  project.key1.enabled: &lt;false&gt;
+  project.key2.enabled: &lt;false&gt;</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>project.key1.enabled</code>: Property to indicate that key1 (being key1 the key of the project) has the aqua analysis disabled.</p>
+</li>
+<li>
+<p><code>project.key2.enabled</code>: The same but for key2 project.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_odscomponentstagescanwithsnyk"><a class="anchor" href="#_odscomponentstagescanwithsnyk"></a>odsComponentStageScanWithSnyk</h3>
 <div class="paragraph">
 <p>The "Snyk Security Scan" stage performs two tasks:</p>
@@ -1528,6 +1613,12 @@ being built.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>All the created or updated OpenShift resources are automatically labeled to ease their management.</p>
+</div>
+<div class="paragraph">
+<p>Detailed information about the labelling can be found <a href="labelling.html" class="page">here</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
