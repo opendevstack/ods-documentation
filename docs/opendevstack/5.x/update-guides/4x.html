@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Update Guide to version 4.x for OpenDevStack users :: OpenDevStack</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="5.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-lab.html">Data Science Jupyter Lab</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#jenkins-agents:nodejs12.adoc">Nodejs12 Angular</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="4x.html">Migrate to 4.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#provisioning-app:configuration.adoc">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../nexus/administration.html">Nexus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/image-lifecycle.html">Image Lifecycles</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#provisioning-app:architecture.adoc">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">5.x Preview</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../getting-started/index.html">5.x Preview</a>
+        </li>
+        <li class="version">
+          <a href="../../4.x/index.html">4.x Preview</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../3.x/getting-started/index.html">3.x</a>
+        </li>
+        <li class="version">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../3.x/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li>Update Guides</li>
+    <li><a href="4x.html">Migrate to 4.x</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
+  <div class="version-menu">
+    <a class="version is-current" href="4x.html">5.x Preview</a>
+    <a class="version is-missing" href="../../4.x/index.html">4.x Preview</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/update-guides/pages/4x.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Update Guide to version 4.x for OpenDevStack users</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_update_image_tags_of_jenkins_deployments">Update image tags of Jenkins deployments</a></li>
+<li><a href="#_jenkins_shared_library">Jenkins Shared Library</a>
+<ul class="sectlevel2">
+<li><a href="#_whats_new">What&#8217;s new?</a></li>
+<li><a href="#_required_changes_to_adopt_4_x">Required changes to adopt 4.x</a></li>
+</ul>
+</li>
+<li><a href="#_notes_about_quickstarters">Notes about quickstarters</a></li>
+<li><a href="#_ds_ml_service_quickstarter_no_longer_supported">ds-ml-service quickstarter no longer supported</a></li>
+<li><a href="#_ds_jupyter_notebook_renamed_to_ds_jupyter_lab">ds-jupyter-notebook renamed to ds-jupyter-lab</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Learn all about how to update your OpenDevStack based project to ODS 4.x.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is assumed that you are updating from ODS 3.x.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update_image_tags_of_jenkins_deployments"><a class="anchor" href="#_update_image_tags_of_jenkins_deployments"></a>Update image tags of Jenkins deployments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Go into your OpenShift <code>*-cd</code> namespace and edit (via "Actions" &gt; "Edit") the
+deployments (<code>jenkins</code> and <code>webhook-proxy</code>) to point to the new image tags
+(<code>4.x</code>), and trigger a deployment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jenkins_shared_library"><a class="anchor" href="#_jenkins_shared_library"></a>Jenkins Shared Library</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_whats_new"><a class="anchor" href="#_whats_new"></a>What&#8217;s new?</h3>
+<div class="sect3">
+<h4 id="_deployment_resources"><a class="anchor" href="#_deployment_resources"></a><code>Deployment</code> resources</h4>
+<div class="paragraph">
+<p>ODS has had support for the OpenShift-specific <code>DeploymentConfig</code> resources (controlled by ReplicationControllers) only so far. Now, Kubernetes-native <code>Deployment</code> resources (controlled by ReplicaSets) can be used as well in the component pipeline. <code>Deployment</code> resources are recommended by OpenShift going forward, see <a href="https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html" class="bare">https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_helm"><a class="anchor" href="#_helm"></a>Helm</h4>
+<div class="paragraph">
+<p><a href="https://helm.sh">Helm 3</a> is supported now in the component pipeline. This means that Helm (with plugins <a href="https://github.com/databus23/helm-diff">helm-diff</a> and <a href="https://github.com/jkroepke/helm-secrets">helm-secrets</a>) can be used as an alternative to Tailor (OpenShift Templates) to define Kubernetes resources in your repository. Helm has some limitations in OpenShift 3.11, but it is the recommended way forward on OpenShift 4. Tailor will be phased out at some point in the future when OpenShift 3.11 is no longer supported by ODS. If you do not author Kubernetes resources in your repository, now is a great time to start with Helm. If you already define OpenShift Templates in your repository and want to switch to Helm, read the <a href="https://github.com/opendevstack/tailor/wiki/Migrating-from-Tailor-to-Helm">migration guide from Tailor to Helm</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_branchbranches_options_for_all_stages"><a class="anchor" href="#_branchbranches_options_for_all_stages"></a><code>branch</code>/<code>branches</code> options for all stages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>All ODS component stages understand the <code>branch</code>/<code>branches</code> options now. Those options allow pipeline authors to control for which branches a specific stage should run. As with the <code>branchToEnvironmentMapping</code> option, three types of branch references are supported:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>exact match (e.g. <code>master</code>, <code>develop</code> - matching branches named <code>master</code>, <code>develop</code>)</p>
+</li>
+<li>
+<p>prefix match (e.g. <code>release/</code>, 'feature/' - matching branches named <code>release/1</code>, <code>feature/foobar</code>)</p>
+</li>
+<li>
+<p>wildcard match (<code>*</code> - matching all branches)</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_support_of_gitmodules"><a class="anchor" href="#_support_of_gitmodules"></a>Support of gitmodules</h4>
+<div class="paragraph">
+<p>If you use Git submodules in your repository, the submodules will now be checked out by Jenkins. This is done automatically when a <code>.gitmodules</code> file is present.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_required_changes_to_adopt_4_x"><a class="anchor" href="#_required_changes_to_adopt_4_x"></a>Required changes to adopt 4.x</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Update <code>@Library('ods-jenkins-shared-library@3.x') _</code> to <code>@Library('ods-jenkins-shared-library@4.x') _</code> and point to agent images with the <code>4.x</code> tag, e.g. change <code>imageStreamTag: 'ods/jenkins-agent-golang:3.x'</code> to <code>imageStreamTag: 'ods/jenkins-agent-golang:4.x'</code>.</p>
+</li>
+<li>
+<p>Application images are built in your <code><strong>-cd</code> project now. Previously they were built in your <code></strong>-dev</code> and <code>*-test</code> project. While the update itself should be completely automatic, there are two consequences:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You can delete <code>BuildConfig</code> and <code>ImageStream</code> resources from your OpenShift templates (in fact <code>odsComponentStageBuildOpenShiftImage</code> does not run <code>tailor apply</code> anymore).</p>
+</li>
+<li>
+<p>If you made modifications to a <code>BuildConfig</code> you&#8217;ll need to re-apply those changes in your <code>*-cd</code> project once the <code>BuildConfig</code> has been migrated there by a pipeline run.</p>
+</li>
+<li>
+<p>ODS 3.x introduced <code>odsComponentStageImportOpenShiftImageOrElse</code>, which allowed to execute some stages only if a container image could not be imported from another namespace or already existed in the current namespace. In ODS 4.x, the check for existing images is only performed in the <code>*-cd</code> namespace. To reflect this, <code>odsComponentStageImportOpenShiftImageOrElse</code> has been deprecated, and is now aliased to the new method, <code>odsComponentFindOpenShiftImageOrElse</code>. The pipeline option <code>imagePromotionSequences</code> has been removed as it is not applicable anymore.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><code>odsComponentStageRolloutOpenShiftDeployment</code> rolls out all deployment resources together now. If you had multiple <code>DeploymentConfig</code> resources previously, you had to target each one by specifying the config option <code>resourceName</code>. This is no longer possible - instead the stage iterates over all <code>DeploymentConfig</code> resources with the component label (<code>app=${projectId}-${componentId}</code>). Changes must be made to pipelines that have multiple deployments, such as components based on the <code>ds-jupyter-notebook</code> and <code>ds-rshiny</code> quickstarter.</p>
+</li>
+<li>
+<p>The auto-cloning feature has been removed. If you used this to create ad-hoc namespaces per Jira issue, this is no longer possible now. Changes must be made if your pipeline configured <code>autoCloneEnvironmentsFromSourceMapping</code>. Please see <a href="https://github.com/opendevstack/ods-jenkins-shared-library/issues/374" class="bare">https://github.com/opendevstack/ods-jenkins-shared-library/issues/374</a> for more information.</p>
+</li>
+<li>
+<p>Versioned development environments in orchestration pipeline are not created automatically anymore. Note that it is still possible to use separate development environments per version, but the namespaces have to be created manually upfront. Take this into account if your pipeline configures <code>versionedDevEnvs: true</code>. Please see <a href="https://github.com/opendevstack/ods-jenkins-shared-library/pull/513" class="bare">https://github.com/opendevstack/ods-jenkins-shared-library/pull/513</a> for more information.</p>
+</li>
+<li>
+<p><code>odsComponentStageRolloutOpenShiftDeployment</code> changed its return type because it now supports <code>Deployment</code> resources, as well as multiple deployment resources. Therefore, it returns a map now, where the keys are <code>&lt;kind&gt;/&lt;name&gt;</code>, e.g. <code>Deployment/foo</code> and <code>DeploymentConfig/bar</code>. This only affects pipelines that make use of this return value, such as components based on the <code>ds-ml-service</code> and <code>be-fe-mono-repo-plain</code> quickstarter.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_notes_about_quickstarters"><a class="anchor" href="#_notes_about_quickstarters"></a>Notes about quickstarters</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ds_ml_service_quickstarter_no_longer_supported"><a class="anchor" href="#_ds_ml_service_quickstarter_no_longer_supported"></a>ds-ml-service quickstarter no longer supported</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you provisioned <code>ds-ml-service</code> quickstarter, please note that it has been moved out from the officially supported quickstarters (<code>ods-quickstarters</code>) repository and moved to <code>extra-quickstarters</code>. It has been set as deprecated due to being superseded by other OpenSource projects like MLflow and Cloud SaaS solutions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ds_jupyter_notebook_renamed_to_ds_jupyter_lab"><a class="anchor" href="#_ds_jupyter_notebook_renamed_to_ds_jupyter_lab"></a>ds-jupyter-notebook renamed to ds-jupyter-lab</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The quickstarter <code>ds-jupyter-lab</code> is the new name for the known <code>ds-jupyter-notebook</code>. Which also comes with the newest JupyterLab version 3.</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/5.x/update-guides/4x.html"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>
