@@ -1114,12 +1114,12 @@ The credentials are read by caling the method <em>getUserName</em> and <em>getUs
 </div>
 </div>
 <div class="paragraph">
-<p>The Openshift Service can be used to verify that a project key does not exist in the cluster before provisioning a project.
-If you want to enable it, you can add this property to the application properties:</p>
+<p>The Openshift Service currently is used to verify that a project key does not exists in the cluster before provisioning a project.
+If you need to disable it, you can add this property to the application properties:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>services.openshift.enabled=true</code></pre>
+<pre class="highlightjs highlight"><code>services.openshift.enabled=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
