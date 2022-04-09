@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>OpenDevStack Quickstarters :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/4.x/quickstarters/index.html">
+    <title>Infrastructure Terraform Azure Quickstarter (inf-terraform-azure) :: OpenDevStack</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
@@ -54,7 +53,7 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Quickstarters</a>
 <ul class="nav-list">
@@ -289,182 +288,121 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="index.html">Quickstarters</a></li>
+    <li><a href="inf-terraform-azure.html">Infrastructure Terraform Azure Quickstarter (inf-terraform-azure)</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="index.html">5.x Preview</a>
-    <a class="version" href="../../4.x/quickstarters/index.html">4.x</a>
-    <a class="version" href="../../3.x/quickstarters/index.html">3.x</a>
-    <a class="version" href="../../2.x/quickstarters/index.html">2.x</a>
-    <a class="version" href="../../1.x/quickstarters/index.html">1.x</a>
+    <a class="version is-current" href="inf-terraform-azure.html">5.x Preview</a>
+    <a class="version is-missing" href="../../4.x/getting-started/index.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/inf-terraform-azure.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">OpenDevStack Quickstarters</h1>
+<h1 class="page">Infrastructure Terraform Azure Quickstarter (inf-terraform-azure)</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div id="toc" class="toc">
-<div id="toctitle" class="title">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_overview">Overview</a></li>
-<li><a href="#_available_official_quickstarters">Available, official quickstarters</a>
-<ul class="sectlevel2">
-<li><a href="#_backend_quickstarter">Backend Quickstarter</a></li>
-<li><a href="#_frontend_quickstarter">Frontend Quickstarter</a></li>
-<li><a href="#_data_science_quickstarter">Data Science Quickstarter</a></li>
-<li><a href="#_e2e_test_quickstarter">E2E Test Quickstarter</a></li>
-<li><a href="#_infrastructure_terraform_quickstarter">Infrastructure Terraform Quickstarter</a></li>
-<li><a href="#_ods_contribution_quickstarter">ODS Contribution Quickstarter</a></li>
-</ul>
-</li>
-<li><a href="#_authoring_quickstarters">Authoring quickstarters</a></li>
-</ul>
+<div class="paragraph">
+<p>The project supports generation of Azure deployments utilizing terraform tooling,
+installation and integration of it with OpenShift CD pipelines.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Quickstarters are basically templates that help to start out with a component quickly.
-A quickstarter provides a specific technology, potentially with a framework setup already, such as Java with Springboot in the case of the <code>be-java-springboot</code> quickstarter. Compared to starting out from scratch, using a quickstarter typically helps by:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>setting up a repository in Bitbucket with webhooks to trigger Jenkins builds</p>
-</li>
-<li>
-<p>shipping a <code>Jenkinsfile</code> with a pipeline that builds and deploys the component (delegating most of the work to the <a href="../jenkins-shared-library/component-pipeline.html" class="page">shared library</a>)</p>
-</li>
-<li>
-<p>providing a basic test setup with xUnit reports and code coverage</p>
-</li>
-<li>
-<p>integrating with SonarQube out-of-the-box (including code coverage report)</p>
-</li>
-<li>
-<p>setting up OpenShift resources to build and run the component</p>
-</li>
-<li>
-<p>creating a boilerplate application with one or more sample endpoints</p>
-</li>
-</ul>
+<p>The quickstarter comes with a sample terraform which deploys a resource group and a storage account via an ARM template.
+This is a showcase to elaborate the combination of both technologies.</p>
 </div>
 <div class="paragraph">
-<p>Quickstarters are used from the <a href="https://github.com/opendevstack/ods-provisioning-app">Provisioning App</a>, which allows to add a component to an existing project by running a quickstarter from the configured list of available quickstarters. This list can contain quickstarters from the official repository, <a href="https://github.com/opendevstack/ods-quickstarters">ods-quickstarters</a>, or from some other repository such as internally hosted ones in your Bitbucket instance.</p>
+<p>The quickstarter includes kitchen-terraform with Chef InSpec / cinc-auditor for testing.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_available_official_quickstarters"><a class="anchor" href="#_available_official_quickstarters"></a>Available, official quickstarters</h2>
+<h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_backend_quickstarter"><a class="anchor" href="#_backend_quickstarter"></a>Backend Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="be-gateway-nginx.html" class="page">Backend - Gateway/Nginx</a></p>
-</li>
-<li>
-<p><a href="be-golang-plain.html" class="page">Backend - Go</a></p>
-</li>
-<li>
-<p><a href="be-java-springboot.html" class="page">Backend - Java/SpringBoot</a></p>
-</li>
-<li>
-<p><a href="be-typescript-express.html" class="page">Backend - TypeScript/Express</a></p>
-</li>
-<li>
-<p><a href="be-python-flask.html" class="page">Backend - Python/Flask</a></p>
-</li>
-<li>
-<p><a href="be-scala-play.html" class="page">Backend - Scala/Play</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_frontend_quickstarter"><a class="anchor" href="#_frontend_quickstarter"></a>Frontend Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="fe-angular.html" class="page">Frontend - Angular</a></p>
-</li>
-<li>
-<p><a href="fe-ionic.html" class="page">Mobile - Ionic</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_data_science_quickstarter"><a class="anchor" href="#_data_science_quickstarter"></a>Data Science Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="ds-jupyter-lab.html" class="page">Data Science - Jupyter Lab</a></p>
-</li>
-<li>
-<p><a href="ds-rshiny.html" class="page">Data Science - R-Shiny</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_e2e_test_quickstarter"><a class="anchor" href="#_e2e_test_quickstarter"></a>E2E Test Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="e2e-cypress.html" class="page">E2E test - Cypress</a></p>
-</li>
-<li>
-<p><a href="e2e-spock-geb.html" class="page">E2E test - Spock / Geb</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_infrastructure_terraform_quickstarter"><a class="anchor" href="#_infrastructure_terraform_quickstarter"></a>Infrastructure Terraform Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>xref::inf-terraform-aws.adoc(AWS deployments utilizing terraform tooling)</p>
-</li>
-<li>
-<p>xref::inf-terraform-azure.adoc(Azure deployments utilizing terraform tooling)</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ods_contribution_quickstarter"><a class="anchor" href="#_ods_contribution_quickstarter"></a>ODS Contribution Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="ods-document-gen-svc.html" class="page">ODS Fork - Document Generation Service</a></p>
-</li>
-<li>
-<p><a href="ods-provisioning-app.html" class="page">ODS Fork - Provisioning Application</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Next to those, there is a <a href="docker-plain.html" class="page">"blank" quickstarter (Docker/Plain)</a> allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences.</p>
+<div class="listingblock">
+<div class="content">
+<pre>├── Jenkinsfile - This file contains Jenkins stages.
+├── README.md
+├── environments
+│   ├── dev.tfbackend.config - This file describes terraform backend parameters in the dev Azure subscription.
+│   ├── test.tfbackend.config - This file describes terraform backend parameters in the test Azure subscription.
+│   ├── prod.tfbackend.config - This file describes terraform backend parameters in the production Azure subscription.
+│   ├── dev.yml - This file describes credential parameters for the development environment. Values are names of secrets held in Jenkins.
+│   ├── test.yml - This file describes credential parameters for the test environment. Values are names of secrets held in Jenkins.
+│   ├── prod.yml - This file describes credential parameters for the producation environment. Values are names of secrets held in Jenkins.
+│   ├── dev.json - This file describes parameters for the development environment.
+│   ├── test.json - This file describes parameters for the test environment.
+│   └── prod.json - This file describes parameters for the production environment.
+├── test - This folder contains the root for test-kitchen
+│   ├── fixtures/default - This folder contains the test case to deploy.
+│   └── integration/default/controls/ - This folder contains the test cases to test.</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authoring_quickstarters"><a class="anchor" href="#_authoring_quickstarters"></a>Authoring quickstarters</h2>
+<h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.terraform.io">terraform</a></p>
+</li>
+<li>
+<p><a href="https://github.com/newcontext-oss/kitchen-terraform">kitchen-terraform</a></p>
+</li>
+<li>
+<p><a href="https://www.ruby-lang.org/en/">Ruby</a></p>
+</li>
+<li>
+<p><a href="https://community.chef.io/tools/chef-inspec">Chef-InSpec</a></p>
+</li>
+<li>
+<p><a href="https://cinc.sh/start/auditor/">cinc-auditor</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As mentioned above, it is possible to supply your own quickstarters. Pleasee see the <a href="authoring-quickstarters.html" class="page">authoring quickstarters</a> guide on how to make completely new quickstarters or how to adapt existing quickstarters to your needs.</p>
+<p>Inject preferred tags into common-tags.tf, add/remove resources needed to main.tf.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Jenkinsfile is provisioned with this quickstarter to ease CI/CD process. In Jenkinsfile, there are various stages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jenkins_agent_used"><a class="anchor" href="#_jenkins_agent_used"></a>Jenkins agent used</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/terraform">terraform</a> Jenkins agent.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let us know if you find any, thanks!</p>
 </div>
 </div>
 </div>
@@ -482,7 +420,7 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/5.x/quickstarters/index.html"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/5.x/quickstarters/inf-terraform-azure.html"></script>
 <script async src="../../../_/../search-index.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
 <script>
