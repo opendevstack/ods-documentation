@@ -328,7 +328,7 @@
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter generates an Ionic 6.13.1 project, you can use it when you want to develop a cross platform mobile app (iOS, android and PWA) in one codebase using Web technologies like CSS, HTML and JavaScript/Typescript.</p>
+<p>This quickstarter generates an <strong>Ionic 6.19.0</strong> project, you can use it when you want to develop a cross platform mobile app (iOS, android and PWA) in one codebase using Web technologies like CSS, HTML and JavaScript/TypeScript.</p>
 </div>
 <div class="paragraph">
 <p>It contains the basic setup for <a href="https://www.docker.com/">Docker</a>, <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a> and <a href="https://www.openshift.com/">OpenShift</a>, so you have your CI/CD process out of the box.</p>
@@ -339,54 +339,58 @@
 <h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The files are generated using <a href="https://ionicframework.com/docs/cli/">Ionic CLI</a>. It scaffolds a tabbed app containing 3 basic pages (home, about and contact).</p>
+<p>The files are generated using <a href="https://ionicframework.com/docs/cli/">Ionic CLI</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>.
-├── Jenkinsfile - This file contains Jenkins build configuration settings
-├── README.md
-├── config - This folder contains Webpack and sass configuration settings
 ├── docker - This folder contains Docker configuration settings
 │   ├── Dockerfile
 │   └── nginx.vh.default.conf.nginx
 ├── e2e
 │   ├── test.e2e-specs.ts
+│   ├── protractor.conf.js
 │   └── tsconfig.json
-├── resources - This folder contains resources by platform ios, android
-├── package.json - This file contains scripts to run and node packages dependencies for project
-├── metadata.yml - Component metadata
-├── release-manager.yml - Configuration file for the Release Manager
-├── sonar-project.properties - This file contains SonarQube configuration settings
 ├── src
 │   ├── app
+│   │   ├── home
+│   │   │   ├── home-routing.module.ts
+│   │   │   ├── home.module.ts
+│   │   │   ├── home.page.html
+│   │   │   ├── home.page.scss
+│   │   │   ├── home.page.spec.ts
+│   │   │   └── home.page.ts
+│   │   ├── app-routing.module.ts
+│   │   ├── app.component.html
+│   │   ├── app.component.scss
+│   │   ├── app.component.spec.ts
 │   │   ├── app.component.ts
-│   │   ├── app.html
-│   │   ├── app.module.ts
-│   │   ├── app.scss
-│   │   └── main.ts
+│   │   └── app.module.ts
 │   ├── assets
 │   ├── environments
-│   │   ├── environment.dev.ts
-|   |   |__ environment.e2e.ts
+│   │   ├── environment.prod.ts
 │   │   └── environment.ts
-│   ├── pages
-│   ├── providers
 │   ├── theme
+│   │   └── variables.scss
+│   ├── global.scss
 │   ├── index.html
-│   ├── manifest.json
+│   ├── main.ts
 │   ├── polyfills.ts
-│   ├── service-worker.js
 │   ├── test.ts
-│   └── tsconfig.spec.json
-├── www
-├── .angular-cli.json - This file contains Angular project configuration settings
-├── config.xml - This file contains config settings for your mobile app, like package name and native preferences
-├── .ionic.config.json - This file contains Ionic project configuration
+│   └── zone-flags.ts
+├── angular.json - This file contains Angular project configuration settings
+├── capacitor.config.xml - This file contains config settings for your mobile app, like package name and native preferences
+├── ionic.config.json - This file contains Ionic project configuration
+├── Jenkinsfile - This file contains Jenkins build configuration settings
 ├── karma.conf.js
-├── protractor.conf.js
+├── metadata.yml - Component metadata
+├── package.json - This file contains scripts to run and node packages dependencies for project
+├── README.md
+├── release-manager.yml - Configuration file for the Release Manager
+├── sonar-project.properties - This file contains SonarQube configuration settings
+├── tsconfig.app.json
 ├── tsconfig.json
-└── tslint.json</pre>
+└── tsconfig.spec.json</pre>
 </div>
 </div>
 </div>
@@ -406,7 +410,7 @@
 <p><a href="https://angular.io/">Angular</a></p>
 </li>
 <li>
-<p><a href="http://www.typescriptlang.org/">Typescript</a></p>
+<p><a href="https://www.typescriptlang.org/">TypeScript</a></p>
 </li>
 </ul>
 </div>
@@ -424,13 +428,13 @@
 <p><a href="https://nodejs.org/en/download/">node</a></p>
 </li>
 <li>
-<p>npm which is bundled with the node installation</p>
+<p><strong>npm</strong> which is bundled with the node installation</p>
 </li>
 <li>
 <p><a href="https://git-scm.com/downloads">git</a></p>
 </li>
 <li>
-<p>Ionic CLI globally in your local environment by running: <code>npm install -g @ionic/cli</code></p>
+<p><strong>Ionic CLI</strong> globally in your local environment by running: <code>npm install -g @ionic/cli</code></p>
 </li>
 </ul>
 </div>
@@ -464,14 +468,13 @@ Note that the <a href="../jenkins-shared-library/labelling.html" class="page">Op
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: &lt;the component id (this is the default, if omitted)&gt;
-description: "My Ionic-based mobile app"
-supplier: https://example.com
-version: 1.0.1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Ionic
+component: frontend
+instance: &lt;the component id (this is the default, if omitted)&gt;
+description: "Ionic Framework is the free, open source mobile UI toolkit for developing high-quality cross-platform apps for native iOS, Android, and the web—all from a single codebase. Technologies: Ionic 6.19.x"
+supplier: https://ionicframework.com
 type: ods
-role: frontend
-runtime: ionic
-runtimeVersion: 6.13.1</code></pre>
+version: 6.19.x</code></pre>
 </div>
 </div>
 </div>
@@ -486,21 +489,25 @@ runtimeVersion: 6.13.1</code></pre>
 <div class="paragraph">
 <p>When the code in your git repository is updated the <code>Jenkinsfile</code> comes into action with the following main stages for this quickstarter:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Build</strong> - Installs the dependencies of your project with <code>yarn install</code>, generates the build by running <code>npm run ionic:build</code>, if the merged git branch is master it creates the production build with <code>npm run ionic:build --prod</code>. Finally, it copies the output folder <code>www</code> into <code>docker/dist</code>.</p>
-</li>
-<li>
-<p><strong>Unit Test</strong> - Runs unit test cases by executing <code>yarn test</code> command. If any test fails, the build is marked as failed. This will also create test coverage analysis data which will then be transfered to SonarQube.</p>
-</li>
-<li>
-<p><strong>Lint</strong> - Profiler that ensures code best practices by running <code>npm run lint</code> command, if linting is not passing, the build is marked as failed also.</p>
-</li>
-<li>
-<p><strong>SonarQube Analysis</strong> - Triggers a code quality analysis by transfering code and test coverage analysis data to SonarQube. By default files like <code><strong>.spec.ts</code>, <code></strong>.modules.ts</code> and <code>src/environments/**</code> are excluded from the analysis, since they usually don&#8217;t contain logic. Please revisit <code>sonar-project.properties</code> to configure analysis inclusions and exclusions according to your project&#8217;s needs.</p>
-</li>
-</ul>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Build</dt>
+<dd>
+<p>Installs <strong>Ionic CLI</strong> and the dependencies of your project with <code>npm install</code> and generates the build by running <code>ionic build</code>. If the merged git branch is <code>master</code>, it creates the production build with <code>ionic build --prod</code>. Finally, it copies the output folder <code>./www</code> into <code>./docker/dist</code>.</p>
+</dd>
+<dt class="hdlist1">Unit Test</dt>
+<dd>
+<p>Runs unit test cases by executing <code>npm run test</code> command. If any test fails, the build is marked as failed. This will also create test coverage analysis data which will then be transfered to SonarQube.</p>
+</dd>
+<dt class="hdlist1">Lint</dt>
+<dd>
+<p>Profiler that ensures code best practices by running <code>npm run lint</code> command, if linting is not passing, the build is marked as failed also.</p>
+</dd>
+<dt class="hdlist1">SonarQube Analysis</dt>
+<dd>
+<p>Triggers a code quality analysis by transfering code and test coverage analysis data to SonarQube. By default files like <code><strong>.spec.ts</code>, <code></strong>.modules.ts</code> and <code>./src/environments/**</code> are excluded from the analysis, since they usually don&#8217;t contain application logic. Please revisit <code>sonar-project.properties</code> to configure analysis inclusions and exclusions according to your project&#8217;s needs.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
