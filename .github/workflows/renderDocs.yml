@@ -20,12 +20,16 @@ jobs:
     - uses: rlespinasse/github-slug-action@v4.x
     - name: Install antora
       run: |
-        npm i @antora/cli@3.1 @antora/lunr-extension
+        npm i @antora/cli@3.1 @antora/site-generator@3.1 @antora/lunr-extension
         npm install
+    - name: Cleanup docs folder
+      run: |
+        ls -l docs/*
+        rm -rf docs/*
     - name: Render docs
       run: |
-        rm -rf docs/*
-        $(npm bin)/antora generate --silent --clean --fetch site.yml
+        npx antora --version
+        npx antora generate --silent --clean --fetch site.yml
     - name: Publish docs
       shell: bash
       env:
