@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- Antora (2.2) has to be installed according to the https://docs.antora.org/antora/2.2/install/install-antora/[Install Antora] guide.
+- Antora (3.1) has to be installed according to the https://docs.antora.org/antora/3.1/install/install-antora/[Install Antora] guide.
 - The following OpenDevStack repositories have to be cloned and stored beside the `ods-documentation` repository: `ods-core`, `ods-jenkins-shared-library`, `ods-provisioning-app` and `ods-quickstarters`.
 
 ### Generate docs using `site-workspace.yml`
@@ -46,7 +46,7 @@ https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc. Exampl
 
 ### Search Function
 
-A search index is created by integration of https://github.com/Mogztter/antora-lunr. The argument `--generator antora-site-generator-lunr` has to be passed to antora when running the build. Search UI can be customized by changing files in `supplemental-ui`. Initially those files are copies of https://github.com/Mogztter/antora-lunr/tree/master/supplemental_ui.
+A search index is created by the antora lunr extension.
 
 ## Building using GitHub Actions
 
