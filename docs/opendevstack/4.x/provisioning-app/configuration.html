@@ -98,6 +98,12 @@
     <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-aws.html">INF Terraform AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-azure.html">INF Terraform AZURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -109,6 +115,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
@@ -1124,6 +1133,26 @@ If you want to enable it, you can add this property to the application propertie
 <div class="content">
 <pre class="highlightjs highlight"><code>services.openshift.enabled=true</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If you need to display a disclaimer in the front-end you can add this property to the application properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>provision.ui.disclaimer=&lt;DISCLAIMER_TEXT&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+this property is not supported yet in the single page front-end.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>If you need to display a disclaimer in the front-end you can add this property to the application properties:</p>

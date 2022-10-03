@@ -98,6 +98,12 @@
     <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-aws.html">INF Terraform AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-azure.html">INF Terraform AZURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -109,6 +115,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
@@ -519,7 +528,7 @@ oc adm policy add-role-to-group view system:authenticated -n cd</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: v1
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: template.openshift.io/v1
 kind: Template
 objects:
 - apiVersion: build.openshift.io/v1
@@ -560,7 +569,7 @@ parameters:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: v1
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: template.openshift.io/v1
 kind: Template
 objects:
 - apiVersion: v1
