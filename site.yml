@@ -1,7 +1,20 @@
+runtime:
+  log:
+    failure_level: error
+
+urls:
+  latest_version_segment: latest
+  latest_version_segment_strategy: redirect:to
+
+antora:
+  extensions:
+  - require: '@antora/lunr-extension'
+
 site:
   title: OpenDevStack
   start_page: opendevstack:getting-started:index.adoc
   url: https://www.opendevstack.org/ods-documentation
+
 content:
   branches: master,1.*,2.*,3.*,4.*
   sources:
@@ -44,5 +57,4 @@ output:
   dir: ./docs
 ui:
   bundle:
-    url: https://github.com/opendevstack/ods-docs-ui/releases/download/v1.0.9/ui-bundle.zip
-  supplemental_files: ./supplemental-ui/lunr
+    url: https://github.com/opendevstack/ods-docs-ui/releases/download/v2.0.0/ui-bundle.zip
