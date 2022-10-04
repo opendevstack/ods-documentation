@@ -98,6 +98,12 @@
     <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-aws.html">INF Terraform AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-azure.html">INF Terraform AZURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -111,10 +117,16 @@
     <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#jenkins-agents:nodejs12.adoc">Nodejs12 Angular</a>
+    <a class="nav-link" href="../jenkins-agents/nodejs12.html">Node.js 12</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
@@ -1350,6 +1362,11 @@ being built.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildTimeoutMinutes</strong><br>
 <em>Integer</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Timeout of build (defaults to 15 minutes).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>buildTimeoutRetries</strong><br>
+<em>Integer</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust retries to wait for the build pod status (defaults to 5).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>dockerDir</strong><br>
