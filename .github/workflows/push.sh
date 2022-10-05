@@ -15,7 +15,7 @@ commit_website_files() {
   git merge --no-commit --no-ff temp-changes
   git reset HEAD -- package.json
   git reset HEAD -- package-lock.json
-  git commit --message "GitHub Actions Build: $GITHUB_RUN_NUMBER [ci skip]"
+  git commit --allow-empty --message "GitHub Actions Build: $GITHUB_RUN_NUMBER [ci skip]"
 }
 
 upload_files() {
