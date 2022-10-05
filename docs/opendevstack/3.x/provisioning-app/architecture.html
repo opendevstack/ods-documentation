@@ -4,24 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Provisioning App: Internal architecture / Development :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/4.x/provisioning-app/architecture.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/provisioning-app/architecture.html">
+    <meta name="generator" content="Antora 3.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
+    <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
-<header class="header" role="banner">
+<header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
-        <div class="navbar-item">
-          <input id="search-input" type="text" placeholder="Search docs">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
         </div>
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -249,13 +256,13 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenDevStack</span>
+      <a class="title" href="../../latest/getting-started/index.html">OpenDevStack</a>
       <ul class="versions">
         <li class="version">
           <a href="../../5.x/getting-started/index.html">5.x Preview</a>
         </li>
         <li class="version is-latest">
-          <a href="../../4.x/getting-started/index.html">4.x</a>
+          <a href="../../latest/getting-started/index.html">4.x</a>
         </li>
         <li class="version is-current">
           <a href="../getting-started/index.html">3.x</a>
@@ -276,7 +283,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../4.x/getting-started/index.html" class="home-link"></a>
+  <a href="../../latest/getting-started/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
@@ -288,7 +295,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">3.x</button>
   <div class="version-menu">
     <a class="version" href="../../5.x/provisioning-app/architecture.html">5.x Preview</a>
-    <a class="version" href="../../4.x/provisioning-app/architecture.html">4.x</a>
+    <a class="version" href="../../latest/provisioning-app/architecture.html">4.x</a>
     <a class="version is-current" href="architecture.html">3.x</a>
     <a class="version" href="../../2.x/provisioning-app/architecture.html">2.x</a>
     <a class="version" href="../../1.x/provisioning-app/architecture.html">1.x</a>
@@ -297,6 +304,9 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-provisioning-app/edit/3.x/docs/modules/provisioning-app/pages/architecture.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">Provisioning App: Internal architecture / Development</h1>
 <div id="preamble">
@@ -346,7 +356,7 @@ The connectors to the various tools to create resources are in the <a href="http
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>$ git clone https://github.com/opendevstack/ods-provisioning-app.git</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ git clone https://github.com/opendevstack/ods-provisioning-app.git</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -357,7 +367,7 @@ The connectors to the various tools to create resources are in the <a href="http
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>./gradlew bootRun --args='--spring.profiles.active=odsbox,odsbox_quickstarters'</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">./gradlew bootRun --args='--spring.profiles.active=odsbox,odsbox_quickstarters'</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -369,7 +379,7 @@ The connectors to the various tools to create resources are in the <a href="http
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>$ cd ods-provisioning-app</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ cd ods-provisioning-app</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -453,7 +463,7 @@ The base configuration map as well as the deployment yamls can be found in <a hr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>http://localhost:8080</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">http://localhost:8080</code></pre>
 </div>
 </div>
 </div>
@@ -462,17 +472,17 @@ The base configuration map as well as the deployment yamls can be found in <a hr
 <h2 id="_how_to_deploy_to_openshift"><a class="anchor" href="#_how_to_deploy_to_openshift"></a>How to deploy to OpenShift</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to test your changes in a real environment, you should deploy the provisioning app in OpenShift. To do so, you need to have an existing OpeDevStack project (consisting of <code>-dev</code>, <code>-test</code> and <code>-cd</code> namespaces). If you don&#8217;t have one yet, you can <a href="index.html#_basic_idea_usage" class="page">create one via the provisioning app in the central namespace</a>.</p>
+<p>In order to test your changes in a real environment, you should deploy the provisioning app in OpenShift. To do so, you need to have an existing OpeDevStack project (consisting of <code>-dev</code>, <code>-test</code> and <code>-cd</code> namespaces). If you don&#8217;t have one yet, you can <a href="index.html#_basic_idea_usage" class="xref page">create one via the provisioning app in the central namespace</a>.</p>
 </div>
 <div class="paragraph">
-<p>Now you can make use of the <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/ods-provisioning-app">ods-provisioning-app quickstarter</a> to set up the Bitbucket repository in your Bitbucket space. You can either <a href="configuration.html#_quickstarters" class="page">register the quickstarter in the provisiong app in the central namespace</a>, and then provision it from there; or use the script in <a href="https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins" class="bare">https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins</a>. Once you have provisioned the quickstarter, the first build will create a container image and place it in the <code>ImageStream</code>, using the commit SHA as image tag.</p>
+<p>Now you can make use of the <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/ods-provisioning-app">ods-provisioning-app quickstarter</a> to set up the Bitbucket repository in your Bitbucket space. You can either <a href="configuration.html#_quickstarters" class="xref page">register the quickstarter in the provisiong app in the central namespace</a>, and then provision it from there; or use the script in <a href="https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins" class="bare">https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins</a>. Once you have provisioned the quickstarter, the first build will create a container image and place it in the <code>ImageStream</code>, using the commit SHA as image tag.</p>
 </div>
 <div class="paragraph">
 <p>To deploy this image in the central namespace, you have to tag that image into the central namespace. From your local machine, run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>oc tag &lt;PROJECT&gt;-dev/&lt;COMPONENT&gt;:&lt;GIT SHA&gt; ods/ods-provisioning-app:&lt;GIT SHA&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">oc tag &lt;PROJECT&gt;-dev/&lt;COMPONENT&gt;:&lt;GIT SHA&gt; ods/ods-provisioning-app:&lt;GIT SHA&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -480,7 +490,7 @@ The base configuration map as well as the deployment yamls can be found in <a hr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>make install-provisioning-app</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">make install-provisioning-app</code></pre>
 </div>
 </div>
 </div>
@@ -597,7 +607,7 @@ public class Oauth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 <h2 id="_consuming_rest_apis_via_curl"><a class="anchor" href="#_consuming_rest_apis_via_curl"></a>Consuming REST APIs via curl</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Basic Auth authentication is the recommended way to consume REST API. How to enable Basic Auth authentication is explained in <a href="configuration.html#_authentication_crowd_configuration" class="page">Authentication Crowd Configuration</a>.</p>
+<p>Basic Auth authentication is the recommended way to consume REST API. How to enable Basic Auth authentication is explained in <a href="configuration.html#_authentication_crowd_configuration" class="xref page">Authentication Crowd Configuration</a>.</p>
 </div>
 <div class="paragraph">
 <p>The following sample script could be used to provision a new project, add a quickstarter to a project or remove a project.
@@ -851,9 +861,6 @@ In this later case one could imagine to set this parameter to TRUE to verify all
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
   </div>
 </main>
 </div>
@@ -861,25 +868,10 @@ In this later case one could imagine to set this parameter to TRUE to verify all
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/3.x/provisioning-app/architecture.html"></script>
-<script async src="../../../_/../search-index.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script>
-  tocbot.init( {
-                  tocSelector: '#article-toc',
-                  contentSelector: 'article',
-                  headingSelector: 'h2, h3, h4, h5, h6',
-                  collapseDepth: 6,
-                  positionFixedSelector: '#article-toc',
-                  scrollSmooth: false
-                } );
-  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
-  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
-    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
-  }
-</script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>

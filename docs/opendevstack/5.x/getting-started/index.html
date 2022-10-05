@@ -4,24 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Introduction to OpenDevStack :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/4.x/getting-started/index.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/getting-started/index.html">
+    <meta name="generator" content="Antora 3.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
+    <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
-<header class="header" role="banner">
+<header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
-        <div class="navbar-item">
-          <input id="search-input" type="text" placeholder="Search docs">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
         </div>
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -267,13 +274,13 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenDevStack</span>
+      <a class="title" href="../../latest/getting-started/index.html">OpenDevStack</a>
       <ul class="versions">
         <li class="version is-current">
           <a href="index.html">5.x Preview</a>
         </li>
         <li class="version is-latest">
-          <a href="../../4.x/getting-started/index.html">4.x</a>
+          <a href="../../latest/getting-started/index.html">4.x</a>
         </li>
         <li class="version">
           <a href="../../3.x/getting-started/index.html">3.x</a>
@@ -294,7 +301,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../4.x/getting-started/index.html" class="home-link"></a>
+  <a href="../../latest/getting-started/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenDevStack</a></li>
@@ -305,7 +312,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
   <div class="version-menu">
     <a class="version is-current" href="index.html">5.x Preview</a>
-    <a class="version" href="../../4.x/getting-started/index.html">4.x</a>
+    <a class="version" href="../../latest/getting-started/index.html">4.x</a>
     <a class="version" href="../../3.x/getting-started/index.html">3.x</a>
     <a class="version" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version" href="../../1.x/getting-started/index.html">1.x</a>
@@ -314,6 +321,9 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/getting-started/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">Introduction to OpenDevStack</h1>
 <div class="sect1">
@@ -352,7 +362,7 @@
 <h2 id="_high_level_overview_of_ods"><a class="anchor" href="#_high_level_overview_of_ods"></a>High-Level Overview of ODS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ODS is comprised of core functionality, and a configurable set of so-called quickstarters. Quickstarters can be seen as software templates, which can be instantiated in your project to create a component of your application quickly, with all the integration / configuration setup out-of-the box. The <a href="../quickstarters/index.html" class="page">officially supplied quickstarters</a> include, but are not limited to: Java (Spring Boot), Python (Flask), Scala (Play), Go, Angular, Ionic, Jupyter, RShiny.</p>
+<p>ODS is comprised of core functionality, and a configurable set of so-called quickstarters. Quickstarters can be seen as software templates, which can be instantiated in your project to create a component of your application quickly, with all the integration / configuration setup out-of-the box. The <a href="../quickstarters/index.html" class="xref page">officially supplied quickstarters</a> include, but are not limited to: Java (Spring Boot), Python (Flask), Scala (Play), Go, Angular, Ionic, Jupyter, RShiny.</p>
 </div>
 <div class="paragraph">
 <p>The core ODS functionality offers the following:</p>
@@ -360,7 +370,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>A central <a href="../provisioning-app/index.html" class="page">provisioning application</a> (the &#8220;entry point of ODS&#8221;) which allows to:</p>
+<p>A central <a href="../provisioning-app/index.html" class="xref page">provisioning application</a> (the &#8220;entry point of ODS&#8221;) which allows to:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -376,16 +386,16 @@
 <p>A central Nexus instance to store and retrieve software artefacts.</p>
 </li>
 <li>
-<p>A central <a href="../sonarqube/index.html" class="page">SonarQube</a> instance to statically analyze the software components of a project.</p>
+<p>A central <a href="../sonarqube/index.html" class="xref page">SonarQube</a> instance to statically analyze the software components of a project.</p>
 </li>
 <li>
-<p>Customized <a href="../jenkins/master.html" class="page">Jenkins Master</a> and <a href="../jenkins/agent-base.html" class="page">Jenkins agent base</a> images that are integrated with e.g. Bitbucket, OpenShift, Nexus and SonarQube. Each project runs its own Jenkins Master instance using the centrally provided image.</p>
+<p>Customized <a href="../jenkins/master.html" class="xref page">Jenkins Master</a> and <a href="../jenkins/agent-base.html" class="xref page">Jenkins agent base</a> images that are integrated with e.g. Bitbucket, OpenShift, Nexus and SonarQube. Each project runs its own Jenkins Master instance using the centrally provided image.</p>
 </li>
 <li>
-<p>A <a href="../jenkins-shared-library/index.html" class="page">Jenkins Shared Library</a> which can be used from each software component to cover most CI/CD functionality. The shared library offers all language-agnostic features, such as checking out source code, running static analysis, building container images, and deploying artefacts into the target environment. Each component only needs to add in their <code>Jenkinsfile</code> language-specific functionality such as building artefacts (e.g. JAR files).</p>
+<p>A <a href="../jenkins-shared-library/index.html" class="xref page">Jenkins Shared Library</a> which can be used from each software component to cover most CI/CD functionality. The shared library offers all language-agnostic features, such as checking out source code, running static analysis, building container images, and deploying artefacts into the target environment. Each component only needs to add in their <code>Jenkinsfile</code> language-specific functionality such as building artefacts (e.g. JAR files).</p>
 </li>
 <li>
-<p>A <a href="../quickstarters/release-manager.html" class="page">release manager</a> component which can be installed in each project to generate GxP documents from Jenkins pipeline runs (through the use of a centrally provided document generation service image).</p>
+<p>A <a href="../quickstarters/release-manager.html" class="xref page">release manager</a> component which can be installed in each project to generate GxP documents from Jenkins pipeline runs (through the use of a centrally provided document generation service image).</p>
 </li>
 </ul>
 </div>
@@ -465,7 +475,7 @@
 <p>Users of ODS simply consume the version installed by their ODS administrators.</p>
 </div>
 <div class="paragraph">
-<p>A major update (e.g. <code>2.x</code> to <code>3.x</code> or <code>3.x</code> to <code>4.x</code>) is, from a user perspective, an explicit update. This means that although admins update the ODS installation in the cluster, users still have to explicitly adopt that change (e.g. by updating their Jenkins image reference and so on). Therefore, a major version change is accompanied by an update guide like <a href="../update-guides/3x.html" class="page">Update to 3.x</a>. For admins, a major update might mean that configuration options have to be changed or migration steps have to be taken, as well as rebuilding and rolling out all images etc.</p>
+<p>A major update (e.g. <code>2.x</code> to <code>3.x</code> or <code>3.x</code> to <code>4.x</code>) is, from a user perspective, an explicit update. This means that although admins update the ODS installation in the cluster, users still have to explicitly adopt that change (e.g. by updating their Jenkins image reference and so on). Therefore, a major version change is accompanied by an update guide like <a href="../update-guides/3x.html" class="xref page">Update to 3.x</a>. For admins, a major update might mean that configuration options have to be changed or migration steps have to be taken, as well as rebuilding and rolling out all images etc.</p>
 </div>
 <div class="paragraph">
 <p>A minor update (consuming changes/bugfixs on a release branch such as 3.x) is, from a user perspective, an implicit update. This means that only admins have to make a change to the ODS installation in the cluster. Users should get those changes automatically, without the need to explicitly adopt it. Therefore, there is no update guide for minor updates. For admins, a minor update should (typically) not require changing configuration options nor performing migration steps - only rebuilding and rolling out some (or all) images should be needed.</p>
@@ -521,10 +531,10 @@
 <p>Install provisioning app and document generation service from pre-built images</p>
 </li>
 <li>
-<p><a href="../jenkins-shared-library/quickstarter-pipeline.html" class="page">Quickstarter pipeline</a></p>
+<p><a href="../jenkins-shared-library/quickstarter-pipeline.html" class="xref page">Quickstarter pipeline</a></p>
 </li>
 <li>
-<p>Merge of MRO (now: <a href="../jenkins-shared-library/orchestration-pipeline.html" class="page">orchestration pipeline</a>) into general shared pipeline</p>
+<p>Merge of MRO (now: <a href="../jenkins-shared-library/orchestration-pipeline.html" class="xref page">orchestration pipeline</a>) into general shared pipeline</p>
 </li>
 <li>
 <p>Automation of SonarQube and Nexus setup</p>
@@ -581,9 +591,6 @@
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
   </div>
 </main>
 </div>
@@ -591,25 +598,10 @@
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/5.x/getting-started/index.html"></script>
-<script async src="../../../_/../search-index.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script>
-  tocbot.init( {
-                  tocSelector: '#article-toc',
-                  contentSelector: 'article',
-                  headingSelector: 'h2, h3, h4, h5, h6',
-                  collapseDepth: 6,
-                  positionFixedSelector: '#article-toc',
-                  scrollSmooth: false
-                } );
-  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
-  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
-    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
-  }
-</script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>

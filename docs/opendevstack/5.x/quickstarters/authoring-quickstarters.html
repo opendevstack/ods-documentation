@@ -4,24 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Authoring Quickstarters :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/4.x/quickstarters/authoring-quickstarters.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/authoring-quickstarters.html">
+    <meta name="generator" content="Antora 3.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
+    <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
-<header class="header" role="banner">
+<header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
-        <div class="navbar-item">
-          <input id="search-input" type="text" placeholder="Search docs">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
         </div>
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -267,13 +274,13 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenDevStack</span>
+      <a class="title" href="../../latest/getting-started/index.html">OpenDevStack</a>
       <ul class="versions">
         <li class="version is-current">
           <a href="../getting-started/index.html">5.x Preview</a>
         </li>
         <li class="version is-latest">
-          <a href="../../4.x/getting-started/index.html">4.x</a>
+          <a href="../../latest/getting-started/index.html">4.x</a>
         </li>
         <li class="version">
           <a href="../../3.x/getting-started/index.html">3.x</a>
@@ -294,7 +301,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../4.x/getting-started/index.html" class="home-link"></a>
+  <a href="../../latest/getting-started/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
@@ -306,7 +313,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
   <div class="version-menu">
     <a class="version is-current" href="authoring-quickstarters.html">5.x Preview</a>
-    <a class="version" href="../../4.x/quickstarters/authoring-quickstarters.html">4.x</a>
+    <a class="version" href="../../latest/quickstarters/authoring-quickstarters.html">4.x</a>
     <a class="version" href="../../3.x/quickstarters/authoring-quickstarters.html">3.x</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
@@ -315,6 +322,9 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/authoring-quickstarters.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">Authoring Quickstarters</h1>
 <div id="preamble">
@@ -323,7 +333,7 @@
 <p>This document describes how you can create your own quickstarter. At the same time, you should be able to find all information required to make changes to an existing quickstarter.</p>
 </div>
 <div class="paragraph">
-<p>Technically speaking, a quickstarter is just a Jenkins pipeline that fills an existing repository with files. How this is done, and what exactly is run in the pipeline is up to the quickstarter author. Typically though, the pipeline makes use of the <a href="../jenkins-shared-library/quickstarter-pipeline.html" class="page">quickstarter pipeline</a> from the Jenkins shared library, which removes the need to write lots of boilerplate such as running a agent pod, cloning sources, copying files and pushing at the end to the component repository. The rest of the guide assumes that you are using this pipeline.</p>
+<p>Technically speaking, a quickstarter is just a Jenkins pipeline that fills an existing repository with files. How this is done, and what exactly is run in the pipeline is up to the quickstarter author. Typically though, the pipeline makes use of the <a href="../jenkins-shared-library/quickstarter-pipeline.html" class="xref page">quickstarter pipeline</a> from the Jenkins shared library, which removes the need to write lots of boilerplate such as running a agent pod, cloning sources, copying files and pushing at the end to the component repository. The rest of the guide assumes that you are using this pipeline.</p>
 </div>
 <div class="paragraph">
 <p>As the Jenkins pipeline runs on a Jenkins agent image, you as the author need to pick either an existing agent image (see "Jenkins agent Images" in the navigation on the left), or <a href="#_creating_modifying_a_jenkins_agent_image">create your own</a>.</p>
@@ -339,10 +349,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>A <code>Jenkinsfile</code> in the resulting repository. The best way to do this is by placing a <code>Jenkinsfile.template</code> file into the quickstarter repository, and render it via <a href="../jenkins-shared-library/quickstarter-pipeline.html#_odsquickstarterstagerenderjenkinsfile" class="page">odsQuickstarterStageRenderJenkinsfile</a>.</p>
+<p>A <code>Jenkinsfile</code> in the resulting repository. The best way to do this is by placing a <code>Jenkinsfile.template</code> file into the quickstarter repository, and render it via <a href="../jenkins-shared-library/quickstarter-pipeline.html#_odsquickstarterstagerenderjenkinsfile" class="xref page">odsQuickstarterStageRenderJenkinsfile</a>.</p>
 </li>
 <li>
-<p>A <code>sonar-project.properties</code> file in the resulting repository. The best way to do this is by placing a <code>sonar-project.properties.template</code> file into the quickstarter repository, and render it via <a href="../jenkins-shared-library/quickstarter-pipeline.html#_odsquickstarterstagerendersonarproperties" class="page">odsQuickstarterStageRenderSonarProperties</a>.</p>
+<p>A <code>sonar-project.properties</code> file in the resulting repository. The best way to do this is by placing a <code>sonar-project.properties.template</code> file into the quickstarter repository, and render it via <a href="../jenkins-shared-library/quickstarter-pipeline.html#_odsquickstarterstagerendersonarproperties" class="xref page">odsQuickstarterStageRenderSonarProperties</a>.</p>
 </li>
 <li>
 <p>Test setup, e.g. a framework such as JUnit. Test results need to be published in <a href="https://llg.cubic.org/docs/junit/">JUnit XML reporting file format</a>. The results need to be stored at <code>build/test-results/test</code> or be configured to a different location.</p>
@@ -360,12 +370,12 @@
 <p>Documentation. Both for the quickstarter itself (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages/__QUICKSTARTER_TEMPLATE.adoc">quickstarter template</a>) and any Jenkins agent image (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages/__JENKINS_AGENT_TEMPLATE.adoc">agent image template</a>).</p>
 </li>
 <li>
-<p>It is recommended to set up proper default <a href="metadata.html" class="page">metadata</a> values in files/metadata.yml. These default values will also be used to <a href="../jenkins-shared-library/labelling.html" class="page">label the generated OpenShift resources</a> when provisioning a new component from the quickstarter for the first time.</p>
+<p>It is recommended to set up proper default <a href="metadata.html" class="xref page">metadata</a> values in files/metadata.yml. These default values will also be used to <a href="../jenkins-shared-library/labelling.html" class="xref page">label the generated OpenShift resources</a> when provisioning a new component from the quickstarter for the first time.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If you write any custom stages in the quickstarter pipeline, you have access to the <a href="../jenkins-shared-library/quickstarter-pipeline.html#_pipeline_context" class="page">pipeline context</a>.</p>
+<p>If you write any custom stages in the quickstarter pipeline, you have access to the <a href="../jenkins-shared-library/quickstarter-pipeline.html#_pipeline_context" class="xref page">pipeline context</a>.</p>
 </div>
 <div class="paragraph">
 <p>Usually, quickstarters are triggered through the provisioning app. However, in order to try a new quickstarter, or to try changes to an existing quickstarter which are made in a branch, you can use the <code>quickstart-with-jenkins/run.sh</code> script in the <a href="https://github.com/BIX-Digital/ods-contrib">BIX-Digital/ods-contrib</a> repository to provision a quickstarter without registering it with the provisioning app. See its help for usage.</p>
@@ -376,7 +386,7 @@
 <h2 id="_creating_modifying_a_jenkins_agent_image"><a class="anchor" href="#_creating_modifying_a_jenkins_agent_image"></a>Creating / Modifying a Jenkins agent image</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is highly recommended to use the <a href="../jenkins/agent-base.html" class="page">jenkins-agent-base</a> image as a base image. Otherwise it is likely that some features of the shared pipeline don&#8217;t work. The <code>jenkins-agent-base</code> image in turn is based on another base image, e.g. provided by RedHat. The easiest way to get started is to look ath other agent images, such as <a href="../jenkins-agents/golang.html" class="page">Go</a> and see how that implements its requirements. If you are just building an image for yourself, do the following:</p>
+<p>It is highly recommended to use the <a href="../jenkins/agent-base.html" class="xref page">jenkins-agent-base</a> image as a base image. Otherwise it is likely that some features of the shared pipeline don&#8217;t work. The <code>jenkins-agent-base</code> image in turn is based on another base image, e.g. provided by RedHat. The easiest way to get started is to look ath other agent images, such as <a href="../jenkins-agents/golang.html" class="xref page">Go</a> and see how that implements its requirements. If you are just building an image for yourself, do the following:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -400,9 +410,6 @@
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
   </div>
 </main>
 </div>
@@ -410,25 +417,10 @@
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/5.x/quickstarters/authoring-quickstarters.html"></script>
-<script async src="../../../_/../search-index.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script>
-  tocbot.init( {
-                  tocSelector: '#article-toc',
-                  contentSelector: 'article',
-                  headingSelector: 'h2, h3, h4, h5, h6',
-                  collapseDepth: 6,
-                  positionFixedSelector: '#article-toc',
-                  scrollSmooth: false
-                } );
-  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
-  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
-    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
-  }
-</script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>

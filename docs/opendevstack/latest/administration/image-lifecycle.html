@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Image Lifecycles :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/administration/image-lifecycle.html">
+    <meta name="generator" content="Antora 3.1.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="4.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-lab.html">Data Science Jupyter Lab</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-aws.html">INF Terraform AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-azure.html">INF Terraform AZURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs12.html">Node.js 12</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/4x.html">Migrate to 4.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../nexus/administration.html">Nexus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="image-lifecycle.html">Image Lifecycles</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">4.x</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../getting-started/index.html">OpenDevStack</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../5.x/getting-started/index.html">5.x Preview</a>
+        </li>
+        <li class="version is-current is-latest">
+          <a href="../getting-started/index.html">4.x</a>
+        </li>
+        <li class="version">
+          <a href="../../3.x/getting-started/index.html">3.x</a>
+        </li>
+        <li class="version">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li>Administration</li>
+    <li><a href="image-lifecycle.html">Image Lifecycles</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
+  <div class="version-menu">
+    <a class="version" href="../../5.x/administration/image-lifecycle.html">5.x Preview</a>
+    <a class="version is-current" href="image-lifecycle.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/4.x/docs/modules/administration/pages/image-lifecycle.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Image Lifecycles</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>ODS makes use of and provides a few container images. This document will detail which container images are used, how contaienr images are built during an ODS installation, and how images are consumed by users of ODS.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_categories_of_images"><a class="anchor" href="#_categories_of_images"></a>Categories of images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are three broad categories of images:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Images used in the central ODS namespace</p>
+</li>
+<li>
+<p>Images used in the <code>*-cd</code> namespace of each ODS project</p>
+</li>
+<li>
+<p>Application images used in the <code><strong>-dev</code> and <code></strong>-test</code> namespace</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Every category has different lifecycles.</p>
+</div>
+<div class="sect2">
+<h3 id="_images_used_in_the_central_ods_namespace"><a class="anchor" href="#_images_used_in_the_central_ods_namespace"></a>Images used in the central ODS namespace</h3>
+<div class="paragraph">
+<p>Those images are owned by ODS admins. Examples of such images include the SonarQube image and the Nexus image. All of the images used by containers in the central ODS namespace are built by ODS during its installation. No container uses a vanilla image as provided by e.g.  DockerHub or quay.io.</p>
+</div>
+<div class="paragraph">
+<p>Each image is created through a <code>BuildConfig</code>, and placed into an <code>ImageStream</code>. The <code>BuildConfig</code> defines which <code>Dockerfile</code> is used, and which base image is used to build from. The base image can be pulled from DockerHub (e.g. in case of SonarQube or Nexus), but it can also be from another registry (e.g. in case for the Jenkins Master image, it might be from <code>registry.access.redhat.com</code> or <code>registry.redhat.io</code>).</p>
+</div>
+<div class="paragraph">
+<p>The images are built during installation or upgrade of ODS, and tagged with the value of the configuration parameter <code>ODS_IMAGE_TAG</code>. Once an image has been built, it is not changed until a new build is triggered - that means that even if the base image changes, it has no effect on the images in the central ODS namespaces unless an admin triggers a new build for that image. Further, a new image does not necessarily equal an update to the deployment. Admins have to ensure that new deployments are rolled out so that the new images get picked up.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_images_used_in_the_cd_namespace_of_each_ods_project"><a class="anchor" href="#_images_used_in_the_cd_namespace_of_each_ods_project"></a>Images used in the <code>*-cd</code> namespace of each ODS project</h3>
+<div class="paragraph">
+<p>Those images are also owned by ODS admins, and also built in the central ODS namespace like the first category, but the deployments are running in each ODS project. The images in this catgeory are the Jenkins related images (master, agents, webhook-proxy), and potentially also the image for the document generation service.</p>
+</div>
+<div class="paragraph">
+<p>Note that building a new image in the central ODS namespace does not equal an update of the deployments in each <code>*-cd</code> project. This is because no image triggers are defined on the <code>DeploymentConfig</code> resources. While having such a trigger sounds convenient at first, it is actually not desirable. The main reason is that the rollouts started from an image trigger cannot be controlled, leading to simultaneous restarts which runs the risk of putting a huge amount of load on the cluster.</p>
+</div>
+<div class="paragraph">
+<p>A downside of not having a trigger is that it is cumbersome for ODS admins to rollout bugfixes and security patches to running instances such as the Jenkins Master or the webhook proxy. At the moment, there is no easy, automated, solution to this. However, you might be interested in an experimental tool, <a href="https://github.com/opendevstack/oc-batch-rollout">oc-batch-rollout</a>, which allows admins to trigger rollouts in a controlled fashion.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_application_images_used_in_the_dev_and_test_namespace"><a class="anchor" href="#_application_images_used_in_the_dev_and_test_namespace"></a>Application images used in the <code><strong>-dev</code> and <code></strong>-test</code> namespace</h3>
+<div class="paragraph">
+<p>Those images are owned by ODS users and are built using <code>BuildConfig</code> resources in the respective namespace. The build is triggered from the Jenkins pipeline. The <code>BuildConfig</code> refers to a <code>Dockerfile</code> in the application repository, which refers to an image (typically from DockerHub) in its <code>FROM</code> instruction.</p>
+</div>
+<div class="paragraph">
+<p>Which image gets pulled from DockerHub is completely dependent on which image tag is specified in the <code>FROM</code> instruction. Authors of the <code>Dockerfile</code> are free to be as specific or inspecific as they want, e.g. they could point to the <code>latest</code> tag or use a more stable version published by the base image owner.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, updates to the base image of application images take effect on every build. Once an application runs in a pod though, its image is not automatically updated when the base image changes in DockerHub.</p>
+</div>
+<div class="paragraph">
+<p>Also it is important to note that updates to the <code>Dockerfile</code> in a quickstarter have no effect on an application, even if the application was originally provisioned using that same quickstarter. The reason is that there is no ongoing link between a quickstarter (which is like a template) and the created component (which is like an instance).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vulnerabilities_in_images"><a class="anchor" href="#_vulnerabilities_in_images"></a>Vulnerabilities in images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Depending on the category of the image as outlined above, vulnerabilities in those image have different impact, and also different mitigation paths.</p>
+</div>
+<div class="paragraph">
+<p>Vulnerabilities in application images have a high impact, but mitigation is relatively easy. If the vulnerability is within the base image, and the latest image of the currently used image tag has the vulnerability fixed, one simply needs to trigger a new Jenkins job, which builds a new image, and deploys that new image. If the image tag referenced in the <code>FROM</code> instruction of the <code>Dockerfile</code> does not contain the security fix, one can attempt to change to an image tag which is not vulnerable. Finally, the vulnerability might not be in the base image, but in the <code>Dockerfile</code> of the application, in which the security fix can be applied there.</p>
+</div>
+<div class="paragraph">
+<p>Vulnerabilities in images used in the <code><strong>-cd</code> namespace of each ODS project are a bit harder to mitigate. This is because the vulnerability can be in the base image or in the ODS customisation of it. Further, to actually fix the vulnerability in the running container, one needs to built a new vulnerabilty-free image and have that rolled out to each <code></strong>-cd</code> namespace (remember there are no automatic image triggers).</p>
+</div>
+<div class="paragraph">
+<p>Vulnerabilities in images used in the central ODS namespace are very similar to this. However, since all deployments in the ODS namespace are controlled by the ODS administrator, updating them is easier from a process perspective then the containers in the <code>*-cd</code> namespaces.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

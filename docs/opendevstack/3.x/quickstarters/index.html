@@ -4,24 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>OpenDevStack Quickstarters :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/4.x/quickstarters/index.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/index.html">
+    <meta name="generator" content="Antora 3.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
+    <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
-<header class="header" role="banner">
+<header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
-        <div class="navbar-item">
-          <input id="search-input" type="text" placeholder="Search docs">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
         </div>
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -249,13 +256,13 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenDevStack</span>
+      <a class="title" href="../../latest/getting-started/index.html">OpenDevStack</a>
       <ul class="versions">
         <li class="version">
           <a href="../../5.x/getting-started/index.html">5.x Preview</a>
         </li>
         <li class="version is-latest">
-          <a href="../../4.x/getting-started/index.html">4.x</a>
+          <a href="../../latest/getting-started/index.html">4.x</a>
         </li>
         <li class="version is-current">
           <a href="../getting-started/index.html">3.x</a>
@@ -276,7 +283,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../4.x/getting-started/index.html" class="home-link"></a>
+  <a href="../../latest/getting-started/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
@@ -287,7 +294,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">3.x</button>
   <div class="version-menu">
     <a class="version" href="../../5.x/quickstarters/index.html">5.x Preview</a>
-    <a class="version" href="../../4.x/quickstarters/index.html">4.x</a>
+    <a class="version" href="../../latest/quickstarters/index.html">4.x</a>
     <a class="version is-current" href="index.html">3.x</a>
     <a class="version" href="../../2.x/quickstarters/index.html">2.x</a>
     <a class="version" href="../../1.x/quickstarters/index.html">1.x</a>
@@ -296,6 +303,9 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/3.x/docs/modules/quickstarters/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">OpenDevStack Quickstarters</h1>
 <div id="preamble">
@@ -331,7 +341,7 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <p>setting up a repository in Bitbucket with webhooks to trigger Jenkins builds</p>
 </li>
 <li>
-<p>shipping a <code>Jenkinsfile</code> with a pipeline that builds and deploys the component (delegating most of the work to the <a href="../jenkins-shared-library/component-pipeline.html" class="page">shared library</a>)</p>
+<p>shipping a <code>Jenkinsfile</code> with a pipeline that builds and deploys the component (delegating most of the work to the <a href="../jenkins-shared-library/component-pipeline.html" class="xref page">shared library</a>)</p>
 </li>
 <li>
 <p>providing a basic test setup with xUnit reports and code coverage</p>
@@ -360,22 +370,22 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <div class="ulist">
 <ul>
 <li>
-<p><a href="be-gateway-nginx.html" class="page">Backend - Gateway/Nginx</a></p>
+<p><a href="be-gateway-nginx.html" class="xref page">Backend - Gateway/Nginx</a></p>
 </li>
 <li>
-<p><a href="be-golang-plain.html" class="page">Backend - Go</a></p>
+<p><a href="be-golang-plain.html" class="xref page">Backend - Go</a></p>
 </li>
 <li>
-<p><a href="be-java-springboot.html" class="page">Backend - Java/SpringBoot</a></p>
+<p><a href="be-java-springboot.html" class="xref page">Backend - Java/SpringBoot</a></p>
 </li>
 <li>
-<p><a href="be-typescript-express.html" class="page">Backend - TypeScript/Express</a></p>
+<p><a href="be-typescript-express.html" class="xref page">Backend - TypeScript/Express</a></p>
 </li>
 <li>
-<p><a href="be-python-flask.html" class="page">Backend - Python/Flask</a></p>
+<p><a href="be-python-flask.html" class="xref page">Backend - Python/Flask</a></p>
 </li>
 <li>
-<p><a href="be-scala-play.html" class="page">Backend - Scala/Play</a></p>
+<p><a href="be-scala-play.html" class="xref page">Backend - Scala/Play</a></p>
 </li>
 </ul>
 </div>
@@ -385,10 +395,10 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <div class="ulist">
 <ul>
 <li>
-<p><a href="fe-angular.html" class="page">Frontend - Angular</a></p>
+<p><a href="fe-angular.html" class="xref page">Frontend - Angular</a></p>
 </li>
 <li>
-<p><a href="fe-ionic.html" class="page">Mobile - Ionic</a></p>
+<p><a href="fe-ionic.html" class="xref page">Mobile - Ionic</a></p>
 </li>
 </ul>
 </div>
@@ -398,13 +408,13 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <div class="ulist">
 <ul>
 <li>
-<p><a href="ds-ml-service.html" class="page">Data Science - Machine Learning</a></p>
+<p><a href="ds-ml-service.html" class="xref page">Data Science - Machine Learning</a></p>
 </li>
 <li>
-<p><a href="ds-jupyter-notebook.html" class="page">Data Science - Jupyter Notebook</a></p>
+<p><a href="ds-jupyter-notebook.html" class="xref page">Data Science - Jupyter Notebook</a></p>
 </li>
 <li>
-<p><a href="ds-rshiny.html" class="page">Data Science - R-Shiny</a></p>
+<p><a href="ds-rshiny.html" class="xref page">Data Science - R-Shiny</a></p>
 </li>
 </ul>
 </div>
@@ -414,10 +424,10 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <div class="ulist">
 <ul>
 <li>
-<p><a href="e2e-cypress.html" class="page">E2E test - Cypress</a></p>
+<p><a href="e2e-cypress.html" class="xref page">E2E test - Cypress</a></p>
 </li>
 <li>
-<p><a href="e2e-spock-geb.html" class="page">E2E test - Spock / Geb</a></p>
+<p><a href="e2e-spock-geb.html" class="xref page">E2E test - Spock / Geb</a></p>
 </li>
 </ul>
 </div>
@@ -427,15 +437,15 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <div class="ulist">
 <ul>
 <li>
-<p><a href="ods-document-gen-svc.html" class="page">ODS Fork - Document Generation Service</a></p>
+<p><a href="ods-document-gen-svc.html" class="xref page">ODS Fork - Document Generation Service</a></p>
 </li>
 <li>
-<p><a href="ods-provisioning-app.html" class="page">ODS Fork - Provisioning Application</a></p>
+<p><a href="ods-provisioning-app.html" class="xref page">ODS Fork - Provisioning Application</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next to those, there is a <a href="docker-plain.html" class="page">"blank" quickstarter (Docker/Plain)</a> allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences.</p>
+<p>Next to those, there is a <a href="docker-plain.html" class="xref page">"blank" quickstarter (Docker/Plain)</a> allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences.</p>
 </div>
 </div>
 </div>
@@ -444,14 +454,11 @@ A quickstarter provides a specific technology, potentially with a framework setu
 <h2 id="_authoring_quickstarters"><a class="anchor" href="#_authoring_quickstarters"></a>Authoring quickstarters</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As mentioned above, it is possible to supply your own quickstarters. Pleasee see the <a href="authoring-quickstarters.html" class="page">authoring quickstarters</a> guide on how to make completely new quickstarters or how to adapt existing quickstarters to your needs.</p>
+<p>As mentioned above, it is possible to supply your own quickstarters. Pleasee see the <a href="authoring-quickstarters.html" class="xref page">authoring quickstarters</a> guide on how to make completely new quickstarters or how to adapt existing quickstarters to your needs.</p>
 </div>
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
   </div>
 </main>
 </div>
@@ -459,25 +466,10 @@ A quickstarter provides a specific technology, potentially with a framework setu
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/3.x/quickstarters/index.html"></script>
-<script async src="../../../_/../search-index.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script>
-  tocbot.init( {
-                  tocSelector: '#article-toc',
-                  contentSelector: 'article',
-                  headingSelector: 'h2, h3, h4, h5, h6',
-                  collapseDepth: 6,
-                  positionFixedSelector: '#article-toc',
-                  scrollSmooth: false
-                } );
-  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
-  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
-    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
-  }
-</script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>

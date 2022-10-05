@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OpenShift resource labelling :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-shared-library/labelling.html">
+    <meta name="generator" content="Antora 3.1.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="4.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-lab.html">Data Science Jupyter Lab</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-aws.html">INF Terraform AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/inf-terraform-azure.html">INF Terraform AZURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs12.html">Node.js 12</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/4x.html">Migrate to 4.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../nexus/administration.html">Nexus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/image-lifecycle.html">Image Lifecycles</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">4.x</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../getting-started/index.html">OpenDevStack</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../5.x/getting-started/index.html">5.x Preview</a>
+        </li>
+        <li class="version is-current is-latest">
+          <a href="../getting-started/index.html">4.x</a>
+        </li>
+        <li class="version">
+          <a href="../../3.x/getting-started/index.html">3.x</a>
+        </li>
+        <li class="version">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="labelling.html">OpenShift resource labelling</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
+  <div class="version-menu">
+    <a class="version" href="../../5.x/jenkins-shared-library/labelling.html">5.x Preview</a>
+    <a class="version is-current" href="labelling.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-jenkins-shared-library/edit/4.x/docs/modules/jenkins-shared-library/pages/labelling.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">OpenShift resource labelling</h1>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The shared library automatically labels all OpenShift resources created in order to ease their management.
+The labels applied are based on the recommendations by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/">Kubernetes</a></p>
+</li>
+<li>
+<p><a href="https://github.com/gorkem/app-labels/blob/master/labels-annotation-for-openshift.adoc">OpenShift</a></p>
+</li>
+<li>
+<p><a href="https://helm.sh/docs/chart_best_practices/labels/">Helm</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Some additional labels, specific to OpenDevStack, are also assigned.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The labelling process is automatically applied by both the
+<a href="quickstarter-pipeline.html" class="xref page">quickstarter</a> and the
+<a href="component-pipeline.html" class="xref page">component</a> pipelines.
+The <a href="orchestration-pipeline.html" class="xref page">orchestration</a> pipeline does not directly perform any labelling, but the component pipeline
+will set some label values based on the information provided by the release manager, when available.</p>
+</div>
+<div class="paragraph">
+<p>The labels set are not directly used by OpenDevStack, but are just made available to the users
+both as information about the resources and as a way to find resources in queries.
+The recommended labels, when given values according to their intended semantics,
+can be used by tools that recognise them, including OpenShift and Helm.</p>
+</div>
+<div class="paragraph">
+<p>The values for the labels are set, in decreasing order or priority, from:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Values forcibly set by the library, which cannot be customised.</p>
+</li>
+<li>
+<p><a href="../quickstarters/metadata.html" class="xref page">Metadata</a> information which can be customised through the metadata.yml file in the component repository.</p>
+</li>
+<li>
+<p>Some labels can get default values when none have been assigned in the previous steps.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The labels are also assigned to the template of each <code>Deployment</code> or <code>DeploymentConfig</code> resource.
+This warrants that any pods created will also be appropriately labeled.</p>
+</div>
+<div class="paragraph">
+<p>Changing the template of a Deployment or DeploymentConfig can trigger a new deployment,
+if a config-change trigger is in place. A best effort is done to avoid multiple deployments.
+Note that any paused Deployment or DeploymentConfig will be resumed as part of the rollout stage.</p>
+</div>
+<div class="paragraph">
+<p>This is the list of supported labels:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 36.3636%;">
+<col style="width: 27.2727%;">
+<col style="width: 18.1818%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Label</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_kubernetes_ioname">app.kubernetes.io/name</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code> metadata parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mongodb</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_kubernetes_ioinstance">app.kubernetes.io/instance</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A unique name identifying the instance of an application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>user-db</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_kubernetes_ioversion">app.kubernetes.io/version</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of the application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code> metadata parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4.0.8</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_kubernetes_iocomponent">app.kubernetes.io/component</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The component within the architecture</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>role</code> metadata parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>database</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_kubernetes_iopart_of">app.kubernetes.io/part-of</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of a higher level application this one is part of</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>partOf</code> metadata parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>my-online-shop</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_kubernetes_iomanaged_by">app.kubernetes.io/managed-by</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The tool being used to manage the operation of an application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autodetected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tailor</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_openshift_ioruntime">app.openshift.io/runtime</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The runtime this application runs on</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>runtime</code> metadata parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">spring-boot</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_openshift_ioruntime_version">app.openshift.io/runtime-version</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of the runtime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>runtimeVersion</code> metadata parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2.1.16.RELEASE</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_helm_shchart">helm.sh/chart</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Helm chart name-version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autodetected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>chartName-1.0.0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_opendevstack_orgproject">app.opendevstack.org/project</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autodetected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>my-project</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_opendevstack_orgtype">app.opendevstack.org/type</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of ODS component</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code> metadata parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ods-service</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_opendevstack_orgsystem_name">app.opendevstack.org/system-name</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the system</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autodetected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>some-system</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_opendevstack_orgproject_version">app.opendevstack.org/project-version</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version across all components in the project</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autodetected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_app_opendevstack_orgwork_in_progress">app.opendevstack.org/work-in-progress</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether this project version is still a work in progress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autodetected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_detailed_description"><a class="anchor" href="#_detailed_description"></a>Detailed description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Detailed description of each label and how to customise it, if possible.</p>
+</div>
+<div class="paragraph">
+<p>Please, note that valid label values must be 63 characters or less and must be empty
+or begin and end with an alphanumeric character (<code>[a-z0-9A-Z]</code>) with dashes (<code>-</code>), underscores (<code>_</code>), dots (<code>.</code>), and alphanumerics between.
+Most label values will be sanitised before assigning, but it is recommended to specify values following these restrictions.</p>
+</div>
+<div class="sect2">
+<h3 id="_app_kubernetes_ioname"><a class="anchor" href="#_app_kubernetes_ioname"></a>app.kubernetes.io/name</h3>
+<div class="paragraph">
+<p>The name of the application.</p>
+</div>
+<div class="paragraph">
+<p>This is the software deployed in this component. There may be other instances of the same software in other components.</p>
+</div>
+<div class="paragraph">
+<p>This label is always assigned and its default value is the component id.</p>
+</div>
+<div class="paragraph">
+<p>This value can be customised by setting the <code>name</code> entry in the metadata.yml file.</p>
+</div>
+<div class="paragraph">
+<p>Suitable values for this label can be retrieved from Maven <code>artifactId</code>, Gradle <code>project.name</code>, docker image name,
+Helm <code>{{ template "name" . }}</code>…</p>
+</div>
+<div class="paragraph">
+<p>Examples: <code>user-service</code>, <code>mongodb</code>.</p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted, if it is already set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_kubernetes_ioinstance"><a class="anchor" href="#_app_kubernetes_ioinstance"></a>app.kubernetes.io/instance</h3>
+<div class="paragraph">
+<p>A unique name identifying the instance of an application.</p>
+</div>
+<div class="paragraph">
+<p>This label is used when there is more than one instance of the software identified by the <a href="#_app_kubernetes_ioname">app.kubernetes.io/name</a> label.</p>
+</div>
+<div class="paragraph">
+<p>This label is automatically set to the component id and it cannot be customised.</p>
+</div>
+<div class="paragraph">
+<p>This label will only be set if its value differs from the value of <code>app.kubernetes.io/name</code>.
+Therefore, if the name label is set to its default value (component id), this instance label will not be set.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>user-db</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_kubernetes_ioversion"><a class="anchor" href="#_app_kubernetes_ioversion"></a>app.kubernetes.io/version</h3>
+<div class="paragraph">
+<p>The current version of the application (e.g., a semantic version, revision hash, etc.).</p>
+</div>
+<div class="paragraph">
+<p>This is the version of the software identified by the <a href="#_app_kubernetes_ioname">app.kubernetes.io/name</a> label.</p>
+</div>
+<div class="paragraph">
+<p>This value can be customised by setting the <code>version</code> entry in the metadata.yml file and it has no default value.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>4.0.8</code></p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted, if it is already set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_kubernetes_iocomponent"><a class="anchor" href="#_app_kubernetes_iocomponent"></a>app.kubernetes.io/component</h3>
+<div class="paragraph">
+<p>The component within the architecture.</p>
+</div>
+<div class="paragraph">
+<p>This is the role this component plays in the architecture.</p>
+</div>
+<div class="paragraph">
+<p>This value can be customised by setting the <code>role</code> entry in the metadata.yml file.</p>
+</div>
+<div class="paragraph">
+<p>A best effort will be made to determine a default value for this:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the quickstarter name starts with be- (but not be-fe-), the default is <code>backend</code>.</p>
+</li>
+<li>
+<p>If the quickstarter name starts with fe-, the default is <code>frontend</code>.</p>
+</li>
+<li>
+<p>If the quickstarter name starts with ds-, the default is <code>subsystem</code>.</p>
+</li>
+<li>
+<p>In any other case, there is no default.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This default value can only be determined when provisioning the component for the first time from a given quickstarter.
+No default value is ever calculated by the component or orchestration pipelines.
+However, if the default value was set by the quickstarter pipeline, it can be overridden, but not deleted.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>database</code></p>
+</div>
+<div class="paragraph">
+<p>Any value can be set, but OpenShift recognises the following values:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>frontend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serves the UI or part of the UI for an application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usually an application code that is running on a runtime or framework.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>database</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data persistence.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration middleware such as API gateways or single-sign-on software.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cache</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stores information from other components for performance purposes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>queue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message queue, asynchronous communication component.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Whenever one of these values is appropriate, it is recommended to use it.</p>
+</div>
+<div class="paragraph">
+<p>Note that data-science components are assigned the ad-hoc <code>subsystem</code> value by default.</p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted if it is already set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_kubernetes_iopart_of"><a class="anchor" href="#_app_kubernetes_iopart_of"></a>app.kubernetes.io/part-of</h3>
+<div class="paragraph">
+<p>The name of a higher level application this one is part of.</p>
+</div>
+<div class="paragraph">
+<p>This is used to group components as part of a higher-level application, when suitable. It is not meant to be systematically set to the project id, though it could make sense in some specific cases. Note that there is already an OpenDevStack-specific project label that holds the project id.</p>
+</div>
+<div class="paragraph">
+<p>This label is not compulsory and has no default value.</p>
+</div>
+<div class="paragraph">
+<p>This value can be customised by setting the <code>partOf</code> entry in the metadata.yml file.</p>
+</div>
+<div class="paragraph">
+<p>Example: you are building an online shop, and this component is part of it.
+You can set <code>app.kubernetes.io/part-of=my-online-shop</code>.</p>
+</div>
+<div class="paragraph">
+<p>This label will be removed, if no value is given for it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_kubernetes_iomanaged_by"><a class="anchor" href="#_app_kubernetes_iomanaged_by"></a>app.kubernetes.io/managed-by</h3>
+<div class="paragraph">
+<p>The tool being used to manage the operation of an application.</p>
+</div>
+<div class="paragraph">
+<p>This is automatically set to <code>tailor</code> (by default) or <code>helm</code>, for components managed with Helm.</p>
+</div>
+<div class="paragraph">
+<p>This value cannot be customised.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>tailor</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_openshift_ioruntime"><a class="anchor" href="#_app_openshift_ioruntime"></a>app.openshift.io/runtime</h3>
+<div class="paragraph">
+<p>The runtime to be used to bootstrap the component.</p>
+</div>
+<div class="paragraph">
+<p>There may be more than one runtime, so the most meaningful or specific one should be set here.
+A typical example is a Spring-Boot application. Both Spring Boot and the JRE are suitable runtimes,
+but the first one is chosen, as the JRE is implied by Spring Boot, but not the other way around.</p>
+</div>
+<div class="paragraph">
+<p>Other possible runtimes are <code>nodejs</code>, <code>angularjs</code>, etc.</p>
+</div>
+<div class="paragraph">
+<p>This value can be customised by setting the <code>runtime</code> entry in the metadata.yml file and it has no default value.</p>
+</div>
+<div class="paragraph">
+<p>Suitable values can be taken from the runtime Maven <code>artifactId</code>, Gradle <code>project.name</code>, docker image name…</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>spring-boot</code></p>
+</div>
+<div class="paragraph">
+<p>This label will be removed, if no value is given for it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_openshift_ioruntime_version"><a class="anchor" href="#_app_openshift_ioruntime_version"></a>app.openshift.io/runtime-version</h3>
+<div class="paragraph">
+<p>The version of the runtime.</p>
+</div>
+<div class="paragraph">
+<p>This value can be customised by setting the <code>runtimeVersion</code> entry in the metadata.yml file and it has no default value.</p>
+</div>
+<div class="paragraph">
+<p>Suitable values can be taken from the runtime Maven <code>version</code>, Gradle <code>project.version</code>, docker image version tag…</p>
+</div>
+<div class="paragraph">
+<p>This label does not make sense, if <a href="#_app_openshift_ioruntime">app.openshift.io/runtime</a> is not also specified.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>2.1.16.RELEASE</code></p>
+</div>
+<div class="paragraph">
+<p>This label will be removed, if no value is given for it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helm_shchart"><a class="anchor" href="#_helm_shchart"></a>helm.sh/chart</h3>
+<div class="paragraph">
+<p>This should be the chart name and version: <code>{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}</code>.</p>
+</div>
+<div class="paragraph">
+<p>This is autodetected and cannot be customised. Only set when the component is managed by Helm.</p>
+</div>
+<div class="paragraph">
+<p>Note that, as per the specification of the label in Helm documentation,
+the value is always sanitised by replacing the character <code>+</code> with the character <code>_</code>.
+This is done before the common sanitising performed to all label values.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>charName-1.0.0</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_opendevstack_orgproject"><a class="anchor" href="#_app_opendevstack_orgproject"></a>app.opendevstack.org/project</h3>
+<div class="paragraph">
+<p>The project id.</p>
+</div>
+<div class="paragraph">
+<p>This is autodetected and cannot be customised.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>my-project</code></p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted if it is already set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_opendevstack_orgtype"><a class="anchor" href="#_app_opendevstack_orgtype"></a>app.opendevstack.org/type</h3>
+<div class="paragraph">
+<p>The type of OpenDevStack component.</p>
+</div>
+<div class="paragraph">
+<p>Valid types are <code>ods</code>, <code>ods-service</code>, <code>ods-test</code> and <code>ods-infra</code>.
+Generally, only the two first ones create resources in OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>This value can be customised by setting the <code>type</code> entry in the metadata.yml file and it has no default value.
+When using the release manager, this value should match the type parameter for this component in the
+release manager metadata file.</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>ods-service</code></p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted if it is already set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_opendevstack_orgsystem_name"><a class="anchor" href="#_app_opendevstack_orgsystem_name"></a>app.opendevstack.org/system-name</h3>
+<div class="paragraph">
+<p>This is currently set by the Release Manager to the config item and it cannot be customised.</p>
+</div>
+<div class="paragraph">
+<p>This value is never sanitised.
+If it is not a valid OpenShift label value, the pipeline will fail with a suitable error message.</p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted if it is already set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_opendevstack_orgproject_version"><a class="anchor" href="#_app_opendevstack_orgproject_version"></a>app.opendevstack.org/project-version</h3>
+<div class="paragraph">
+<p>This is currently set by the Release Manager to the change id and it cannot be customised.</p>
+</div>
+<div class="paragraph">
+<p>This value is never sanitised.
+If it is not a valid OpenShift label value, the pipeline will fail with a suitable error message.</p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted if it is already set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_app_opendevstack_orgwork_in_progress"><a class="anchor" href="#_app_opendevstack_orgwork_in_progress"></a>app.opendevstack.org/work-in-progress</h3>
+<div class="paragraph">
+<p>Boolean value indicating whether the current project version (change id) is still a work in progress.</p>
+</div>
+<div class="paragraph">
+<p>This is currently set by the release manager from the value of the version build parameter and it cannot be customised.</p>
+</div>
+<div class="paragraph">
+<p>This label will not be deleted if it is already set.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

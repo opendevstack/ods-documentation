@@ -4,24 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>OpenShift resource labelling :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/4.x/jenkins-shared-library/labelling.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-shared-library/labelling.html">
+    <meta name="generator" content="Antora 3.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
+    <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
-<header class="header" role="banner">
+<header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
-        <div class="navbar-item">
-          <input id="search-input" type="text" placeholder="Search docs">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
         </div>
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -267,13 +274,13 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">OpenDevStack</span>
+      <a class="title" href="../../latest/getting-started/index.html">OpenDevStack</a>
       <ul class="versions">
         <li class="version is-current">
           <a href="../getting-started/index.html">5.x Preview</a>
         </li>
         <li class="version is-latest">
-          <a href="../../4.x/getting-started/index.html">4.x</a>
+          <a href="../../latest/getting-started/index.html">4.x</a>
         </li>
         <li class="version">
           <a href="../../3.x/getting-started/index.html">3.x</a>
@@ -294,7 +301,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../4.x/getting-started/index.html" class="home-link"></a>
+  <a href="../../latest/getting-started/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
@@ -305,7 +312,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
   <div class="version-menu">
     <a class="version is-current" href="labelling.html">5.x Preview</a>
-    <a class="version" href="../../4.x/jenkins-shared-library/labelling.html">4.x</a>
+    <a class="version" href="../../latest/jenkins-shared-library/labelling.html">4.x</a>
     <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
@@ -314,6 +321,9 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-jenkins-shared-library/edit/master/docs/modules/jenkins-shared-library/pages/labelling.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">OpenShift resource labelling</h1>
 <div class="sect1">
@@ -346,9 +356,9 @@ The labels applied are based on the recommendations by:</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The labelling process is automatically applied by both the
-<a href="quickstarter-pipeline.html" class="page">quickstarter</a> and the
-<a href="component-pipeline.html" class="page">component</a> pipelines.
-The <a href="orchestration-pipeline.html" class="page">orchestration</a> pipeline does not directly perform any labelling, but the component pipeline
+<a href="quickstarter-pipeline.html" class="xref page">quickstarter</a> and the
+<a href="component-pipeline.html" class="xref page">component</a> pipelines.
+The <a href="orchestration-pipeline.html" class="xref page">orchestration</a> pipeline does not directly perform any labelling, but the component pipeline
 will set some label values based on the information provided by the release manager, when available.</p>
 </div>
 <div class="paragraph">
@@ -366,7 +376,7 @@ can be used by tools that recognise them, including OpenShift and Helm.</p>
 <p>Values forcibly set by the library, which cannot be customised.</p>
 </li>
 <li>
-<p><a href="../quickstarters/metadata.html" class="page">Metadata</a> information which can be customised through the metadata.yml file in the component repository.</p>
+<p><a href="../quickstarters/metadata.html" class="xref page">Metadata</a> information which can be customised through the metadata.yml file in the component repository.</p>
 </li>
 <li>
 <p>Some labels can get default values when none have been assigned in the previous steps.</p>
@@ -829,9 +839,6 @@ If it is not a valid OpenShift label value, the pipeline will fail with a suitab
 </div>
 </div>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
   </div>
 </main>
 </div>
@@ -839,25 +846,10 @@ If it is not a valid OpenShift label value, the pipeline will fail with a suitab
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/5.x/jenkins-shared-library/labelling.html"></script>
-<script async src="../../../_/../search-index.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script>
-  tocbot.init( {
-                  tocSelector: '#article-toc',
-                  contentSelector: 'article',
-                  headingSelector: 'h2, h3, h4, h5, h6',
-                  collapseDepth: 6,
-                  positionFixedSelector: '#article-toc',
-                  scrollSmooth: false
-                } );
-  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
-  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
-    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
-  }
-</script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>
