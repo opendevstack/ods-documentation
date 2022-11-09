@@ -363,7 +363,6 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    url: https://github.com/my-org/my-repo-A.git
     branch: master
   - id: B
     name: my-repo-B
@@ -390,7 +389,6 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    url: https://github.com/my-org/my-repo-A.git
     branch: master
     type: ods
   - id: B
@@ -444,7 +442,7 @@ repositories:
 <div class="sect2">
 <h3 id="_automated_resolution_of_repository_git_url"><a class="anchor" href="#_automated_resolution_of_repository_git_url"></a>Automated Resolution of Repository Git URL</h3>
 <div class="paragraph">
-<p>If no <code>url</code> parameter is provided for a repository configuration in a release manager component&#8217;s <code>metadata.yml</code>, the library will attempt to resolve it based on the component&#8217;s <strong>origin remote URL</strong> and one of the following:</p>
+<p>The library will attempt to resolve the repository URL based on the component&#8217;s <strong>origin remote URL</strong> and one of the following:</p>
 </div>
 <div class="paragraph">
 <p>1) If the <code>name</code> parameter is provided, and not empty, the last path part of the URL is resolved to <code>${repo-name}.git</code>.
