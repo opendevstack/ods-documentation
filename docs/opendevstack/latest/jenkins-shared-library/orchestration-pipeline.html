@@ -363,7 +363,6 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    url: https://github.com/my-org/my-repo-A.git
     branch: master
   - id: B
     name: my-repo-B
@@ -381,7 +380,7 @@ repositories:
 </div>
 </div>
 <div class="paragraph">
-<p>The library supports the following repository types: <code>ods</code>, <code>ods-infra</code>, <code>ods-service</code>, <code>ods-saas-service</code>, and <code>ods-test</code>. Setting a repository type is required so the orchestrator can make correct assumptions based on the nature of the component at hand:</p>
+<p>The library supports the following repository types: <code>ods</code>, <code>ods-infra</code>, <code>ods-service</code>, <code>ods-saas-service</code>, <code>ods-test</code> and <code>ods-library</code>. Setting a repository type is required so the orchestrator can make correct assumptions based on the nature of the component at hand:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -390,7 +389,6 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    url: https://github.com/my-org/my-repo-A.git
     branch: master
     type: ods
   - id: B
@@ -434,11 +432,17 @@ repositories:
 <p>This type designates ODS components designed for <em>running automated tests against a live application</em>. Such components are based on quickstarters whose names start with <code>e2e-</code>.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_repository_type_ods_library_experimental_feature"><a class="anchor" href="#_repository_type_ods_library_experimental_feature"></a>Repository Type: ods-library (EXPERIMENTAL feature)</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>library components</em>. Such components are only build in dev (WIP and assemble mode), and are needed for other components to be built.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_automated_resolution_of_repository_git_url"><a class="anchor" href="#_automated_resolution_of_repository_git_url"></a>Automated Resolution of Repository Git URL</h3>
 <div class="paragraph">
-<p>If no <code>url</code> parameter is provided for a repository configuration in a release manager component&#8217;s <code>metadata.yml</code>, the library will attempt to resolve it based on the component&#8217;s <strong>origin remote URL</strong> and one of the following:</p>
+<p>The library will attempt to resolve the repository URL based on the component&#8217;s <strong>origin remote URL</strong> and one of the following:</p>
 </div>
 <div class="paragraph">
 <p>1) If the <code>name</code> parameter is provided, and not empty, the last path part of the URL is resolved to <code>${repo-name}.git</code>.
