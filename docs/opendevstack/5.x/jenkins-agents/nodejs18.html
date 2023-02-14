@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Nexus Administration :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/nexus/administration.html">
+    <title>Node.js 18 - Jenkins agent :: OpenDevStack</title>
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -121,28 +120,28 @@
     <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+    <a class="nav-link" href="golang.html">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
+    <a class="nav-link" href="inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+    <a class="nav-link" href="maven.html">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs12.html">Node.js 12</a>
+    <a class="nav-link" href="nodejs12.html">Node.js 12</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
+    <a class="nav-link" href="nodejs16.html">Node.js 16</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
+    <a class="nav-link" href="python.html">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+    <a class="nav-link" href="scala.html">Scala</a>
   </li>
 </ul>
   </li>
@@ -235,8 +234,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="administration.html">Nexus</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../nexus/administration.html">Nexus</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
@@ -308,106 +307,76 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li>Administration</li>
-    <li><a href="administration.html">Nexus</a></li>
+    <li><a href="../quickstarters/index.html">Quickstarters</a></li>
+    <li>Jenkins agent Images</li>
+    <li><a href="nodejs18.html">Node.js 18</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="administration.html">5.x Preview</a>
-    <a class="version" href="../../latest/nexus/administration.html">4.x</a>
+    <a class="version is-current" href="nodejs18.html">5.x Preview</a>
+    <a class="version is-missing" href="../../latest/getting-started/index.html">4.x</a>
     <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/nexus/pages/administration.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/jenkins-agents/pages/nodejs18.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Nexus Administration</h1>
-<div id="preamble">
+<h1 class="page">Node.js 18 - Jenkins agent</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>ods-core</code> repository contains a build recipe for a central Nexus instance. The remainder of this document describes how that setup is done, and how it can be modified and updated.</p>
+<p>This agent is used to build Node.js-based projects, through <code>npm</code> or <code>yarn</code>.</p>
+</div>
+<div class="paragraph">
+<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-nodejs18</code>.
+It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-nodejs18</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Node.js version 18 reaches end-of-life in 2025-04-30. Support for this version will be removed in releases after this date. Please consider switching to newer versions of this agent as soon as they are available.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_updating_nexus_to_a_new_version"><a class="anchor" href="#_updating_nexus_to_a_new_version"></a>Updating Nexus to a new version</h2>
+<h2 id="_features"><a class="anchor" href="#_features"></a>Features</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The Nexus deployment is using an image built in the central ODS namespace. This image is a <a href="https://github.com/opendevstack/ods-core/blob/master/nexus/docker/Dockerfile">customisation</a> of the <a href="https://hub.docker.com/r/sonatype/nexus3">official Nexus image on DockerHub</a>.</p>
-</div>
-<div class="paragraph">
-<p>The Nexus version which is used is determined by which image tag from DockerHub is used, and depending on tag, at which time the ODS image is built.</p>
-</div>
-<div class="paragraph">
-<p>To update Nexus, the following steps need to be taken:</p>
-</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Configure new version</p>
+<p>Nexus configuration</p>
 </li>
 <li>
-<p>Update <code>BuildConfig</code></p>
+<p>HTTP proxy awareness</p>
 </li>
 <li>
-<p>Create new image</p>
-</li>
-<li>
-<p>Rollout new deployment</p>
+<p>Yarn &amp; Cypress dependencies pre-installed</p>
 </li>
 </ol>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The following will guide you through this process.</p>
-</div>
-<div class="paragraph">
-<p>To configure a new version of Nexus, you need to update the configuration of ODS, which is located in the <code>ods-configuration</code> repository of your ODS project in Bitbucket. You need to have the latest <code>master</code> of this repository, as well as the <code>ods-core</code> repository in your current ODS version available locally. If you don&#8217;t want to do this manually, you can make use the <code>repos.sh</code> script:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">UMBRELLA_DIR=~/opendevstack
-BITBUCKET_HOST=bitbucket.acme.org
-BITBUCKET_PROJECT=opendevstack
-GIT_REF=v3.0.0
-mkdir -p $UMBRELLA_DIR &amp;&amp; cd $UMBRELLA_DIR
-curl -LO https://raw.githubusercontent.com/opendevstack/ods-core/$GIT_REF/scripts/repos.sh
-chmod +x repos.sh
-./repos.sh --git-ref $GIT_REF --repos="ods-core,ods-configuration" --source-project https://$BITBUCKET_HOST/scm/$BITBUCKET_PROJECT</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The script can also be used in an umbrella directory in which the repositories already exist. Once the repositories are at the desired revision, change <code>NEXUS_FROM_IMAGE</code> in <code>ods-configuration/ods-core.env</code> to your desired image tag. Commit the change and push it to Bitbucket.</p>
-</div>
-<div class="paragraph">
-<p>Next, you should ensure that the Nexus <code>BuildConfig</code> resource in the central ODS namespace is up-to-date, then trigger a new build so that a new image with the changed base image gets built. Finally, a new deployment should be rolled out which uses the newly built image. All of this can be done from the <code>ods-core</code> repository:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-nexus</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This target depends on the targets <code>apply-nexus-build</code>, <code>start-nexus-build</code>, and <code>apply-nexus-deploy</code> which execute the steps described above (and can of course also be executed individually).</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-There is also a <code>configure-nexus</code> target. However, this is not executed as part of <code>install-nexus</code> as it is not idempotent yet (which means it cannot be used against an existing Nexus deployment). For a simple Nexus version update, you don&#8217;t need to change any configuration, but if you switch between ODS versions you should keep an eye on Nexus configuration.
-</td>
-</tr>
-</table>
+<p>n/a</p>
 </div>
 </div>
 </div>
