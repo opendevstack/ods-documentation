@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>OpenShift resource labelling :: OpenDevStack</title>
+    <title>OpenShift resource labelling with tailor :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-shared-library/labelling.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -305,7 +305,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="labelling.html">OpenShift resource labelling</a></li>
+    <li><a href="labelling.html">OpenShift resource labelling with tailor</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -325,9 +325,20 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">OpenShift resource labelling</h1>
+<h1 class="page">OpenShift resource labelling with tailor</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>When a rollout happens via tailor there are labels that are added regardless of whether they are in any template or not.
+This is in contrast to helm which relies on the charts setting the right labels.
+This decision avoids an unexpected pause or resume during a rollout.
+A helm rollout will have only the labels that were specified and OpenDevStack will not try to add, remove or change any labels.
+If your cluster has operators there could still be some label changes.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<h2 id="_overview_of_tailor_labels"><a class="anchor" href="#_overview_of_tailor_labels"></a>Overview of tailor labels</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The shared library automatically labels all OpenShift resources created in order to ease their management.

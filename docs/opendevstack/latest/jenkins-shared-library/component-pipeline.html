@@ -348,7 +348,7 @@ odsComponentPipeline(
   imageStreamTag: 'ods/jenkins-agent-golang:3.x',
   branchToEnvironmentMapping: [
     'master': 'dev',
-    // 'release/*': 'test'
+    // 'release/': 'test'
   ]
 ) { context -&gt;
   odsComponentStageImportOpenShiftImageOrElse(context) {
@@ -363,7 +363,7 @@ odsComponentPipeline(
 </div>
 </div>
 <div class="paragraph">
-<p>The version in <code>@Library</code> can be any Git revsison, such as a branch (e.g. <code>master</code> or <code>2.x</code>), a tag (e.g. <code>v2.0</code>) or even a specific commit.</p>
+<p>The version in <code>@Library</code> can be any Git revision, such as a branch (e.g. <code>master</code> or <code>2.x</code>), a tag (e.g. <code>v2.0</code>) or even a specific commit.</p>
 </div>
 <div class="paragraph">
 <p>There are many built-in stages like <code>odsComponentStageScanWithSonar</code> that you can use, please see <a href="#_stages">Stages</a> for more details.</p>
@@ -1136,6 +1136,14 @@ set to the shortened Git SHA.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build if the quality gate defined in the SonarQube
  project is not reached. Defaults to <code>false</code>.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resourceName</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> of the image that we want to scan (defaults to <code>context.componentId</code>).
+ BuildOpenShiftImageStage puts the imageRef into a map with the <code>resourceName</code> as key.
+ In order to be able to receive the imageRef for scanning, the <code>resourceName</code> needs
+ to be the same as in BuildOpenShiftImageStage.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1553,6 +1561,17 @@ being built.</p>
  referenced by <code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmEnvBasedValuesFiles</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of paths to values files (empty by default). Only relevant if the
+ directory referenced by <code>chartDir</code> exists.
+ These must contain a suffix called '.env.yml' - which will be replaced
+ during rollout and deployment, and then added to helmValueFiles</p>
+<p class="tableblock"> Passing a string literal of 'values.env.yaml' will be expanded to their respective environments.</p>
+<p class="tableblock"> For example: 'values.env.yaml' will become 'values.dev.yaml', 'values.test.yaml' or 'values.prod.yaml'.
+ That means creating the usual files that are named after their respective environment are parsed as usual.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmPrivateKeyCredentialsId</strong><br>
 <em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the private key used by helm-secrets (defaults to
@@ -1644,8 +1663,13 @@ being built.</p>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_differences_between_tailor_and_helm_deployments"><a class="anchor" href="#_differences_between_tailor_and_helm_deployments"></a>Differences between tailor and helm deployments</h4>
 <div class="paragraph">
-<p>All the created or updated OpenShift resources are automatically labeled to ease their management.</p>
+<p>When tailor does the rollout, all the created or updated OpenShift resources are automatically labeled to ease their management.
+This is in contrast to helm rollouts which rely on the chart providing the desired labels.
+Add labels either via the chart directly or via supplying them in the values or values files.</p>
 </div>
 <div class="paragraph">
 <p>Detailed information about the labelling can be found <a href="labelling.html" class="xref page">here</a>.</p>
@@ -1720,6 +1744,71 @@ being built.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>version</strong><br>
 <em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">For <code>repositoryType=maven2</code>: default is  <code>context.tagversion</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstagecopyimage"><a class="anchor" href="#_odscomponentstagecopyimage"></a>odsComponentStageCopyImage</h3>
+<div class="paragraph">
+<p>Copies a source image into the project.</p>
+</div>
+<div class="paragraph">
+<p>This is useful to get images into the OpenShift registry so that release manager will accept all images.</p>
+</div>
+<div class="paragraph">
+<p>The primary intention is for helm charts so that external images can be imported.</p>
+</div>
+<div class="sect3">
+<h4 id="_options_7"><a class="anchor" href="#_options_7"></a>Options</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceCredential</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sourceCredential is the token to use, if any, to access the source registry</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceImageUrlIncludingRegistry</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Source image to import</p>
+<p class="tableblock"> This needs to be in the following format: [REGISTRY/]REPO/IMAGE[:TAG]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tagIntoTargetEnv</strong><br>
+<em>Boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true will tag the image from the -cd namespace into the targetEnvironment that the pipeline is running for</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>verifyTLS</strong><br>
+<em>Boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verifyTLS allows the stage to ignore certificate validation errors.</p>
+<p class="tableblock"> The default is to verify certificate paths</p></td>
 </tr>
 </tbody>
 </table>
