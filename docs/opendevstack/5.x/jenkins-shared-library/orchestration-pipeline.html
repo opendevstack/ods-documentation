@@ -338,11 +338,11 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Library('ods-jenkins-shared-library@3.x') _
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Library('ods-jenkins-shared-library@4.x') _
 
 odsOrchestrationPipeline(
   debug: true,
-  odsImageTag: '3.x'
+  odsImageTag: '4.x'
 )</code></pre>
 </div>
 </div>
@@ -534,6 +534,16 @@ cluster node setup, this may decrease execution performance. In order to re-use 
 <div class="listingblock">
 <div class="content">
 <pre>alwaysPullImage: true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default the orchestration pipeline will create a pod based on the jenkins-base-agent image to do much of its work.
+In seldom cases, ususally with a lot of repositories, one may hit an out of memory error on the pod named 'mro-XX'. In this case the below
+memory limit should be adjusted (defaulting to '1Gi')</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mroAgentMemoryLimit = "1Gi"</pre>
 </div>
 </div>
 </div>
