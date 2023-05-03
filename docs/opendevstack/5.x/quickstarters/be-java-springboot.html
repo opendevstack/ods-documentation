@@ -127,7 +127,7 @@
     <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+    <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs12.html">Node.js 12</a>
@@ -345,17 +345,16 @@
 <h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Under the hook this quickstarter runs the <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#cli-init">spring boot cli init command</a>.
-The quickstarter uses the spring boot project generator service hosted by Spring (<a href="https://start.spring.io" class="bare">https://start.spring.io</a>) to generate the spring boot project.</p>
+<p>The quickstarter uses the spring boot project generator service hosted by Spring (<a href="https://start.spring.io" class="bare">https://start.spring.io</a>) to generate the spring boot project.</p>
 </div>
 <div class="paragraph">
 <p>This is implemented in the quickstarter jenkins build script called <code>Jenkinsfile</code> (open it to understand the internal of the code generation of this quickstarter).</p>
 </div>
 <div class="paragraph">
-<p>When provisioning this quickstarter in the provisioning app a spring boot project based on version <code>2.7.1</code> will be generated and pushed to your git repository.</p>
+<p>When provisioning this quickstarter in the provisioning app a spring boot project based on version <code>3.0.5</code> will be generated and pushed to your git repository.</p>
 </div>
 <div class="paragraph">
-<p>The generated project requires <code>java 17</code> and includes the required gradle build and wrapper artifact based on gradle version <code>7.3.2</code>.</p>
+<p>The generated project requires <code>java 17</code> and includes the required gradle build and wrapper artifact based on gradle version <code>8.0.2</code>.</p>
 </div>
 </div>
 </div>
@@ -368,7 +367,7 @@ The quickstarter uses the spring boot project generator service hosted by Spring
 <div class="ulist">
 <ul>
 <li>
-<p><code>src</code> (maven based java project structure)</p>
+<p><code>src</code> (java project structure)</p>
 </li>
 <li>
 <p><code>gradle</code> (gradle wrapper portable distribution)</p>
@@ -491,7 +490,7 @@ Upload to nexus is prepared in Jenkinsfile, but disabled per default. See sectio
 <div class="sectionbody">
 <div class="paragraph">
 <p>The generated spring boot project is preconfigured with some third party dependencies (i.e.
- <code>--dependencies="web,data-rest,restdocs,data-jpa,h2,security,devtools"</code>), which are defined in the quickstarter jenkins build script called <code>Jenkinsfile</code> (open it to understand the internal of the code generation of this quickstarter).</p>
+ <code>--dependencies="web,data-rest,data-jpa,h2,security,devtools"</code>), which are defined in the quickstarter jenkins build script called <code>Jenkinsfile</code> (open it to understand the internal of the code generation of this quickstarter).</p>
 </div>
 <div class="paragraph">
 <p>Look in method <code><code>dependencies</code></code> in the file <code><code>build.gradle</code></code> to review the defined dependencies.</p>
@@ -544,7 +543,7 @@ version: 1.0.1
 type: ods
 role: backend
 runtime: spring-boot
-runtimeVersion: 2.7.1</code></pre>
+runtimeVersion: 3.0.5</code></pre>
 </div>
 </div>
 </div>
@@ -606,8 +605,8 @@ This file is copied to the <code>docker</code> folder to be included in the dock
 <h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter uses
-<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/maven">Maven builder agent</a> Jenkins builder agent.</p>
+<p>This quickstarter uses the
+<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/jdk">jdk</a> Jenkins builder agent.</p>
 </div>
 </div>
 </div>
@@ -615,7 +614,7 @@ This file is copied to the <code>docker</code> folder to be included in the dock
 <h2 id="_migration_to_java_17"><a class="anchor" href="#_migration_to_java_17"></a>Migration to Java 17</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/maven">Maven builder agent</a> Jenkins builder agent has installed 2 JDK: <code>java 11</code> and <code>java 17</code>.
+<p>The <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/jdk">jdk builder agent</a> Jenkins builder agent has installed 2 JDK: <code>java 11</code> and <code>java 17</code>.
 The default version is <code>java 11</code>. This makes the agent backwards compatible.</p>
 </div>
 <div class="paragraph">
@@ -624,16 +623,16 @@ The default version is <code>java 11</code>. This makes the agent backwards comp
 <div class="ulist">
 <ul>
 <li>
-<p>change the agent version as indicated in <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/maven">Maven builder agent</a></p>
+<p>change the agent version as indicated in <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/jdk">jdk builder agent</a></p>
 </li>
 <li>
-<p>upgrade the gradle wrapper to version <code>7.3.2</code> running this gradle command at the root folder of your spring project:</p>
+<p>upgrade the gradle wrapper to version <code>8.0.2</code> running this gradle command at the root folder of your spring project:</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">gradle wrapper --gradle-version 7.3.2 --distribution-type bin</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">gradle wrapper --gradle-version 8.0.2 --distribution-type bin</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
