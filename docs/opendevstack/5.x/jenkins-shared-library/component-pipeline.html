@@ -1236,6 +1236,107 @@ data:
 </div>
 </div>
 <div class="sect2">
+<h3 id="_odscomponentstagescanwithtrivy"><a class="anchor" href="#_odscomponentstagescanwithtrivy"></a>odsComponentStageScanWithTrivy</h3>
+<div class="paragraph">
+<p>The "Trivy Security Scan" stage scans the filesystem of the cloned repository using <a href="https://github.com/aquasecurity/trivy">Trivy</a> and generates a <a href="https://cyclonedx.org/capabilities/sbom">SBOM</a> report, with <a href="https://cyclonedx.org/specification/overview/">CycloneDX</a> format by default. Check Trivy supported formats <a href="https://aquasecurity.github.io/trivy/latest/docs/supply-chain/sbom/">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>As a result, a Bitbucket Code Insight entry is added to the git commit (in Bitbucket) that basically
+contains a link to the scan report stored in Nexus. The Bitbucket Code Insight entry can be seen in a pull request.
+The pull request in Bitbucket shows the Code Insight of the latest commit of the PR.</p>
+</div>
+<div class="paragraph">
+<p>To get started, edit your <code>Jenkinsfile</code> and add the Trivy stage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>) { context -&gt;
+    ...
+    odsComponentStageScanWithTrivy(context)
+    ...
+}</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_options_2"><a class="anchor" href="#_options_2"></a>Options</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>additionalFlags</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional flags for the Trivy CLI. Please refer to the official Trivy CLI
+ reference for possible options and don&#8217;t forget to take the CLI version
+ of your ODS installation into account. The value of <code>additionalFlags</code>
+ must be a list in which the entries have the official flag name and a
+ possible value.
+ Example: <code>['--debug', '--timeout=10m']</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
+ Example: <code>'master'</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong><br>
+<em>List&lt;String&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
+ Example: <code>['master', 'develop']</code>.
+ Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>format</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the format for the generated report. Defaults to <code>cyclonedx</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>nexusDataBaseRepository</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Nexus repository used to proxy the location of the database of vulnerabilities located in GitHub.
+ Defaults to <code>docker-group-ods</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>nexusReportRepository</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Nexus repository where the scan report will be stored. Defaults to <code>leva-documentation</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reportFile</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the file that will be archived in Jenkins and uploaded in Nexus.
+ Defaults to <code>trivy-sbom.json</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resourceName</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of component that we want to scan. Defaults to <code>context.componentId</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scanners</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of what security issues to detect. Defaults to <code>vuln,config,secret,license</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>vulType</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of vulnerability types to scan. Defaults to <code>os,library</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_odscomponentstagescanwithsnyk"><a class="anchor" href="#_odscomponentstagescanwithsnyk"></a>odsComponentStageScanWithSnyk</h3>
 <div class="paragraph">
 <p>The "Snyk Security Scan" stage performs two tasks:</p>
@@ -1266,7 +1367,7 @@ data:
 <p>It is recommended to read your authentication token dynamically, e.g. from an environment variable or a credential in your Jenkins master.</p>
 </div>
 <div class="sect3">
-<h4 id="_options_2"><a class="anchor" href="#_options_2"></a>Options</h4>
+<h4 id="_options_3"><a class="anchor" href="#_options_3"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1350,7 +1451,7 @@ being built.</p>
 <p>The resulting image is tagged with <code>context.shortGitCommit</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_options_3"><a class="anchor" href="#_options_3"></a>Options</h4>
+<h4 id="_options_4"><a class="anchor" href="#_options_4"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1431,7 +1532,7 @@ being built.</p>
 <p>By default, the source image is identified using the commit which triggered the pipeline run.</p>
 </div>
 <div class="sect3">
-<h4 id="_options_4"><a class="anchor" href="#_options_4"></a>Options</h4>
+<h4 id="_options_5"><a class="anchor" href="#_options_5"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1500,7 +1601,7 @@ being built.</p>
 <p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In this case, it is recommended to remove any image triggers to avoid duplicate rollouts (one when configuration changes due to a config trigger and one when the image is tagged to <code>latest</code>). In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
 </div>
 <div class="sect3">
-<h4 id="_options_5"><a class="anchor" href="#_options_5"></a>Options</h4>
+<h4 id="_options_6"><a class="anchor" href="#_options_6"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1688,7 +1789,7 @@ Add labels either via the chart directly or via supplying them in the values or 
 <p>Triggers the upload of an artifact to Nexus. Implementation is based on <a href="https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api" class="bare">https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api</a></p>
 </div>
 <div class="sect3">
-<h4 id="_options_6"><a class="anchor" href="#_options_6"></a>Options</h4>
+<h4 id="_options_7"><a class="anchor" href="#_options_7"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1767,7 +1868,7 @@ Add labels either via the chart directly or via supplying them in the values or 
 <p>The primary intention is for helm charts so that external images can be imported.</p>
 </div>
 <div class="sect3">
-<h4 id="_options_7"><a class="anchor" href="#_options_7"></a>Options</h4>
+<h4 id="_options_8"><a class="anchor" href="#_options_8"></a>Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">

@@ -437,9 +437,9 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker"># The following FROM tag is informational. It is overwritten by OpenShift.
-FROM ods/jenkins-agent-nodejs16:4.x
+FROM ods/jenkins-agent-nodejs18:4.x
 
-ARG cypressVersion=9.5.3
+ARG cypressVersion=12.9.0
 ARG cypressHash=...
 
 USER root
@@ -469,11 +469,58 @@ USER 1001</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_cypress_cloud"><a class="anchor" href="#_cypress_cloud"></a>Cypress Cloud</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use Cypress Cloud  within the Cypress QuickSarter, follow these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create a project in Cypress Cloud.</strong> Access Cypress Cloud by following this link (<a href="https://cloud.cypress.io/" class="bare">https://cloud.cypress.io/</a>), and create a project. This project will be used to store your Cypress tests and results.</p>
+</li>
+<li>
+<p><strong>Change the project ID as indicated in Cypress Cloud.</strong> After creating the project, you will need to change the project ID in the four config files, to the one indicated in Cypress Cloud. This ID is used to identify your project and ensure that your tests are associated with the correct project.</p>
+</li>
+<li>
+<p><strong>Set the Cypress Record Key as an environment variable in Openshift.</strong> To enable recording of your tests in Cypress Cloud, you will need to set the Cypress Record Key as an environment variable named CYPRESS_RECORD_KEY in Openshift. This key is provided by Cypress and is used to authenticate your tests and results. By setting it in Openshift, we ensure that the record functionality will only be used in official runs and not for local development.</p>
+</li>
+<li>
+<p><strong>Modify the Jenkinsfile for using the record script.</strong> In the Jenkinsfile, change the exeuction line:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>def status = sh(script: 'npm run e2e', returnStatus: true)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>for the following block of code, which will run the record script only when in master or in a release branch:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Jenkinsfile hljs" data-lang="Jenkinsfile">if (context.gitBranch == 'master' || context.gitBranch.startsWith('release/')) {
+    def status = sh(script: 'npm run e2e:jenkins:record', returnStatus: true)
+} else {
+    def status = sh(script: 'npm run e2e', returnStatus: true)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Only use this functionality in releases, not development.</strong> It is important to note that Cypress Cloud is intended for use in releases, not development. This ensures that your tests are run against stable and reliable code, and that the Dashboard does not get overflooded with non-relevant tests. For the same reason, the Jenkinsfile is configured to only pass the record parameter when running in the master branch, or in a release.</p>
+</div>
+<div class="paragraph">
+<p>You can find more information about using the Cypress Cloud in the official documentation for Cypress <a href="https://docs.cypress.io/guides/cloud/introduction" class="bare">https://docs.cypress.io/guides/cloud/introduction</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This quickstarter uses
-<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs16">Node.js 16 builder agent</a> for Jenkins.</p>
+<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs18">Node.js 18 builder agent</a> for Jenkins.</p>
 </div>
 </div>
 </div>
