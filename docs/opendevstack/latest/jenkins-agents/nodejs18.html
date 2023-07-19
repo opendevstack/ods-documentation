@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Terraform Jenkins agents :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/inf-terraform.html">
+    <title>Node.js 18 - Jenkins agent :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/nodejs18.html">
     <meta name="generator" content="Antora 3.1.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -126,7 +126,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="golang.html">Go</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -138,7 +138,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="nodejs16.html">Node.js 16</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -313,41 +313,48 @@
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
     <li><a href="../quickstarters/index.html">Quickstarters</a></li>
     <li>Jenkins agent Images</li>
-    <li><a href="inf-terraform.html">terraform</a></li>
+    <li><a href="nodejs18.html">Node.js 18</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
   <div class="version-menu">
-    <a class="version" href="../../5.x/jenkins-agents/inf-terraform.html">5.x Preview</a>
-    <a class="version is-current" href="inf-terraform.html">4.x</a>
+    <a class="version" href="../../5.x/jenkins-agents/nodejs18.html">5.x Preview</a>
+    <a class="version is-current" href="nodejs18.html">4.x</a>
     <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/jenkins-agents/pages/inf-terraform.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/jenkins-agents/pages/nodejs18.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Terraform Jenkins agents</h1>
+<h1 class="page">Node.js 18 - Jenkins agent</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This agents are used to deploy (Cloud) resources using terraform code.</p>
+<p>This agent is used to build Node.js-based projects, through <code>npm</code> or <code>yarn</code>.</p>
 </div>
 <div class="paragraph">
-<p>There are two terraform jenkins agents available:
-1. jenkins-agent-terraform (ruby 2.7.5, terraform 1.2.x) - this agent is <strong>DEPRECATED</strong> and will be removed in the next release.
-1. jenkins-agent-terraform-2306 (ruby 3.2.2, terraform 1.4.6, and matching tools) - this is the current active jenkins agent.</p>
+<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-nodejs18</code>.
+It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-nodejs18</code>.</p>
 </div>
-<div class="paragraph">
-<p>The images are built in the global <code>ods</code> project and are named <code>jenkins-agent-terraform</code> and <code>jenkins-agent-terraform-2306</code>.
-It can be referenced in a <code>Jenkinsfile</code> with e.g. <code>ods/jenkins-agent-terraform:latest</code> or <code>ods/jenkins-agent-terraform-2306:latest</code>.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Node.js version 18 reaches end-of-life in 2025-04-30. Support for this version will be removed in releases after this date. Please consider switching to newer versions of this agent as soon as they are available.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -357,10 +364,13 @@ It can be referenced in a <code>Jenkinsfile</code> with e.g. <code>ods/jenkins-a
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>support of multiple terraform versions using tfenv</p>
+<p>Nexus configuration</p>
 </li>
 <li>
-<p>integrated test-framework using kitchen-terraform and cinc-auditor</p>
+<p>HTTP proxy awareness</p>
+</li>
+<li>
+<p>Yarn &amp; Cypress dependencies pre-installed</p>
 </li>
 </ol>
 </div>

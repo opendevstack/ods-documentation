@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Maven / Gradle Jenkins agent :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/maven.html">
+    <title>Jdk Jenkins agent :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/jdk.html">
     <meta name="generator" content="Antora 3.1.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -130,13 +130,16 @@
     <a class="nav-link" href="inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="maven.html">Maven</a>
+    <a class="nav-link" href="jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="nodejs12.html">Node.js 12</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="nodejs16.html">Node.js 16</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="python.html">Python</a>
@@ -310,36 +313,36 @@
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
     <li><a href="../quickstarters/index.html">Quickstarters</a></li>
     <li>Jenkins agent Images</li>
-    <li><a href="maven.html">Maven</a></li>
+    <li><a href="jdk.html">jdk</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
   <div class="version-menu">
-    <a class="version is-missing" href="../../5.x/getting-started/index.html">5.x Preview</a>
-    <a class="version is-current" href="maven.html">4.x</a>
-    <a class="version" href="../../3.x/jenkins-agents/maven.html">3.x</a>
+    <a class="version" href="../../5.x/jenkins-agents/jdk.html">5.x Preview</a>
+    <a class="version is-current" href="jdk.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/jenkins-agents/pages/maven.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/jenkins-agents/pages/jdk.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Maven / Gradle Jenkins agent</h1>
+<h1 class="page">Jdk Jenkins agent</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This agent is used to build Java code, through Maven or Gradle.</p>
+<p>This agent is used to build Java code.</p>
 </div>
 <div class="paragraph">
-<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-maven</code>.
-It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-maven</code>.</p>
+<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-jdk</code>.
+It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-jdk</code>.</p>
 </div>
 </div>
 </div>
@@ -349,13 +352,7 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Gradlew distribution version preinstalled in gradle cache (/home/jenkins/.gradle/wrapper/dists/)</p>
-</li>
-<li>
-<p>Nexus configuration for Maven &amp; Gradle</p>
-</li>
-<li>
-<p>HTTP proxy awareness for both builders</p>
+<p>Nexus and HTTP proxy configuration for Maven &amp; Gradle</p>
 </li>
 </ol>
 </div>
@@ -386,7 +383,7 @@ Following command shows how the jenkins build script from the springboot quickst
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-like this example, you will need to switch back to <code>java 11</code> after running the gradlew build. This is required because the maven agent environment still does not support the latest java version. E.g. the <code>sonar scanner</code> is not compatible with the latest java version.
+like this example, you will need to switch back to <code>java 11</code> after running the gradlew build. This is required because the jdk agent environment still does not support the latest java version. E.g. the <code>sonar scanner</code> is not compatible with the latest java version.
 </td>
 </tr>
 </table>
@@ -399,16 +396,7 @@ like this example, you will need to switch back to <code>java 11</code> after ru
 <div class="paragraph">
 <p>Dockerfile.ubi8 installs:
 - java-17-openjdk-devel &amp; java-17-openjdk-jmods
-- java-11-openjdk-devel &amp; java-11-openjdk-jmods
-- maven-3.5.4
-- gradle wrapper distribution version 7.3.2 (<a href="https://services.gradle.org/" class="bare">https://services.gradle.org/</a>)</p>
-</div>
-<div class="paragraph">
-<p>Dockerfile.centos7 installs
-- java-11-openjdk-devel &amp; java-11-openjdk-jmods
-- java-17-openjdk-devel &amp; java-17-openjdk-jmods
-- maven 3.5.4 from apache distribution directory (<a href="https://apache.osuosl.org/maven/maven-3" class="bare">https://apache.osuosl.org/maven/maven-3</a>)
-- gradle wrapper distribution version 7.3.2 (<a href="https://services.gradle.org/" class="bare">https://services.gradle.org/</a>)</p>
+- java-11-openjdk-devel &amp; java-11-openjdk-jmods</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -417,7 +405,7 @@ like this example, you will need to switch back to <code>java 11</code> after ru
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-detail about java and maven installed packages can be found in <a href="https://centos.pkgs.org" class="bare">https://centos.pkgs.org</a>
+detail about java installed packages can be found in <a href="https://centos.pkgs.org" class="bare">https://centos.pkgs.org</a>
 </td>
 </tr>
 </table>
