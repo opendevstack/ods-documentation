@@ -1591,14 +1591,68 @@ being built.</p>
 <div class="sect2">
 <h3 id="_odscomponentstagerolloutopenshiftdeployment"><a class="anchor" href="#_odscomponentstagerolloutopenshiftdeployment"></a>odsComponentStageRolloutOpenShiftDeployment</h3>
 <div class="paragraph">
+<p>Rolls out the current resources as defined in the component.</p>
+</div>
+<div class="paragraph">
+<p>Without any configuration the stage tries to guess what a user expects.
+If the component contains a directory name <code>chart</code>, a Helm deployment is assumed.
+If the component contains a directory name <code>openshift</code>, a Tailor deployment is assumed.
+If neither exists a Tailor deployment is assumed.</p>
+</div>
+<div class="sect3">
+<h4 id="_helm"><a class="anchor" href="#_helm"></a>Helm</h4>
+<div class="paragraph">
+<p>Triggers a release or update of an release with Helm.</p>
+</div>
+<div class="paragraph">
+<p>The stage will use the <code>helm</code> command to trigger the release.
+The command will be executed in the directory referenced by <code>chartDir</code>.
+If the directory does not exist, the stage will fail.</p>
+</div>
+<div class="paragraph">
+<p>The images used in the deployment will not be tagged or otherwise modified.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">HELM_DIFF_IGNORE_UNKNOWN_FLAGS=true helm -n play-dev secrets diff upgrade \
+  --install --atomic --force \
+  -f values.yaml \
+  --set registry=registry.example.com \
+  --set componentId=example-helm-chart \
+  --set imageNamespace=example-dev \
+  --set imageTag=deadbeef69cafebabe \
+  --no-color --three-way-merge --normalize-manifests \
+  example-release . || true
+
+# run the upgrade
+helm -n play-dev secrets upgrade \
+  --install --atomic --force \
+  -f values.yaml \
+  --set registry=registry.example.com \
+  --set componentId=example-helm-chart \
+  --set imageNamespace=play-dev \
+  --set imageTag=deadbeef69cafebabe \
+  example-release .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tailor"><a class="anchor" href="#_tailor"></a>Tailor</h4>
+<div class="paragraph">
 <p>Triggers (and follows) a rollout of the <code>DeploymentConfig</code> related to the repository
 being built.</p>
 </div>
 <div class="paragraph">
-<p>It achieves this by tagging the image built in <code>odsComponentStageBuildOpenShiftImage</code> with <code>latest</code>. This might already trigger a rollout based on an existing <code>ImageTrigger</code>. If none is set, the stage will start a manual rollout.</p>
+<p>It achieves this by tagging the image built in <code>odsComponentStageBuildOpenShiftImage</code> with <code>latest</code>.
+This might already trigger a rollout based on an existing <code>ImageTrigger</code>.
+If none is set, the stage will start a manual rollout.</p>
 </div>
 <div class="paragraph">
-<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In this case, it is recommended to remove any image triggers to avoid duplicate rollouts (one when configuration changes due to a config trigger and one when the image is tagged to <code>latest</code>). In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
+<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>.
+In this case, it is recommended to remove any image triggers to avoid duplicate rollouts
+(one when configuration changes due to a config trigger and one when the image is tagged to <code>latest</code>).
+In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_options_6"><a class="anchor" href="#_options_6"></a>Options</h4>
@@ -1772,7 +1826,7 @@ being built.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_differences_between_tailor_and_helm_deployments"><a class="anchor" href="#_differences_between_tailor_and_helm_deployments"></a>Differences between tailor and helm deployments</h4>
+<h4 id="_notable_differences_between_tailor_and_helm_deployments"><a class="anchor" href="#_notable_differences_between_tailor_and_helm_deployments"></a>Notable Differences between tailor and helm deployments</h4>
 <div class="paragraph">
 <p>When tailor does the rollout, all the created or updated OpenShift resources are automatically labeled to ease their management.
 This is in contrast to helm rollouts which rely on the chart providing the desired labels.
