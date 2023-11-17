@@ -348,6 +348,7 @@
 <div class="content">
 <pre>.
 ├── Jenkinsfile
+├── .pre-commit-config.yaml
 ├── docker_streamlit
 │   └── Dockerfile
 ├── docker_oauth
@@ -476,6 +477,9 @@ In order to be sure that your code passes the linting stage execute or add it as
 <p><strong>Build</strong> - Builds the application: copies src folder into docker_streamlit/dist folder.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

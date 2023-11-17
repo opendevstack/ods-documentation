@@ -358,6 +358,7 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="listingblock">
 <div class="content">
 <pre>├── Jenkinsfile - This file contains Jenkins build configuration settings
+├── .pre-commit-config.yaml
 ├── README.md
 ├── docker - This folder contains Docker configuration settings
 │   ├── Dockerfile
@@ -501,6 +502,9 @@ runtimeVersion: 2.2.2</code></pre>
 <p><strong>Build</strong> - Builds the application: copies src folder into docker/dist folder.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

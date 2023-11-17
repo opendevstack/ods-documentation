@@ -353,6 +353,7 @@
 │   ├── entrypoint.sh - Enables runtime configurations and runs openresty
 │   └── nginx.conf - The nginx configuration
 ├── Jenkinsfile - Contains Jenkins build configuration
+├── .pre-commit-config.yaml
 ├── metadata.yml - Component metadata
 └── release-manager.yml - Configuration file for the Release Manager</pre>
 </div>
@@ -518,6 +519,9 @@ role: integration</code></pre>
 <p>Deploy.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

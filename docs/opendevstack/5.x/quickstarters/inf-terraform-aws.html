@@ -359,6 +359,7 @@ This is a showcase to elaborate the combination of both technologies.</p>
 <div class="listingblock">
 <div class="content">
 <pre>├── Jenkinsfile - This file contains Jenkins stages.
+├── .pre-commit-config.yaml
 ├── README.md
 ├── environments
 │   ├── dev.json - This file describes parameters for the development AWS environment.
@@ -409,10 +410,13 @@ This is a showcase to elaborate the combination of both technologies.</p>
 <div class="paragraph">
 <p>The Jenkinsfile is provisioned with this quick starter to ease CI/CD process. In Jenkinsfile, there are various stages.</p>
 </div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jenkins_agent_used"><a class="anchor" href="#_jenkins_agent_used"></a>Jenkins agent used</h2>
+<h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/terraform">terraform</a> Jenkins agent.</p>

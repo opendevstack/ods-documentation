@@ -349,6 +349,7 @@ or that you need to "OpenShiftify", by setting an (non-root) execution user, etc
 <div class="listingblock">
 <div class="content">
 <pre>├── Jenkinsfile - Contains Jenkins build configuration
+├── .pre-commit-config.yaml
 ├── README.md
 ├── docker - Contains Dockerfile for the build
 │   └── Dockerfile
@@ -439,6 +440,9 @@ role: &lt;the role of this software in the project&gt;</code></pre>
 </div>
 <div class="paragraph">
 <p>Feel free to look out for examples in our existing quickstarters, such as <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/be-java-springboot">be-java-springboot</a>.</p>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

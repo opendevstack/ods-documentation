@@ -354,6 +354,7 @@
 <div class="content">
 <pre>.
 ├── Jenkinsfile
+├── .pre-commit-config.yaml
 ├── app
 │   ├── controllers
 │   │   └── HomeController.scala
@@ -451,6 +452,9 @@ In Jenkinsfile, there are various stages</p>
 <p>stageBuild - checks source files formatting, runs the tests and builds and copies the artifacts for creating the docker image to the <code>docker</code> directory.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

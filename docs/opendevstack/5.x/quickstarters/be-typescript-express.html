@@ -352,6 +352,7 @@ It contains a basic setup for <a href="https://www.docker.com/">Docker</a>, <a h
 <div class="listingblock">
 <div class="content">
 <pre>├── Jenkinsfile - Contains Jenkins build configuration
+├── .pre-commit-config.yaml
 ├── LICENSE
 ├── README.md
 ├── docker - Contains Dockerfile for the build
@@ -483,6 +484,9 @@ runtimeVersion: 18</code></pre>
 <p>Unit Testing : <code>npm run test</code> command is executed for running unit tests and to generate coverage report. The results can be seen form the Jenkins console output.</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>
