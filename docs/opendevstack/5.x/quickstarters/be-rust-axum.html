@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Backend Scala Playframework Quickstarter (be-scala-play) :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/be-scala-play.html">
+    <title>Backend Rust Axum Quickstarter (be-rust-axum) :: OpenDevStack</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -83,10 +82,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="be-rust-axum.html">BE Rust/Axum</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -318,78 +317,100 @@
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
     <li><a href="index.html">Quickstarters</a></li>
-    <li><a href="be-scala-play.html">BE Scala/Play</a></li>
+    <li><a href="be-rust-axum.html">BE Rust/Axum</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="be-scala-play.html">5.x Preview</a>
-    <a class="version" href="../../latest/quickstarters/be-scala-play.html">4.x</a>
-    <a class="version" href="../../3.x/quickstarters/be-scala-play.html">3.x</a>
+    <a class="version is-current" href="be-rust-axum.html">5.x Preview</a>
+    <a class="version is-missing" href="../../latest/getting-started/index.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/be-scala-play.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/be-rust-axum.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Backend Scala Playframework Quickstarter (be-scala-play)</h1>
+<h1 class="page">Backend Rust Axum Quickstarter (be-rust-axum)</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The project supports generation of <a href="https://www.rust-lang.org/">Rust</a> programming language based projects, with the <a href="https://github.com/tokio-rs/axum/">Axum</a> web framework by default,
+and quick installation and integration within OpenShift Jenkins CICD pipelines.</p>
+</div>
+<div class="paragraph">
+<p>For Database/Postgres integration it is recommended to use <a href="https://github.com/launchbadge/sqlx/">SQLx</a>. Check the <a href="https://github.com/launchbadge/sqlx/tree/main/examples/postgres/axum-social-with-tests/">Axum with SQLx</a> example. Enjoy a full async, safe and high performant setup!</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is a <a href="https://www.playframework.com/documentation/2.8.x">Play Framework 2.8.0</a> quickstarter with basic setup for <a href="https://www.docker.com/">Docker</a>, <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a> and <a href="https://www.openshift.com/">OpenShift</a>.</p>
+<p>This is a Rust project with a common Rust project folder and files structure, with its <code>main.rs</code> file for the final binary to be built, and that makes use of the <code>lib.rs</code> file, which exposes the crates (AKA modules or packages) of the project (where the business logic happens). Similar to Python project structures.</p>
 </div>
 <div class="paragraph">
-<p>Use it if you want to build an reactive Web Application / REST API based on the Scala Language.</p>
+<p>The quickstarter comes with a simple API-server example written in <a href="https://www.rust-lang.org/">Rust</a> and using the <a href="https://github.com/tokio-rs/axum/">Axum</a> web framework.
+The package allows to easily build a Rust project, using different Rust crates (packages).
+It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong> The project can be also extended to build other types of solutions with, for example, <a href="https://www.rust-lang.org/what/wasm/">WASM</a> or <a href="https://esp-rs.github.io/book/introduction.html">IoT</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>An example Play Web Application is generated with a Controller and some tests.</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre>.
-├── Jenkinsfile
-├── .pre-commit-config.yaml
-├── app
-│   ├── controllers
-│   │   └── HomeController.scala
-│   └── views
-│       ├── index.scala.html
-│       └── main.scala.html
-├── build.sbt
-├── conf
-│   ├── application.conf
-│   ├── logback.xml
-│   ├── messages
-│   └── routes
-├── docker
-│   └── Dockerfile
-├── project
-│   ├── build.properties
-│   ├── plugins.sbt
-├── public
-│   ├── images
-│   │   └── favicon.png
-│   ├── javascripts
-│   │   └── main.js
-│   └── stylesheets
-│       └── main.css
-├── sonar-project.properties
-├── test
-│   └── controllers
-│       └── HomeControllerSpec.scala
-└── .scalafmt.conf</pre>
+<pre>├── 📂 .config - The local Rust project config folder
+│   └──  nextest.toml - The local Nextest config file (required for Jenkins CICD)
+├──  .pre-commit-config.yaml - The pre-commit config file one can extend, and providing gitleaks tool by default.
+├── 📂 chart - The Helm chart folder
+│   ├── 📂 templates - The resource files to define in your project (i.e.: deployment.yml, service.yml,...)
+│   │   ├── 📂 tests - Helm tests folder
+│   │   │   └──  test-connection.yaml - Helm test connection to app service after a new release
+│   │   ├── 📄 _helpers.tpl - Helm helpers template
+│   │   ├──  deployment.yaml - The k8s Deployment template for the app to release
+│   │   ├──  NOTES.txt - The release notes processed on each release
+│   │   └──  service.yaml - The k8s Service template for the app to release
+│   ├──  Chart.yaml - The Helm Chart main config file
+│   └──  values.yaml - The values to process on your Helm chart
+├── 📂 docker - The docker context to build
+│   └──  Dockerfile - The docker file to deploy and run
+├── Jenkinsfile - This file contains Jenkins build configuration settings
+├── 📂 src
+│   ├── 📂 api
+│   │   ├── 📂 routes
+│   │   │   ├── 🦀 mod.rs - The routes module file
+│   │   │   └── 🦀 status.rs
+│   │   ├── 🦀 mod.rs - The api module file
+│   │   └── 🦀 router.rs - The router API routes file
+│   ├── 📂 config
+│   │   ├── 🦀 mod.rs - The config module file
+│   │   └── 🦀 settings.rs - The settings file
+│   ├── 📂 models
+│   │   ├── 🦀 mod.rs - The models module file
+│   │   └── 🦀 status.rs - The status model example file
+│   └── 🦀 main.rs
+├── 📂 target - The target folder where all builds (debug, release, ...) are stored (do not commit to git!)
+├── 📂 tests
+│   ├── 🦀 common.rs - Common util implementations and functions
+│   └── 🦀 status_test.rs - Testing the status endpoint example
+├──  Cargo.lock - The Rust dependency hash tree of this project
+├──  Cargo.toml - The Rust project config file
+├──  metadata.yml - Component metadata
+├──  README.md - This README file
+├──  release-manager.yml - Configuration file for the Release Manager
+├──  rustfmt.toml
+└──  sonar-project.properties - This file contains SonarQube configuration settings</pre>
 </div>
 </div>
 </div>
@@ -397,32 +418,72 @@
 <div class="sect1">
 <h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This project is generated by <a href="https://www.scala-sbt.org/">SBT</a> using SBTs template generation via the <code>new</code> command.
-The template used is an adapted version of the official <a href="https://github.com/playframework/play-scala-seed.g8">Play Scala Seed Template</a>.</p>
-</div>
-<div class="paragraph">
-<p>It will generate a Play Scala project using version 2.8.0 of Play with Scala version 2.13.1.
-It uses the <a href="https://github.com/logstash/logstash-logback-encoder">logstash-logback-encoder</a> to output logmessages in logstash format.
-It uses <a href="https://scalameta.org/scalafmt">Scalafmt</a> to check/format the source files consistently.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://blog.rust-lang.org/2023/12/28/Rust-1.75.0.html">Rust 1.75.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/tokio-rs/axum">Axum 0.7.x</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Start the SBT shell with <code>sbt</code> in the project root directory.</p>
-</li>
-<li>
-<p>In the SBT shell run <code>test</code> for testing</p>
-</li>
-<li>
-<p>Or <code>run</code> for running locally in development mode with continous compiling. The application will be accessible under <a href="http://localhost:8080">http://localhost:8080</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>The project is production ready when deployed in OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>Rust community and official resources are great to get to it, see
+<a href="https://www.rust-lang.org/learn">learn Rust</a>.</p>
+</div>
+<div class="paragraph">
+<p>To get Rust ready on your local environment you just require installing <code>rustup</code> (see <a href="https://www.rust-lang.org/tools/install">install Rust</a>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Get the Rustup CLI and already install target computer toolchain and latest stable Rust version
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# If you are new to Rust (also check the rustlings TUI)
+rustup doc --book
+
+# Run Unit, Integration and Documentation tests
+cargo test
+
+# Cargo format source code
+cargo fmt
+
+# Cargo run locally
+cargo run
+
+# Cargo run Rust linters
+cargo clippy
+
+# Cargo generate documentation
+cargo doc [--document-private-items] --open</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One can also extend the <code>cargo</code> features by installing <code>cargo</code> extensions like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Live reload locally
+cargo install cargo-watch  # https://github.com/watchexec/cargo-watch
+# Then you can live reload by:
+cargo watch -x run
+
+# Nextest, with enhanced usage from default Rust cargo test
+cargo install cargo-nextest
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong> For an extended list of awesome <code>cargo</code> extensions and Rust tools check <a href="https://blessed.rs/crates/">here</a> and <a href="https://github.com/rust-unofficial/awesome-rust/">here</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_metadata"><a class="anchor" href="#_metadata"></a>Metadata</h3>
@@ -433,29 +494,66 @@ Note that the <a href="../jenkins-shared-library/labelling.html" class="xref pag
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: &lt;the component id (this is the default, if omitted)&gt;
-description: "Some microservice implemented in Scala over the Play framework"
+description: "Some microservice implemented in Rust with Axum web framework"
 supplier: https://example.com
 version: 1.0.1
 type: ods
 role: backend
-runtime: play
-runtimeVersion: 2.8.2</code></pre>
+runtime: rust
+runtimeVersion: 1.75.0</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through jenkins</h2>
+<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Jenkinsfile is provisioned with this quickstarter to ease CI/CD process.
-In Jenkinsfile, there are various stages</p>
+<p>The Jenkinsfile is provisioned with this quick starter to ease CI/CD process. In Jenkinsfile, there are various stages:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>stageBuild - checks source files formatting, runs the tests and builds and copies the artifacts for creating the docker image to the <code>docker</code> directory.</p>
+<p><strong>Cargo Check</strong> - Checks we can compile:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo check --all-targets</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Cargo Format</strong> - Checks code is properly formatted:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo fmt --all -- --check</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Cargo Clippy</strong> - Collection of lints to catch common mistakes and improve your Rust code (output is also used on SonarQube reports):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo clippy --all-features</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Cargo Test</strong> - Runs nextest (instead of <code>cargo test</code>) with xUnit test report generation (see .config/nextest.toml) and code coverage reports with LLVM coverage tool:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo nextest run --profile ci
+  cargo llvm-cov --lcov</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Build</strong> - Builds the release target binary and moves it to the docker folder:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo build --release</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -468,8 +566,34 @@ In Jenkinsfile, there are various stages</p>
 <h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter uses the
-<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/scala">Scala Jenkins agent</a>.</p>
+<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">Rust</a> Jenkins builder agent.</p>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.75.x and above.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_technologies_in_use"><a class="anchor" href="#_technologies_in_use"></a>Technologies in use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following Rust technologies are in use when running this boilerplate:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/tokio-rs/axum">Axum</a>: Web application framework that focuses on ergonomics and modularity.</p>
+</li>
+<li>
+<p><a href="https://github.com/tokio-rs/tokio">Tokio</a>: Runtime for writing reliable, asynchronous, and slim applications.</p>
+</li>
+<li>
+<p><a href="https://github.com/tower-rs/tower">Tower</a>: Library of modular and reusable components for building robust networking clients and servers.</p>
+</li>
+<li>
+<p><a href="https://github.com/hyperium/hyper">Hyper</a>: A fast and correct HTTP implementation for Rust.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -477,7 +601,7 @@ In Jenkinsfile, there are various stages</p>
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NA</p>
+<p>Let us know if you find any, thanks!</p>
 </div>
 </div>
 </div>

@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SonarQube :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/sonarqube/index.html">
+    <title>Rust Jenkins agent :: OpenDevStack</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -127,31 +126,31 @@
     <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+    <a class="nav-link" href="golang.html">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
+    <a class="nav-link" href="inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
+    <a class="nav-link" href="jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
+    <a class="nav-link" href="nodejs16.html">Node.js 16</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
+    <a class="nav-link" href="nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs20.html">Node.js 20</a>
+    <a class="nav-link" href="nodejs20.html">Node.js 20</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+    <a class="nav-link" href="python.html">Python</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="rust.html">Rust</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/rust.html">Rust</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+    <a class="nav-link" href="scala.html">Scala</a>
   </li>
 </ul>
   </li>
@@ -190,8 +189,8 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="index.html">SonarQube</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
   </li>
 </ul>
   </li>
@@ -242,7 +241,7 @@
     <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="administration.html">SonarQube</a>
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../nexus/administration.html">Nexus</a>
@@ -317,100 +316,79 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="index.html">SonarQube</a></li>
+    <li><a href="../quickstarters/index.html">Quickstarters</a></li>
+    <li>Jenkins agent Images</li>
+    <li><a href="rust.html">Rust</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="index.html">5.x Preview</a>
-    <a class="version" href="../../latest/sonarqube/index.html">4.x</a>
-    <a class="version" href="../../3.x/sonarqube/index.html">3.x</a>
-    <a class="version" href="../../2.x/sonarqube/index.html">2.x</a>
-    <a class="version" href="../../1.x/sonarqube/index.html">1.x</a>
+    <a class="version is-current" href="rust.html">5.x Preview</a>
+    <a class="version is-missing" href="../../latest/getting-started/index.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/sonarqube/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/jenkins-agents/pages/rust.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">SonarQube</h1>
-<div id="preamble">
+<h1 class="page">Rust Jenkins agent</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SonarQube is an open source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities.</p>
+<p>This agent is used to build / execute Rust code and tools.</p>
+</div>
+<div class="paragraph">
+<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-rust</code>.
+It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-rust</code>.</p>
+</div>
+<div class="paragraph">
+<p>Minimum Supported Rust Version (MSRV) <strong>1.75</strong>. It can build <strong>Rust</strong> versions <strong>1.75.x or higher</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong>: Current Rust edition in use is <strong>2021</strong>. See <a href="https://doc.rust-lang.org/edition-guide/introduction.html">Rust Edition Guide</a> for further information.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sonar_project_properties_file"><a class="anchor" href="#_sonar_project_properties_file"></a><code>sonar-project.properties</code> file</h2>
+<h2 id="_features"><a class="anchor" href="#_features"></a>Features</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This file needs to be located in the root of the repository you want to have analysed. For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs"># Project Key (required)
-sonar.projectKey=test-spring-boot
-
-# Project Name (optional, this is what is shown in the main list)
-sonar.projectName=test-spring-boot
-
-# Comma-separated paths to directories with sources (required)
-sonar.sources=src
-
-# Forced Language (optional)
-sonar.language=java
-
-# Encoding of the source files (optional but recommended as default is ASCII)
-sonar.sourceEncoding=UTF-8
-
-# Plugin-specific settings
-sonar.java.binaries=build/classes
-sonar.java.libraries=build/libs
-sonar.junit.reportPaths=build/test-results/test</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The general settings are documented at <a href="https://docs.sonarqube.org/display/SONAR/Analysis+Parameters" class="bare">https://docs.sonarqube.org/display/SONAR/Analysis+Parameters</a>. Plugin-specific parameters can be found in the docs for each plugin, e.g. <a href="https://docs.sonarqube.org/display/PLUG/Java+Plugin+and+Bytecode" class="bare">https://docs.sonarqube.org/display/PLUG/Java+Plugin+and+Bytecode</a>.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://www.rust-lang.org/">Rust</a></p>
+</li>
+<li>
+<p><a href="https://github.com/tokio-rs/axum/">Axum</a></p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/cargo/">Cargo</a></p>
+</li>
+<li>
+<p><a href="https://nexte.st/">Nextest</a></p>
+</li>
+<li>
+<p><a href="https://github.com/taiki-e/cargo-llvm-cov">LLVM Coverage</a></p>
+</li>
+<li>
+<p><a href="https://cargo-generate.github.io/cargo-generate/">Generate</a></p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_scanning_in_jenkins_pipelines"><a class="anchor" href="#_scanning_in_jenkins_pipelines"></a>Scanning in Jenkins pipelines</h2>
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There&#8217;s a prebuilt stage (<code>odsComponentStageScanWithSonar</code>) that you can use, see <a href="https://www.opendevstack.org/ods-documentation/ods-jenkins-shared-library/latest/index.html" class="bare">https://www.opendevstack.org/ods-documentation/ods-jenkins-shared-library/latest/index.html</a> for details.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_scanning_locally_sonarlint_ide_plugin"><a class="anchor" href="#_scanning_locally_sonarlint_ide_plugin"></a>Scanning locally: SonarLint IDE Plugin</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The team behind SonarQube also published SonarLint, a plugin currently available for IntelliJ, Eclipse, Visual Studio, VS Code and Atom that lets you scan while coding in your IDE. It also integrates with a SonarQube Server, so that you can scan with the servers rule settings.
-For further information please see <a href="https://www.sonarlint.org/intellij/howto.html" class="bare">https://www.sonarlint.org/intellij/howto.html</a>. For the server connected mode, the SonarQube URL has to be set to your SonarQube deployment.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_scanning_locally_sonarqube_docker_container"><a class="anchor" href="#_scanning_locally_sonarqube_docker_container"></a>Scanning locally: SonarQube Docker Container</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Be aware that this does not connect you with the SonarQube Server in OpenShift, therefore you might have other rule settings locally than the ones set on server. That said, here&#8217;s what you need to do on your host to have a local SonarQube instance:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">docker pull sonarqube
-docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
-./gradlew sonarqube</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Running these commands will let you see at <a href="http://localhost:9000" class="bare">http://localhost:9000</a> your project reports, for any branch. Please, note that you are not running with an embedded database in this case, so it is only for temporary testing, do not expect historic report.</p>
+<p>No special HTTP Proxy configuration.</p>
 </div>
 </div>
 </div>
