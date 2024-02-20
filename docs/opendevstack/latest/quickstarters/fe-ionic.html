@@ -84,6 +84,9 @@
     <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-rust-axum.html">BE Rust/Axum</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -103,6 +106,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-etl-python.html">ETL Python E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
@@ -133,16 +139,19 @@
     <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs12.html">Node.js 12</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs20.html">Node.js 20</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/rust.html">Rust</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
@@ -344,7 +353,7 @@
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter generates an <strong>Ionic 6.19.0</strong> project, you can use it when you want to develop a cross platform mobile app (iOS, android and PWA) in one codebase using Web technologies like CSS, HTML and JavaScript/TypeScript.</p>
+<p>This quickstarter generates an <strong>Ionic 7.1.5</strong> project, you can use it when you want to develop a cross platform mobile app (iOS, android and PWA) in one codebase using Web technologies like CSS, HTML and JavaScript/TypeScript.</p>
 </div>
 <div class="paragraph">
 <p>It contains the basic setup for <a href="https://www.docker.com/">Docker</a>, <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a> and <a href="https://www.openshift.com/">OpenShift</a>, so you have your CI/CD process out of the box.</p>
@@ -486,10 +495,10 @@ Note that the <a href="../jenkins-shared-library/labelling.html" class="xref pag
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Ionic
 component: frontend
 instance: &lt;the component id (this is the default, if omitted)&gt;
-description: "Ionic Framework is the free, open source mobile UI toolkit for developing high-quality cross-platform apps for native iOS, Android, and the web—all from a single codebase. Technologies: Ionic 6.19.x"
+description: "Ionic Framework is the free, open source mobile UI toolkit for developing high-quality cross-platform apps for native iOS, Android, and the web—all from a single codebase. Technologies: Ionic 7.1.5"
 supplier: https://ionicframework.com
 type: ods
-version: 6.19.x</code></pre>
+version: 7.1.5</code></pre>
 </div>
 </div>
 </div>
@@ -530,7 +539,7 @@ version: 6.19.x</code></pre>
 <h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs16">Node.js 16 builder agent</a> for Jenkins.</p>
+<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs20">Node.js 20 builder agent</a> for Jenkins.</p>
 </div>
 </div>
 </div>

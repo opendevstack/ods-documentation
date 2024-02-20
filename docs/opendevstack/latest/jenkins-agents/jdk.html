@@ -84,6 +84,9 @@
     <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-rust-axum.html">BE Rust/Axum</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -103,6 +106,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-etl-python.html">ETL Python E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
@@ -133,16 +139,19 @@
     <a class="nav-link" href="jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="nodejs12.html">Node.js 12</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="nodejs16.html">Node.js 16</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nodejs20.html">Node.js 20</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rust.html">Rust</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="scala.html">Scala</a>
@@ -362,18 +371,19 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <h2 id="_supported_java_versions"><a class="anchor" href="#_supported_java_versions"></a>Supported Java Versions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This agent provides 2 JDKs: <code>java 11</code> and <code>java 17</code>.</p>
+<p>This agent provides 3 JDKs: <code>java 11</code>, <code>java 17</code> and <code>java 21</code>.</p>
 </div>
 <div class="paragraph">
-<p>For backwards compatibility <code>java 11</code> is the default version. Java projects migrating from previous ODS version will not require any change. A migration to <code>java 17</code> can be done afterwards.</p>
+<p>For backwards compatibility <code>java 11</code> is the default version. Java projects migrating from previous ODS version will not require any change. A migration to <code>java 17</code> and <code>java 21</code> can be done afterwards.</p>
 </div>
 <div class="paragraph">
 <p>To switch the environment to <code>java 17</code> the script <code>use-j17.sh</code> is provided at the jenkins home folder.
+To switch the environment to <code>java 21</code> the script <code>use-j21.sh</code> is provided at the jenkins home folder.
 Following command shows how the jenkins build script from the springboot quickstarter switches the java version before calling the gradle wrapper:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">def status = sh(script: "$HOME/use-j17.sh &amp;&amp; ./gradlew clean build --stacktrace --no-daemon &amp;&amp; $HOME/use-j11.sh", returnStatus: true)</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">def status = sh(script: "$HOME/use-j21.sh &amp;&amp; ./gradlew clean build --stacktrace --no-daemon &amp;&amp; $HOME/use-j11.sh", returnStatus: true)</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -395,6 +405,7 @@ like this example, you will need to switch back to <code>java 11</code> after ru
 <div class="sectionbody">
 <div class="paragraph">
 <p>Dockerfile.ubi8 installs:
+- java-21-openjdk-devel &amp; java-21-openjdk-jmods
 - java-17-openjdk-devel &amp; java-17-openjdk-jmods
 - java-11-openjdk-devel &amp; java-11-openjdk-jmods</p>
 </div>

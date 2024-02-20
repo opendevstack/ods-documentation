@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>OpenDevStack Quickstarters :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/index.html">
+    <title>Backend Rust Axum Quickstarter (be-rust-axum) :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/be-rust-axum.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -61,7 +61,7 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Quickstarters</a>
 <ul class="nav-list">
@@ -83,7 +83,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="be-rust-axum.html">BE Rust/Axum</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -321,190 +321,291 @@
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
     <li><a href="index.html">Quickstarters</a></li>
+    <li><a href="be-rust-axum.html">BE Rust/Axum</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
   <div class="version-menu">
-    <a class="version" href="../../5.x/quickstarters/index.html">5.x Preview</a>
-    <a class="version is-current" href="index.html">4.x</a>
-    <a class="version" href="../../3.x/quickstarters/index.html">3.x</a>
-    <a class="version" href="../../2.x/quickstarters/index.html">2.x</a>
-    <a class="version" href="../../1.x/quickstarters/index.html">1.x</a>
+    <a class="version" href="../../5.x/quickstarters/be-rust-axum.html">5.x Preview</a>
+    <a class="version is-current" href="be-rust-axum.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/quickstarters/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/quickstarters/pages/be-rust-axum.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">OpenDevStack Quickstarters</h1>
+<h1 class="page">Backend Rust Axum Quickstarter (be-rust-axum)</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div id="toc" class="toc">
-<div id="toctitle" class="title">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_overview">Overview</a></li>
-<li><a href="#_available_official_quickstarters">Available, official quickstarters</a>
-<ul class="sectlevel2">
-<li><a href="#_backend_quickstarter">Backend Quickstarter</a></li>
-<li><a href="#_frontend_quickstarter">Frontend Quickstarter</a></li>
-<li><a href="#_data_science_quickstarter">Data Science Quickstarter</a></li>
-<li><a href="#_e2e_test_quickstarter">E2E Test Quickstarter</a></li>
-<li><a href="#_infrastructure_terraform_quickstarter">Infrastructure Terraform Quickstarter</a></li>
-<li><a href="#_ods_contribution_quickstarter">ODS Contribution Quickstarter</a></li>
-</ul>
-</li>
-<li><a href="#_authoring_quickstarters">Authoring quickstarters</a></li>
-</ul>
+<div class="paragraph">
+<p>The project supports generation of <a href="https://www.rust-lang.org/">Rust</a> programming language based projects, with the <a href="https://github.com/tokio-rs/axum/">Axum</a> web framework by default,
+and quick installation and integration within OpenShift Jenkins CICD pipelines.</p>
+</div>
+<div class="paragraph">
+<p>For Database/Postgres integration it is recommended to use <a href="https://github.com/launchbadge/sqlx/">SQLx</a>. Check the <a href="https://github.com/launchbadge/sqlx/tree/main/examples/postgres/axum-social-with-tests/">Axum with SQLx</a> example. Enjoy a full async, safe and high performant setup!</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Quickstarters are basically templates that help to start out with a component quickly.
-A quickstarter provides a specific technology, potentially with a framework setup already, such as Java with Springboot in the case of the <code>be-java-springboot</code> quickstarter. Compared to starting out from scratch, using a quickstarter typically helps by:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>setting up a repository in Bitbucket with webhooks to trigger Jenkins builds</p>
-</li>
-<li>
-<p>shipping a <code>Jenkinsfile</code> with a pipeline that builds and deploys the component (delegating most of the work to the <a href="../jenkins-shared-library/component-pipeline.html" class="xref page">shared library</a>)</p>
-</li>
-<li>
-<p>providing a basic test setup with xUnit reports and code coverage</p>
-</li>
-<li>
-<p>integrating with SonarQube out-of-the-box (including code coverage report)</p>
-</li>
-<li>
-<p>setting up OpenShift resources to build and run the component</p>
-</li>
-<li>
-<p>creating a boilerplate application with one or more sample endpoints</p>
-</li>
-</ul>
+<p>This is a Rust project with a common Rust project folder and files structure, with its <code>main.rs</code> file for the final binary to be built, and that makes use of the <code>lib.rs</code> file, which exposes the crates (AKA modules or packages) of the project (where the business logic happens). Similar to Python project structures.</p>
 </div>
 <div class="paragraph">
-<p>Quickstarters are used from the <a href="https://github.com/opendevstack/ods-provisioning-app">Provisioning App</a>, which allows to add a component to an existing project by running a quickstarter from the configured list of available quickstarters. This list can contain quickstarters from the official repository, <a href="https://github.com/opendevstack/ods-quickstarters">ods-quickstarters</a>, or from some other repository such as internally hosted ones in your Bitbucket instance.</p>
+<p>The quickstarter comes with a simple API-server example written in <a href="https://www.rust-lang.org/">Rust</a> and using the <a href="https://github.com/tokio-rs/axum/">Axum</a> web framework.
+The package allows to easily build a Rust project, using different Rust crates (packages).
+It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong> The project can be also extended to build other types of solutions with, for example, <a href="https://www.rust-lang.org/what/wasm/">WASM</a> or <a href="https://esp-rs.github.io/book/introduction.html">IoT</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_available_official_quickstarters"><a class="anchor" href="#_available_official_quickstarters"></a>Available, official quickstarters</h2>
+<h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_backend_quickstarter"><a class="anchor" href="#_backend_quickstarter"></a>Backend Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="be-gateway-nginx.html" class="xref page">Backend - Gateway/Nginx</a></p>
-</li>
-<li>
-<p><a href="be-golang-plain.html" class="xref page">Backend - Go</a></p>
-</li>
-<li>
-<p><a href="be-java-springboot.html" class="xref page">Backend - Java/SpringBoot</a></p>
-</li>
-<li>
-<p><a href="be-typescript-express.html" class="xref page">Backend - TypeScript/Express</a></p>
-</li>
-<li>
-<p><a href="be-python-flask.html" class="xref page">Backend - Python/Flask</a></p>
-</li>
-<li>
-<p><a href="be-scala-play.html" class="xref page">Backend - Scala/Play</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_frontend_quickstarter"><a class="anchor" href="#_frontend_quickstarter"></a>Frontend Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="fe-angular.html" class="xref page">Frontend - Angular</a></p>
-</li>
-<li>
-<p><a href="fe-ionic.html" class="xref page">Mobile - Ionic</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_data_science_quickstarter"><a class="anchor" href="#_data_science_quickstarter"></a>Data Science Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="ds-jupyter-lab.html" class="xref page">Data Science - Jupyter Lab</a></p>
-</li>
-<li>
-<p><a href="ds-rshiny.html" class="xref page">Data Science - R-Shiny</a></p>
-</li>
-<li>
-<p><a href="ds-streamlit.html" class="xref page">Data Science Streamlit app</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_e2e_test_quickstarter"><a class="anchor" href="#_e2e_test_quickstarter"></a>E2E Test Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="e2e-cypress.html" class="xref page">E2E test - Cypress</a></p>
-</li>
-<li>
-<p><a href="e2e-spock-geb.html" class="xref page">E2E test - Spock / Geb</a></p>
-</li>
-<li>
-<p><a href="e2e-etl-python.html" class="xref page">E2E test - ETL Python</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_infrastructure_terraform_quickstarter"><a class="anchor" href="#_infrastructure_terraform_quickstarter"></a>Infrastructure Terraform Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="inf-terraform-aws.html" class="xref page">AWS deployments utilizing terraform tooling</a></p>
-</li>
-<li>
-<p><a href="inf-terraform-azure.html" class="xref page">Azure deployments utilizing terraform tooling</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ods_contribution_quickstarter"><a class="anchor" href="#_ods_contribution_quickstarter"></a>ODS Contribution Quickstarter</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="ods-document-gen-svc.html" class="xref page">ODS Fork - Document Generation Service</a></p>
-</li>
-<li>
-<p><a href="ods-provisioning-app.html" class="xref page">ODS Fork - Provisioning Application</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Next to those, there is a <a href="docker-plain.html" class="xref page">"blank" quickstarter (Docker/Plain)</a> allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences.</p>
+<div class="listingblock">
+<div class="content">
+<pre>├── 📂 .config - The local Rust project config folder
+│   └──  nextest.toml - The local Nextest config file (required for Jenkins CICD)
+├──  .pre-commit-config.yaml - The pre-commit config file one can extend, and providing gitleaks tool by default.
+├── 📂 chart - The Helm chart folder
+│   ├── 📂 templates - The resource files to define in your project (i.e.: deployment.yml, service.yml,...)
+│   │   ├── 📂 tests - Helm tests folder
+│   │   │   └──  test-connection.yaml - Helm test connection to app service after a new release
+│   │   ├── 📄 _helpers.tpl - Helm helpers template
+│   │   ├──  deployment.yaml - The k8s Deployment template for the app to release
+│   │   ├──  NOTES.txt - The release notes processed on each release
+│   │   └──  service.yaml - The k8s Service template for the app to release
+│   ├──  Chart.yaml - The Helm Chart main config file
+│   └──  values.yaml - The values to process on your Helm chart
+├── 📂 docker - The docker context to build
+│   └──  Dockerfile - The docker file to deploy and run
+├── Jenkinsfile - This file contains Jenkins build configuration settings
+├── 📂 src
+│   ├── 📂 api
+│   │   ├── 📂 routes
+│   │   │   ├── 🦀 mod.rs - The routes module file
+│   │   │   └── 🦀 status.rs
+│   │   ├── 🦀 mod.rs - The api module file
+│   │   └── 🦀 router.rs - The router API routes file
+│   ├── 📂 config
+│   │   ├── 🦀 mod.rs - The config module file
+│   │   └── 🦀 settings.rs - The settings file
+│   ├── 📂 models
+│   │   ├── 🦀 mod.rs - The models module file
+│   │   └── 🦀 status.rs - The status model example file
+│   └── 🦀 main.rs
+├── 📂 target - The target folder where all builds (debug, release, ...) are stored (do not commit to git!)
+├── 📂 tests
+│   ├── 🦀 common.rs - Common util implementations and functions
+│   └── 🦀 status_test.rs - Testing the status endpoint example
+├──  Cargo.lock - The Rust dependency hash tree of this project
+├──  Cargo.toml - The Rust project config file
+├──  metadata.yml - Component metadata
+├──  README.md - This README file
+├──  release-manager.yml - Configuration file for the Release Manager
+├──  rustfmt.toml
+└──  sonar-project.properties - This file contains SonarQube configuration settings</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authoring_quickstarters"><a class="anchor" href="#_authoring_quickstarters"></a>Authoring quickstarters</h2>
+<h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://blog.rust-lang.org/2023/12/28/Rust-1.75.0.html">Rust 1.75.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/tokio-rs/axum">Axum 0.7.x</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As mentioned above, it is possible to supply your own quickstarters. Pleasee see the <a href="authoring-quickstarters.html" class="xref page">authoring quickstarters</a> guide on how to make completely new quickstarters or how to adapt existing quickstarters to your needs.</p>
+<p>The project is production ready when deployed in OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>Rust community and official resources are great to get to it, see
+<a href="https://www.rust-lang.org/learn">learn Rust</a>.</p>
+</div>
+<div class="paragraph">
+<p>To get Rust ready on your local environment you just require installing <code>rustup</code> (see <a href="https://www.rust-lang.org/tools/install">install Rust</a>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Get the Rustup CLI and already install target computer toolchain and latest stable Rust version
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# If you are new to Rust (also check the rustlings TUI)
+rustup doc --book
+
+# Run Unit, Integration and Documentation tests
+cargo test
+
+# Cargo format source code
+cargo fmt
+
+# Cargo run locally
+cargo run
+
+# Cargo run Rust linters
+cargo clippy
+
+# Cargo generate documentation
+cargo doc [--document-private-items] --open</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One can also extend the <code>cargo</code> features by installing <code>cargo</code> extensions like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Live reload locally
+cargo install cargo-watch  # https://github.com/watchexec/cargo-watch
+# Then you can live reload by:
+cargo watch -x run
+
+# Nextest, with enhanced usage from default Rust cargo test
+cargo install cargo-nextest
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong> For an extended list of awesome <code>cargo</code> extensions and Rust tools check <a href="https://blessed.rs/crates/">here</a> and <a href="https://github.com/rust-unofficial/awesome-rust/">here</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_metadata"><a class="anchor" href="#_metadata"></a>Metadata</h3>
+<div class="paragraph">
+<p>The following are typical <a href="metadata.html" class="xref page">metadata</a> values that can be used for components based on this quickstarter:
+Note that the <a href="../jenkins-shared-library/labelling.html" class="xref page">OpenShift resources will be labeled</a> based on this metadata.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: &lt;the component id (this is the default, if omitted)&gt;
+description: "Some microservice implemented in Rust with Axum web framework"
+supplier: https://example.com
+version: 1.0.1
+type: ods
+role: backend
+runtime: rust
+runtimeVersion: 1.75.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Jenkinsfile is provisioned with this quick starter to ease CI/CD process. In Jenkinsfile, there are various stages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cargo Check</strong> - Checks we can compile:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo check --all-targets</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Cargo Format</strong> - Checks code is properly formatted:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo fmt --all -- --check</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Cargo Clippy</strong> - Collection of lints to catch common mistakes and improve your Rust code (output is also used on SonarQube reports):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo clippy --all-features</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Cargo Test</strong> - Runs nextest (instead of <code>cargo test</code>) with xUnit test report generation (see .config/nextest.toml) and code coverage reports with LLVM coverage tool:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo nextest run --profile ci
+  cargo llvm-cov --lcov</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Build</strong> - Builds the release target binary and moves it to the docker folder:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo build --release</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">Rust</a> Jenkins builder agent.</p>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.75.x and above.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_technologies_in_use"><a class="anchor" href="#_technologies_in_use"></a>Technologies in use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following Rust technologies are in use when running this boilerplate:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/tokio-rs/axum">Axum</a>: Web application framework that focuses on ergonomics and modularity.</p>
+</li>
+<li>
+<p><a href="https://github.com/tokio-rs/tokio">Tokio</a>: Runtime for writing reliable, asynchronous, and slim applications.</p>
+</li>
+<li>
+<p><a href="https://github.com/tower-rs/tower">Tower</a>: Library of modular and reusable components for building robust networking clients and servers.</p>
+</li>
+<li>
+<p><a href="https://github.com/hyperium/hyper">Hyper</a>: A fast and correct HTTP implementation for Rust.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let us know if you find any, thanks!</p>
 </div>
 </div>
 </div>

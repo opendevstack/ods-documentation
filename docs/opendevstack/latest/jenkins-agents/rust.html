@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Node.js 12 - Jenkins agent :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/nodejs12.html">
+    <title>Rust Jenkins agent :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/rust.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -84,6 +84,9 @@
     <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-rust-axum.html">BE Rust/Axum</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -103,6 +106,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-etl-python.html">ETL Python E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
@@ -132,9 +138,6 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="jdk.html">jdk</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="nodejs12.html">Node.js 12</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="nodejs16.html">Node.js 16</a>
   </li>
@@ -142,7 +145,13 @@
     <a class="nav-link" href="nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nodejs20.html">Node.js 20</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="python.html">Python</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="rust.html">Rust</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="scala.html">Scala</a>
@@ -313,48 +322,42 @@
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
     <li><a href="../quickstarters/index.html">Quickstarters</a></li>
     <li>Jenkins agent Images</li>
-    <li><a href="nodejs12.html">Node.js 12</a></li>
+    <li><a href="rust.html">Rust</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
   <div class="version-menu">
-    <a class="version is-missing" href="../../5.x/getting-started/index.html">5.x Preview</a>
-    <a class="version is-current" href="nodejs12.html">4.x</a>
+    <a class="version" href="../../5.x/jenkins-agents/rust.html">5.x Preview</a>
+    <a class="version is-current" href="rust.html">4.x</a>
     <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/jenkins-agents/pages/nodejs12.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/jenkins-agents/pages/rust.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Node.js 12 - Jenkins agent</h1>
+<h1 class="page">Rust Jenkins agent</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This agent is used to build Node.js-based projects, through <code>npm</code> or <code>yarn</code>.</p>
+<p>This agent is used to build / execute Rust code and tools.</p>
 </div>
 <div class="paragraph">
-<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-nodejs12</code>.
-It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-nodejs12</code>.</p>
+<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-rust</code>.
+It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-rust</code>.</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-Node.js version 12 reaches end-of-life in 2022-04-30. It is not recommended to start a new project using this agent. Existing projects should be migrated to a newer version, e.g. <a href="nodejs16.html" class="xref page">Node.js 16</a>. Next releases will remove support for version 12.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Minimum Supported Rust Version (MSRV) <strong>1.75</strong>. It can build <strong>Rust</strong> versions <strong>1.75.x or higher</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong>: Current Rust edition in use is <strong>2021</strong>. See <a href="https://doc.rust-lang.org/edition-guide/introduction.html">Rust Edition Guide</a> for further information.</p>
 </div>
 </div>
 </div>
@@ -364,13 +367,22 @@ Node.js version 12 reaches end-of-life in 2022-04-30. It is not recommended to s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Nexus configuration</p>
+<p><a href="https://www.rust-lang.org/">Rust</a></p>
 </li>
 <li>
-<p>HTTP proxy awareness</p>
+<p><a href="https://github.com/tokio-rs/axum/">Axum</a></p>
 </li>
 <li>
-<p>Yarn &amp; Cypress dependencies pre-installed</p>
+<p><a href="https://doc.rust-lang.org/cargo/">Cargo</a></p>
+</li>
+<li>
+<p><a href="https://nexte.st/">Nextest</a></p>
+</li>
+<li>
+<p><a href="https://github.com/taiki-e/cargo-llvm-cov">LLVM Coverage</a></p>
+</li>
+<li>
+<p><a href="https://cargo-generate.github.io/cargo-generate/">Generate</a></p>
 </li>
 </ol>
 </div>
@@ -380,7 +392,7 @@ Node.js version 12 reaches end-of-life in 2022-04-30. It is not recommended to s
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>n/a</p>
+<p>No special HTTP Proxy configuration.</p>
 </div>
 </div>
 </div>

@@ -84,6 +84,9 @@
     <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-rust-axum.html">BE Rust/Axum</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -103,6 +106,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-etl-python.html">ETL Python E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
@@ -133,16 +139,19 @@
     <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs12.html">Node.js 12</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs20.html">Node.js 20</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/rust.html">Rust</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
@@ -337,7 +346,7 @@
 <h2 id="_purpose_of_this_quickstarter_use_this_when_you_want_to"><a class="anchor" href="#_purpose_of_this_quickstarter_use_this_when_you_want_to"></a>Purpose of this quickstarter (use this when you want to &#8230;&#8203;)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is a <a href="https://nodejs.org/en/">Node.js</a> (v18) quickstarter with <a href="https://expressjs.com/">express</a> using <a href="http://www.typescriptlang.org/">Typescript</a>.
+<p>This is a <a href="https://nodejs.org/en/">Node.js</a> (v20) quickstarter with <a href="https://expressjs.com/">express</a> using <a href="http://www.typescriptlang.org/">Typescript</a>.
 If you are doing non-blocking operation and does not have heavy algorithm/Job which consumes lots of CPU power, this could be an ideal fit.
 It contains a basic setup for <a href="https://www.docker.com/">Docker</a>, <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a> and <a href="https://www.openshift.com/">OpenShift</a>.</p>
 </div>
@@ -381,10 +390,10 @@ It contains a basic setup for <a href="https://www.docker.com/">Docker</a>, <a h
 <p><a href="https://expressjs.com/">Express (^4.18.2)</a></p>
 </li>
 <li>
-<p><a href="https://jestjs.io/">Jest (^29.5.0) for Unit Testing</a></p>
+<p><a href="https://jestjs.io/">Jest (^29.7.0) for Unit Testing</a></p>
 </li>
 <li>
-<p><a href="http://www.typescriptlang.org/">Typescript (^5.0.2)</a></p>
+<p><a href="http://www.typescriptlang.org/">Typescript (^5.3.2)</a></p>
 </li>
 </ol>
 </div>
@@ -399,10 +408,10 @@ It contains a basic setup for <a href="https://www.docker.com/">Docker</a>, <a h
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://www.npmjs.com/package/jest-junit/">Jest Junit (^15.0.0)</a></p>
+<p><a href="https://www.npmjs.com/package/jest-junit/">Jest Junit (^16.0.0)</a></p>
 </li>
 <li>
-<p><a href="https://www.npmjs.com/package/@types/node">@types/node (^18.15.10)</a></p>
+<p><a href="https://www.npmjs.com/package/@types/node">@types/node (^20.10.0)</a></p>
 </li>
 </ol>
 </div>
@@ -462,7 +471,7 @@ version: 1.0.1
 type: ods
 role: backend
 runtime: node
-runtimeVersion: 18</code></pre>
+runtimeVersion: 20</code></pre>
 </div>
 </div>
 </div>
@@ -490,7 +499,7 @@ runtimeVersion: 18</code></pre>
 <h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs18">Node.JS 18 builder agent</a> for Jenkins.</p>
+<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs20">Node.JS 20 builder agent</a> for Jenkins.</p>
 </div>
 </div>
 </div>

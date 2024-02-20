@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Jenkins Shared Library :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-shared-library/index.html">
+    <title>Node.js 20 - Jenkins agent :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/nodejs20.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -42,18 +42,18 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Jenkins Shared Library</a>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="component-pipeline.html">Component Pipeline</a>
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="orchestration-pipeline.html">Orchestration Pipeline</a>
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="quickstarter-pipeline.html">Quickstarter Pipeline</a>
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
   </li>
 </ul>
   </li>
@@ -130,31 +130,31 @@
     <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+    <a class="nav-link" href="golang.html">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
+    <a class="nav-link" href="inf-terraform.html">terraform</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
+    <a class="nav-link" href="jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
+    <a class="nav-link" href="nodejs16.html">Node.js 16</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
+    <a class="nav-link" href="nodejs18.html">Node.js 18</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="nodejs20.html">Node.js 20</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs20.html">Node.js 20</a>
+    <a class="nav-link" href="python.html">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+    <a class="nav-link" href="rust.html">Rust</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/rust.html">Rust</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+    <a class="nav-link" href="scala.html">Scala</a>
   </li>
 </ul>
   </li>
@@ -320,52 +320,76 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="index.html">Jenkins Shared Library</a></li>
+    <li><a href="../quickstarters/index.html">Quickstarters</a></li>
+    <li>Jenkins agent Images</li>
+    <li><a href="nodejs20.html">Node.js 20</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
   <div class="version-menu">
-    <a class="version" href="../../5.x/jenkins-shared-library/index.html">5.x Preview</a>
-    <a class="version is-current" href="index.html">4.x</a>
-    <a class="version" href="../../3.x/jenkins-shared-library/index.html">3.x</a>
-    <a class="version" href="../../2.x/jenkins-shared-library/index.html">2.x</a>
-    <a class="version" href="../../1.x/jenkins-shared-library/index.html">1.x</a>
+    <a class="version" href="../../5.x/jenkins-agents/nodejs20.html">5.x Preview</a>
+    <a class="version is-current" href="nodejs20.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-jenkins-shared-library/edit/4.x/docs/modules/jenkins-shared-library/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/jenkins-agents/pages/nodejs20.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Jenkins Shared Library</h1>
-<div id="preamble">
+<h1 class="page">Node.js 20 - Jenkins agent</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenDevStack provides a <a href="https://jenkins.io/doc/book/pipeline/shared-libraries/">Jenkins Shared Library</a> which offers three pipelines:</p>
+<p>This agent is used to build Node.js-based projects, through <code>npm</code> or <code>yarn</code>.</p>
 </div>
+<div class="paragraph">
+<p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-nodejs20</code>.
+It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-nodejs20</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Node.js version 20 reaches end-of-life in 2026-04-30. Support for this version will be removed in releases after this date. Please consider switching to newer versions of this agent as soon as they are available.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_features"><a class="anchor" href="#_features"></a>Features</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>A <a href="component-pipeline.html" class="xref page">pipeline to build components</a>, <code>odsComponentPipeline</code>. This pipeline allows to have a minimal <code>Jenkinsfile</code> in each repository by providing all language-agnostic build aspects. The goal is to duplicate as little as possible between repositories and have an easy way to ship updates to all projects. As a user, you will mostly interface with this pipeline.</p>
+<p>Nexus configuration</p>
 </li>
 <li>
-<p>A <a href="orchestration-pipeline.html" class="xref page">pipeline to orchestrate releases with multiple components</a>, <code>odsOrchestrationPipeline</code>. It supports the orchestration of multiple repositories into a live application using the <strong>Release Manager</strong> quickstarter.</p>
+<p>HTTP proxy awareness</p>
 </li>
 <li>
-<p>A <a href="quickstarter-pipeline.html" class="xref page">pipeline to provision quickstarters</a>, <code>odsQuickstarterPipeline</code>. This pipeline is useful for quickstarter authors.</p>
+<p>Yarn &amp; Cypress dependencies pre-installed</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_background"><a class="anchor" href="#_background"></a>Background</h2>
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The implementation was originally based on <a href="https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html" class="bare">https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html</a>. The scripted pipeline syntax was chosen because it is a better fit for a shared library. The declarative pipeline syntax is targeted for newcomers and/or simple pipelines (see <a href="https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline" class="bare">https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline</a>). If you try to use it e.g. within a Groovy class you&#8217;ll end up with lots of <code>script</code> blocks.</p>
+<p>n/a</p>
 </div>
 </div>
 </div>
