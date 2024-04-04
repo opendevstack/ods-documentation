@@ -231,6 +231,9 @@
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -361,10 +364,9 @@
 <h2 id="_updating_sonarqube_to_a_new_version"><a class="anchor" href="#_updating_sonarqube_to_a_new_version"></a>Updating SonarQube to a new version</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The SonarQube deployment is using an image built in the central ODS namespace. This image is not based on the <a href="https://hub.docker.com/_/sonarqube">official SonarQube image on DockerHub</a>, because that requires a specific user to be run under. However, the approach ODS takes is similar to the official image, as can be seen in the <a href="https://github.com/opendevstack/ods-core/blob/master/sonarqube/docker/Dockerfile">ODS Dockerfile</a>.</p>
-</div>
-<div class="paragraph">
-<p>The SonarQube version which is used is determined by which ZIP file is used.</p>
+<p>The SonarQube deployment is using an image built in the central ODS namespace. This image is based on the <a href="https://hub.docker.com/_/sonarqube" class="bare">https://hub.docker.com/_/sonarqube</a>, as can be seen in the <a href="https://github.com/opendevstack/ods-core/blob/master/sonarqube/docker/Dockerfile">ODS Dockerfile</a>.
+If the previous version was installed using Tailor, follow the process to migrate from tailor to helm in <a href="https://www.opendevstack.org/ods-documentation/opendevstack/5.x/administration/helm-migration.html" class="bare">https://www.opendevstack.org/ods-documentation/opendevstack/5.x/administration/helm-migration.html</a>
+If the previous version was configured to use Atlassian Crowd as Authentication provider, run the script <a href="https://github.com/opendevstack/ods-core/tree/master/scripts/migrate-sonar-users.sh" class="bare">https://github.com/opendevstack/ods-core/tree/master/scripts/migrate-sonar-users.sh</a> in order to migrate current users to use Saml as Authentication provider.</p>
 </div>
 <div class="paragraph">
 <p>To update SonarQube, the following steps need to be taken:</p>
@@ -404,7 +406,7 @@ chmod +x repos.sh
 </div>
 </div>
 <div class="paragraph">
-<p>The script can also be used in an umbrella directory in which the repositories already exist. Once the repositories are at the desired revision, change <code>SONAR_VERSION</code> and <code>SONAR_DISTRIBUTION_URL</code> in <code>ods-configuration/ods-core.env</code> to your desired version. Commit the change and push it to Bitbucket.</p>
+<p>The script can also be used in an umbrella directory in which the repositories already exist. Once the repositories are at the desired revision, change <code>SONAR_VERSION</code> in <code>ods-configuration/ods-core.env</code> to your desired version. Commit the change and push it to Bitbucket.</p>
 </div>
 <div class="paragraph">
 <p>Next, you should ensure that the SonarQube <code>BuildConfig</code> resource in the central ODS namespace is up-to-date, then trigger a new build so that a new image gets built. Finally, a new deployment should be rolled out which uses the newly built image. All of this can be done from the <code>ods-core</code> repository:</p>
@@ -415,7 +417,7 @@ chmod +x repos.sh
 </div>
 </div>
 <div class="paragraph">
-<p>This target depends on the targets <code>apply-sonarqube-build</code>, <code>start-sonarqube-build</code>, <code>apply-sonarqube-deploy</code> and <code>configure-sonarqube</code> which execute the steps described above (and can of course also be executed individually).</p>
+<p>This target depends on the targets <code>apply-sonarqube-chart</code>, <code>start-sonarqube-build</code> and <code>configure-sonarqube</code> which execute the steps described above (and can of course also be executed individually).</p>
 </div>
 </div>
 </div>
