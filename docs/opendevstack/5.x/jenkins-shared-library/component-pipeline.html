@@ -369,7 +369,7 @@ odsComponentPipeline(
     // 'release/': 'test'
   ]
 ) { context -&gt;
-  odsComponentStageImportOpenShiftImageOrElse(context) {
+  odsComponentFindOpenShiftImageOrElse(context) {
     stage('Build') {
       // custom stage
     }
