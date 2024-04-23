@@ -231,6 +231,9 @@
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -406,6 +409,7 @@
 ├── capacitor.config.xml - This file contains config settings for your mobile app, like package name and native preferences
 ├── ionic.config.json - This file contains Ionic project configuration
 ├── Jenkinsfile - This file contains Jenkins build configuration settings
+├── .pre-commit-config.yaml
 ├── karma.conf.js
 ├── metadata.yml - Component metadata
 ├── package.json - This file contains scripts to run and node packages dependencies for project
@@ -532,6 +536,9 @@ version: 7.1.5</code></pre>
 <p>Triggers a code quality analysis by transfering code and test coverage analysis data to SonarQube. By default files like <code><strong>.spec.ts</code>, <code></strong>.modules.ts</code> and <code>./src/environments/**</code> are excluded from the analysis, since they usually don&#8217;t contain application logic. Please revisit <code>sonar-project.properties</code> to configure analysis inclusions and exclusions according to your project&#8217;s needs.</p>
 </dd>
 </dl>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

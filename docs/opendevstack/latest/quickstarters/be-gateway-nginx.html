@@ -231,6 +231,9 @@
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -362,6 +365,7 @@
 │   ├── entrypoint.sh - Enables runtime configurations and runs openresty
 │   └── nginx.conf - The nginx configuration
 ├── Jenkinsfile - Contains Jenkins build configuration
+├── .pre-commit-config.yaml
 ├── metadata.yml - Component metadata
 └── release-manager.yml - Configuration file for the Release Manager</pre>
 </div>
@@ -527,6 +531,9 @@ role: integration</code></pre>
 <p>Deploy.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

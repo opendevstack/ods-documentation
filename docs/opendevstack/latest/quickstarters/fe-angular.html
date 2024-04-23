@@ -231,6 +231,9 @@
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -364,6 +367,7 @@
 <div class="content">
 <pre>.
 ├── Jenkinsfile - This file contains Jenkins build configuration settings
+├── .pre-commit-config.yaml
 ├── README.md
 ├── angular.json - This file contains Angular project configuration settings
 ├── browserslist - This file is used by the build system to adjust CSS and JS output to support the specified browsers
@@ -479,6 +483,9 @@ runtimeVersion: 17.0.3</code></pre>
 </div>
 <div class="paragraph">
 <p>Please note: The support for <strong>TSLint</strong> has been removed from this quickstarter. Also Angular is not shipping a linter by default anymore. Please consider adding <strong>ESLint</strong> support or a formatter like <strong>Prettier</strong>. For adding ESLint simply type <code>ng add @angular-eslint/schematics</code>. For setting up Prettier please see <a href="https://prettier.io/docs/en/install.html" class="bare">https://prettier.io/docs/en/install.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

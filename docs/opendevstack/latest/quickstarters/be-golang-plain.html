@@ -231,6 +231,9 @@
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -357,6 +360,7 @@ suited for CLI tools, network/operational related things and microservices.</p>
 <div class="listingblock">
 <div class="content">
 <pre>├── Jenkinsfile - Contains Jenkins build configuration
+├── .pre-commit-config.yaml
 ├── README.md
 ├── docker - Contains Dockerfile for the build
 │   └── Dockerfile
@@ -434,6 +438,9 @@ role: backend</code></pre>
 <p>Deploy.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>

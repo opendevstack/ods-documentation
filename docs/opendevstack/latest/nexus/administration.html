@@ -231,6 +231,9 @@
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -359,6 +362,9 @@
 <p>The Nexus version which is used is determined by which image tag from DockerHub is used, and depending on tag, at which time the ODS image is built.</p>
 </div>
 <div class="paragraph">
+<p>If the previous version was installed using Tailor, follow the process to migrate from tailor to helm in <a href="https://www.opendevstack.org/ods-documentation/opendevstack/5.x/administration/helm-migration.html" class="bare">https://www.opendevstack.org/ods-documentation/opendevstack/5.x/administration/helm-migration.html</a></p>
+</div>
+<div class="paragraph">
 <p>To update Nexus, the following steps need to be taken:</p>
 </div>
 <div class="olist arabic">
@@ -396,7 +402,7 @@ chmod +x repos.sh
 </div>
 </div>
 <div class="paragraph">
-<p>The script can also be used in an umbrella directory in which the repositories already exist. Once the repositories are at the desired revision, change <code>NEXUS_FROM_IMAGE</code> in <code>ods-configuration/ods-core.env</code> to your desired image tag. Commit the change and push it to Bitbucket.</p>
+<p>The script can also be used in an umbrella directory in which the repositories already exist. Once the repositories are at the desired revision, change <code>NEXUS_IMAGE_TAG</code> in <code>ods-configuration/ods-core.env</code> to your desired image tag. Commit the change and push it to Bitbucket.</p>
 </div>
 <div class="paragraph">
 <p>Next, you should ensure that the Nexus <code>BuildConfig</code> resource in the central ODS namespace is up-to-date, then trigger a new build so that a new image with the changed base image gets built. Finally, a new deployment should be rolled out which uses the newly built image. All of this can be done from the <code>ods-core</code> repository:</p>
@@ -407,7 +413,7 @@ chmod +x repos.sh
 </div>
 </div>
 <div class="paragraph">
-<p>This target depends on the targets <code>apply-nexus-build</code>, <code>start-nexus-build</code>, and <code>apply-nexus-deploy</code> which execute the steps described above (and can of course also be executed individually).</p>
+<p>This target depends on the targets <code>apply-nexus-chart</code> and <code>start-nexus-build</code> which execute the steps described above (and can of course also be executed individually).</p>
 </div>
 <div class="admonitionblock warning">
 <table>

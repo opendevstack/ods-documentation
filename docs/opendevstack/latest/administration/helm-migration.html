@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Backend Node (be-node-express) :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/be-typescript-express.html">
+    <title>Migrating from Tailor to Helm :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/administration/helm-migration.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -63,64 +63,64 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Quickstarters</a>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="docker-plain.html">Docker Plain</a>
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="be-gateway-nginx.html">BE Gateway/Nginx</a>
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="be-golang-plain.html">BE Golang</a>
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="be-java-springboot.html">BE Java/Spring Boot</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="be-typescript-express.html">BE TypeScript/Express</a>
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="be-rust-axum.html">BE Rust/Axum</a>
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="be-scala-play.html">BE Scala/Play</a>
+    <a class="nav-link" href="../quickstarters/be-rust-axum.html">BE Rust/Axum</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fe-angular.html">FE Angular</a>
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ds-jupyter-lab.html">Data Science Jupyter Lab</a>
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
+    <a class="nav-link" href="../quickstarters/ds-jupyter-lab.html">Data Science Jupyter Lab</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ds-streamlit.html">Data Science Streamlit app</a>
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
+    <a class="nav-link" href="../quickstarters/ds-streamlit.html">Data Science Streamlit app</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="e2e-etl-python.html">ETL Python E2E testing</a>
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+    <a class="nav-link" href="../quickstarters/e2e-etl-python.html">ETL Python E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="inf-terraform-aws.html">INF Terraform AWS</a>
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="inf-terraform-azure.html">INF Terraform AZURE</a>
+    <a class="nav-link" href="../quickstarters/inf-terraform-aws.html">INF Terraform AWS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="release-manager.html">Release Manager</a>
+    <a class="nav-link" href="../quickstarters/inf-terraform-azure.html">INF Terraform AZURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -159,7 +159,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authoring-quickstarters.html">Authoring Quickstarters</a>
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
   </li>
 </ul>
   </li>
@@ -224,20 +224,20 @@
     <span class="nav-text">Administration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/installation.html">Installation</a>
+    <a class="nav-link" href="installation.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="helm-migration.html">Helm migration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+    <a class="nav-link" href="update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/update-older.html">older</a>
+    <a class="nav-link" href="update-older.html">older</a>
   </li>
 </ul>
   </li>
@@ -245,7 +245,7 @@
     <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+    <a class="nav-link" href="keycloak.html">Keycloak</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
@@ -257,7 +257,7 @@
     <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/image-lifecycle.html">Image Lifecycles</a>
+    <a class="nav-link" href="image-lifecycle.html">Image Lifecycles</a>
   </li>
 </ul>
   </li>
@@ -323,198 +323,76 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="index.html">Quickstarters</a></li>
-    <li><a href="be-typescript-express.html">BE TypeScript/Express</a></li>
+    <li>Administration</li>
+    <li>Upgrade</li>
+    <li><a href="helm-migration.html">Helm migration</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
   <div class="version-menu">
-    <a class="version" href="../../5.x/quickstarters/be-typescript-express.html">5.x Preview</a>
-    <a class="version is-current" href="be-typescript-express.html">4.x</a>
-    <a class="version" href="../../3.x/quickstarters/be-typescript-express.html">3.x</a>
-    <a class="version" href="../../2.x/quickstarters/be-typescript-express.html">2.x</a>
+    <a class="version" href="../../5.x/administration/helm-migration.html">5.x Preview</a>
+    <a class="version is-current" href="helm-migration.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/quickstarters/pages/be-typescript-express.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/4.x/docs/modules/administration/pages/helm-migration.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Backend Node (be-node-express)</h1>
-<div class="sect1">
-<h2 id="_purpose_of_this_quickstarter_use_this_when_you_want_to"><a class="anchor" href="#_purpose_of_this_quickstarter_use_this_when_you_want_to"></a>Purpose of this quickstarter (use this when you want to &#8230;&#8203;)</h2>
+<h1 class="page">Migrating from Tailor to Helm</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is a <a href="https://nodejs.org/en/">Node.js</a> (v20) quickstarter with <a href="https://expressjs.com/">express</a> using <a href="http://www.typescriptlang.org/">Typescript</a>.
-If you are doing non-blocking operation and does not have heavy algorithm/Job which consumes lots of CPU power, this could be an ideal fit.
-It contains a basic setup for <a href="https://www.docker.com/">Docker</a>, <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a> and <a href="https://www.openshift.com/">OpenShift</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The package json is generated by simply using <code>npm init -y</code>, while the tsconfig is generated using <code>tsc --init --skipLibCheck --outDir "./dist"</code>. The dependencies mentioned below are added to plain <code>package.json</code> file. On top of that, test, build and start script commands are customized to get your node/express application up and running with typescript.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>├── Jenkinsfile - Contains Jenkins build configuration
-├── .pre-commit-config.yaml
-├── LICENSE
-├── README.md
-├── docker - Contains Dockerfile for the build
-│   └── Dockerfile
-├── package-lock.json - Commit this file as well when you update your dependencies
-├── package.json - This file contains all the npm dependencies and build commands for the project.
-├── metadata.yml - Component metadata
-├── release-manager.yml - Configuration file for the Release Manager
-├── sonar-project.properties  - SonarQube Configuration
-├── src
-│   ├── sum.ts -   Sample function
-│   ├── index.ts -  Entrypoint, This runs first
-├── __test__
-│   ├── sum.spec.ts -  Sample test
-├── tsconfig.json - TypeScript Configuration file
-└── tslint.json - TypeScript Linter Configuration</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="https://expressjs.com/">Express (^4.18.2)</a></p>
-</li>
-<li>
-<p><a href="https://jestjs.io/">Jest (^29.7.0) for Unit Testing</a></p>
-</li>
-<li>
-<p><a href="http://www.typescriptlang.org/">Typescript (^5.3.2)</a></p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_libraries"><a class="anchor" href="#_libraries"></a>Libraries</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>On top of the mentioned frameworks above, we use libraries:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="https://www.npmjs.com/package/jest-junit/">Jest Junit (^16.0.0)</a></p>
-</li>
-<li>
-<p><a href="https://www.npmjs.com/package/@types/node">@types/node (^20.10.0)</a></p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_node_version"><a class="anchor" href="#_node_version"></a>Node version</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When you push your code, your runtime and test code will be compiled using node v10. After deployment the compiled code also runs in node v10. If you developed your code and tests using a different node version locally, this might cause some problems.</p>
+<p>Tailor has been developed for OpenShift 3.11. Back in the days, Helm 2 required the use of a privileged Tiller service and did not work well with OpenShift-specific resources. With Helm 3 and OpenShift 4, this situation has changed.</p>
 </div>
 <div class="paragraph">
-<p>This is why we made the <code>tsconfig.json</code> file to be compatible with node v10. So bear in mind that any changes to compiler options might result in compilation and runtime errors. Here are our related changes to <code>tsconfig.json</code> file below:</p>
+<p>While Tailor also works in an OpenShift 4 cluster, OpenShift has integrated Helm into its product, and Helm has a huge and growing community. Therefore, it is recommended to use Helm instead of Tailor in an OpenShift 4 cluster.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">  "compilerOptions": {
-    "lib": ["es2018"],
-    "module": "commonjs",
-    "target": "es2018"
-  }</code></pre>
+<div class="paragraph">
+<p>Tailor is based on OpenShift templates, which define the Kubernetes resources to apply. Helm uses a different templating language / engine, but in the end the templates also describe Kubernetes resources. Therefore, migration effort is relatively low as one only needs to change the syntax of the definition, not the definition itself. Further, there are differences between the CLI of the two tools and not all features of Tailor are available in Helm and vice-versa. Once migration to Helm is complete, it is also recommended to look at the best practices in the Helm community and adopt these.</p>
 </div>
+<div class="paragraph">
+<p>This document will describe how to adopt resources deployed using Tailor into a Helm release for OpenDevStack installation.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
+<h2 id="_templates_preparation"><a class="anchor" href="#_templates_preparation"></a>Templates preparation</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>npm install</code> forms the project root to install all the dependencies</p>
-</li>
-<li>
-<p><code>npm run build</code> transpiles the typescript code to <code>/dist</code> folder</p>
-</li>
-<li>
-<p><code>npm run start</code> starts the node server</p>
-</li>
-<li>
-<p><code>npm run test</code> runs tests located under <code>/dist</code> folder, prints the jest output under <code>/build</code> folder and reports test coverage. The report located under <code>/coverage_output</code> folder is then picked by Sonarqube.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>There are basically two options how to approach this: you can either adopt your existing OpenShift resources to chart templates, or you can start a clean installation.
+Once the templates have been made ready, you can continue the installation/update following the normal process</p>
 </div>
 <div class="sect2">
-<h3 id="_metadata"><a class="anchor" href="#_metadata"></a>Metadata</h3>
+<h3 id="_option_1_adopting_openshift_resources"><a class="anchor" href="#_option_1_adopting_openshift_resources"></a>Option 1: Adopting OpenShift resources</h3>
 <div class="paragraph">
-<p>The following are typical <a href="metadata.html" class="xref page">metadata</a> values that can be used for components based on this quickstarter:
-Note that the <a href="../jenkins-shared-library/labelling.html" class="xref page">OpenShift resources will be labeled</a> based on this metadata.</p>
+<p>In order to adopt the resources into a Helm release you can use the following script <a href="https://github.com/opendevstack/ods-core/blob/master/scripts/tailor2helm.sh" class="bare">https://github.com/opendevstack/ods-core/blob/master/scripts/tailor2helm.sh</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_option_2_clean_installation"><a class="anchor" href="#_option_2_clean_installation"></a>Option 2: Clean Installation</h3>
+<div class="paragraph">
+<p>In this case you will need to remove all existing resources for the component that has been previously deployed using Tailor, you can check existing resources like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: &lt;the component id (this is the default, if omitted)&gt;
-description: "Some microservice implemented in TypeScript over Express"
-supplier: https://example.com
-version: 1.0.1
-type: ods
-role: backend
-runtime: node
-runtimeVersion: 20</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">oc -n ods get all -l app=foo-bar</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through jenkins</h2>
+<h2 id="_sources"><a class="anchor" href="#_sources"></a>Sources</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The build pipeline is defined in the <code>Jenkinsfile</code> in the project root. The mains stages of the pipeline are,</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Build :  <code>npm run build</code> command is executed to build the application and then the build is copied to the <code>docker/dist</code> folder.</p>
-</li>
-<li>
-<p>Unit Testing : <code>npm run test</code> command is executed for running unit tests and to generate coverage report. The results can be seen form the Jenkins console output.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs20">Node.JS 20 builder agent</a> for Jenkins.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>N/A</p>
+<p>Check more information about migration from tailor to helm and their differences in <a href="https://github.com/opendevstack/tailor/wiki/Migrating-from-Tailor-to-Helm" class="bare">https://github.com/opendevstack/tailor/wiki/Migrating-from-Tailor-to-Helm</a></p>
 </div>
 </div>
 </div>

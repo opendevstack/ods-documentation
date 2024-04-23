@@ -231,6 +231,9 @@
     <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -367,6 +370,7 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="listingblock">
 <div class="content">
 <pre>├── Jenkinsfile - This file contains Jenkins build configuration settings
+├── .pre-commit-config.yaml
 ├── README.md
 ├── docker - This folder contains Docker configuration settings
 │   ├── Dockerfile
@@ -510,6 +514,9 @@ runtimeVersion: 3.0.0</code></pre>
 <p><strong>Build</strong> - Builds the application: copies src folder into docker/dist folder.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>
