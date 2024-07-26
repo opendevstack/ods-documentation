@@ -574,7 +574,7 @@ runtimeVersion: 1.79.0</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
+<p>include::partials$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>
@@ -582,10 +582,13 @@ runtimeVersion: 1.79.0</code></pre>
 <h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">Rust</a> Jenkins builder agent.</p>
+<p>This quickstarter uses <a href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/rust.html">Rust</a> Jenkins builder agent.</p>
 </div>
 <div class="paragraph">
 <p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.75.x and above.</p>
+</div>
+<div class="paragraph">
+<p>See the docker spec and openshift templates <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">here</a>.</p>
 </div>
 </div>
 </div>
@@ -617,7 +620,54 @@ runtimeVersion: 1.79.0</code></pre>
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let us know if you find any, thanks!</p>
+<p>First of all, please, let us know if you find any limitation or issue to comment on, thanks!</p>
+</div>
+<div class="sect2">
+<h3 id="_building_with_openssl_crate_or_using_alternatives"><a class="anchor" href="#_building_with_openssl_crate_or_using_alternatives"></a>Building with OpenSSL crate or using alternatives</h3>
+<div class="sect3">
+<h4 id="_using_openssl_crate"><a class="anchor" href="#_using_openssl_crate"></a>Using openssl crate</h4>
+<div class="paragraph">
+<p>In some cases one might not be able to skip requiring OpenSSL nor LibreSSL (see <a href="https://github.com/opendevstack/ods-quickstarters/issues/1026">issue</a>), hence to compile them.</p>
+</div>
+<div class="paragraph">
+<p>To have a lean compilation and shipping experience with Rust, ODS Jenkins Rust agent provides already the dependencies to build OpenSSL from source, hence avoiding any mismatch with existing/multiple OS libraries existing or none (at build or runtime), by enabling statically linking of the dependencies.</p>
+</div>
+<div class="paragraph">
+<p>The only missing piece required is to enable the <code>vendored</code> feature in the crate in your <code>Cargo.toml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">openssl = { version = "0.10", features = ["vendored"] }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By doing so, <code>cargo</code> will locally build OpenSSL and statically link the openssl dependencies into the binarie(s) generated.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternatives_to_openssl_crate"><a class="anchor" href="#_alternatives_to_openssl_crate"></a>Alternatives to openssl crate</h4>
+<div class="paragraph">
+<p>In most of cases, one does not require OpenSSL, indeed it is recommended to use more modern alternatives like:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.rs/ring/0.17.8/ring/">ring</a></p>
+</li>
+<li>
+<p><a href="https://docs.rs/rustls/0.23.11/rustls/">rustls</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Also when using the widely known/used <a href="https://crates.io/crates/reqwest">reqwest</a> crate, one can avoid openssl dependency by forcing the use of rustls, like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
