@@ -1328,6 +1328,11 @@ The pull request in Bitbucket shows the Code Insight of the latest commit of the
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Nexus repository where the scan report will be stored. Defaults to <code>leva-documentation</code>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pkgType</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of vulnerability types to scan. Defaults to <code>os,library</code>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reportFile</strong><br>
 <em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name of the file that will be archived in Jenkins and uploaded in Nexus.
@@ -1342,11 +1347,6 @@ The pull request in Bitbucket shows the Code Insight of the latest commit of the
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scanners</strong><br>
 <em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of what security issues to detect. Defaults to <code>vuln,config,secret,license</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>vulType</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of vulnerability types to scan. Defaults to <code>os,library</code>.</p></td>
 </tr>
 </tbody>
 </table>
