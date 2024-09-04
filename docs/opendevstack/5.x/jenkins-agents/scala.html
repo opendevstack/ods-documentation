@@ -380,6 +380,48 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 </div>
 </div>
 <div class="sect1">
+<h2 id="_supported_java_versions"><a class="anchor" href="#_supported_java_versions"></a>Supported Java Versions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This agent provides 1 JDKs: <code>java 11</code> and <code>java 17</code> (default).</p>
+</div>
+<div class="paragraph">
+<p>For backwards compatibility <code>java 11</code> is till included. Java projects migrating from previous ODS version will require the use of the bash script <code>use-j11.sh</code> to use java 11. A migration to <code>java 17</code> can be done afterwards.</p>
+</div>
+<div class="paragraph">
+<p>To switch the environment to <code>java 11</code> the script <code>use-j11.sh</code> is provided at the jenkins home folder.
+To switch the environment to <code>java 17</code> the script <code>use-j17.sh</code> is provided at the jenkins home folder.
+Following command shows how the jenkins build script from the scala quickstarter switches the java version before calling the SBT:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">def status = sh(script: "$HOME/use-j11.sh &amp;&amp; sbt -v clean scalafmtSbtCheck scalafmtCheckAll coverage test coverageReport coverageOff compile:clean copyDockerFiles &amp;&amp; $HOME/use-j17.sh", returnStatus: true)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+like this example, you will need to switch back to <code>java 17</code> after running the SBT build. This is required because the scala agent environment still does not support the latest java version. E.g. the <code>sonar scanner</code> is not compatible with the java 11.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installed_packages"><a class="anchor" href="#_installed_packages"></a>Installed packages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dockerfile.ubi8 installs:
+- java-11-openjdk-devel</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
