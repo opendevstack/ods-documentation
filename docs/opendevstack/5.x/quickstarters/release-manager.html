@@ -385,15 +385,14 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    branch: master
   - id: B
     name: my-repo-B
-    branch: master
   - id: C</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If a named repository wants to announce a dependency on another repo, the dependency needs to be listed in that repository&#8217;s <code>release-manager.yml</code>, simply by referring to its <code>repo.id</code> as defined in <code>metadata.yml</code>:</p>
+<p>For all repositories mentioned above (A, B, C) the library will resolve the default branch configured in each.
+If a named repository wants to announce a dependency on another repo, the dependency needs to be listed in that repository&#8217;s <code>release-manager.yml</code>, simply by referring to its <code>repo.id</code> as defined in <code>metadata.yml</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -411,11 +410,9 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    branch: master
     type: ods
   - id: B
     name: my-repo-B
-    branch: master
     type: ods
   - id: C
     type: ods</pre>
@@ -458,8 +455,7 @@ name: Project Phoenix
 
 repositories:
   - id: B
-    name: my-repo-B
-    branch: master</pre>
+    name: my-repo-B</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -485,7 +481,7 @@ repositories:
 <div class="sect2">
 <h3 id="_automated_resolution_of_repository_branch"><a class="anchor" href="#_automated_resolution_of_repository_branch"></a>Automated Resolution of Repository Branch</h3>
 <div class="paragraph">
-<p>If no <code>branch</code> parameter is provided for a repository, <code>master</code> will be assumed.</p>
+<p>The default branch configured for the repository will be considered.</p>
 </div>
 </div>
 <div class="sect2">
