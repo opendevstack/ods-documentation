@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>End-to-end tests with Spock, Geb and Unirest (e2e-spock-geb) :: OpenDevStack</title>
+    <title>End-to-end tests with Spock, Geb, Unirest, and Appium (e2e-spock-geb) :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/e2e-spock-geb.html">
     <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -344,11 +344,11 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">End-to-end tests with Spock, Geb and Unirest (e2e-spock-geb)</h1>
+<h1 class="page">End-to-end tests with Spock, Geb, Unirest, and Appium (e2e-spock-geb)</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>spock, geb and unirest e2e testing quickstarter project</p>
+<p>Spock, Geb, Unirest, and Appium e2e testing quickstarter project</p>
 </div>
 </div>
 </div>
@@ -356,7 +356,7 @@
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is a spock, geb and unirest e2e testing project quickstarter with basic setup for <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a> and <a href="https://gradle.org/">Gradle</a>.</p>
+<p>This is a Spock, Geb, Unirest, and Appium e2e testing project quickstarter with basic setup for <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a>, <a href="https://gradle.org/">Gradle</a>, and <a href="https://appium.io/">Appium</a>.</p>
 </div>
 </div>
 </div>
@@ -374,7 +374,15 @@
 │   ├── test
 │   │   └── acceptance
 │   │   │   └── groovy
-│   │   │   │   └── DemoAcceptanceSpec.groovy
+│   │   │   │   └── modules
+│   │   │   │       └── DemoManualMenuModule.groovy
+│   │   │   │   └── pages
+│   │   │   │       └── DemoGebHomePage.groovy
+│   │   │   │       └── DemoTheBookOfGebPage.groovy
+│   │   │   │   └── specs
+│   │   │   │       └── DemoGebHomePageSpec.groovy
+│   │   │   │       └── DemoMobileAppSpec.groovy
+│   │   │   │       └── DemoMobileGebHomePageSpec.groovy
 │   │   │   └── java
 │   │   │       └── DemoAcceptanceTest.java
 │   │   └── installation
@@ -386,11 +394,13 @@
 │   │   │   └── groovy
 │   │   │   │   └── DemoIntegrationSpec.groovy
 │   │   │   └── java
-│   │   |       └── DemoIntegrationTest.java
+│   │   │       └── DemoIntegrationTest.java
 │   │   └── resources
-│   │       └── application.properties
-│   │       └── GebConfig.groovy
-│   │       └── SpecHelper.groovy
+│   │   │   └── helpers
+│   │   │       └── Environments.groovy
+│   │   │       └── SpecHelper.groovy
+│   │   │   └── application.properties
+│   │   │   └── GebConfig.groovy
 ├── gradle
 │   └── wrapper
 │       ├── gradle-wrapper.jar
@@ -470,6 +480,216 @@ nexus_pw=&lt;YOUR_NEXUS_PASSWORD&gt;</code></pre>
 <p>Run <code>gradlew -v</code> to verify the installed version of gradle wrapper.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_environments_configuration"><a class="anchor" href="#_environments_configuration"></a>Environments Configuration</h3>
+<div class="paragraph">
+<p>The environments used in the tests are defined in the <code>build.gradle</code> file. You can find the environments under the <code>ext</code> block as project properties. These environments are accessed via system properties in the Groovy classes. Here is an example of how the environments are defined:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">ext {
+...
+    environments = [
+        DESKTOP: "desktop",
+        MOBILE_BROWSER: "mobile_browser",
+        MOBILE_APP: "mobile_app"
+    ]
+}
+...
+tasks.withType(Test) {
+    systemProperty 'environments.desktop', environments.DESKTOP
+    systemProperty 'environments.mobile_browser', environments.MOBILE_BROWSER
+    systemProperty 'environments.mobile_app', environments.MOBILE_APP
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, there is a class called <code>Environments.groovy</code> that facilitates access to these environments from the Groovy code. The class is located in the <code>src/test/resources/helpers</code> directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">package helpers
+
+class Environments {
+    // Define environment constants using system properties
+    // Check the build.gradle file for the defined properties
+    static final String DESKTOP = System.getProperty('environments.desktop')
+    static final String MOBILE_BROWSER = System.getProperty('environments.mobile_browser')
+    static final String MOBILE_APP = System.getProperty('environments.mobile_app')
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For each environment, we have a driver configured in the GebConfig.groovy file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">	environments {
+
+	  // Configuration for desktop environment using HtmlUnitDriver
+	  "${Environments.DESKTOP}" {
+	    driver = {
+	      HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.BEST_SUPPORTED, true) {
+	      ...
+	      }
+	    }
+	  }
+
+	  // Configuration for mobile browser environment using AndroidDriver
+	  "${Environments.MOBILE_BROWSER}" {
+	    driver = {
+	      MutableCapabilities caps = new MutableCapabilities()
+	      ...
+	      MutableCapabilities sauceOptions = new MutableCapabilities()
+	      ...
+	      caps.setCapability("sauce:options", sauceOptions)
+	      URL url = new URL("https://ondemand.eu-central-1.saucelabs.com:443/wd/hub")
+	      AndroidDriver driver = new AndroidDriver(url, caps)
+	      return driver
+	    }
+	  }
+
+	  // Configuration for mobile app environment using IOSDriver
+	  "${Environments.MOBILE_APP}" {
+	    driver = {
+	      MutableCapabilities caps = new MutableCapabilities()
+	      ...
+	      MutableCapabilities sauceOptions = new MutableCapabilities()
+	      ...
+	      caps.setCapability("sauce:options", sauceOptions)
+	      URL url = new URL("https://ondemand.eu-central-1.saucelabs.com:443/wd/hub")
+	      IOSDriver driver = new IOSDriver(url, caps)
+	      return driver
+	    }
+	  }
+	}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the build.gradle file, there is also a filter by environment and tags:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">  // Specify the tags to include/exclude for each environment
+  // Please, adjust the tags according to your project needs
+  useJUnitPlatform {
+    switch (env) {
+      case environments.DESKTOP:
+        includeTags 'test_desktop'
+        break
+      case environments.MOBILE_BROWSER:
+        includeTags 'test_mobile_browser'
+        break
+      case environments.MOBILE_APP:
+        includeTags 'test_mobile_app'
+        break
+    }
+  }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sauce_labs_integration"><a class="anchor" href="#_sauce_labs_integration"></a>Sauce Labs Integration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sauce Labs is a cloud-based platform that provides comprehensive testing solutions for web and mobile applications. It allows you to run tests on a wide range of real devices and emulators/simulators, ensuring your applications work seamlessly across different environments.</p>
+</div>
+<div class="paragraph">
+<p>This template is prepared to work with Sauce Labs virtual devices, allowing you to perform all mobile tests on these virtual devices.</p>
+</div>
+<div class="sect2">
+<h3 id="_key_features_of_sauce_labs"><a class="anchor" href="#_key_features_of_sauce_labs"></a>Key Features of Sauce Labs</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Real Device Cloud</strong>: Access to thousands of real Android and iOS devices for manual and automated testing.</p>
+</li>
+<li>
+<p><strong>Emulators and Simulators</strong>: Cost-effective and scalable testing on virtual devices.</p>
+</li>
+<li>
+<p><strong>Cross-Browser Testing</strong>: Ensure compatibility across various browser and OS combinations.</p>
+</li>
+<li>
+<p><strong>Error Monitoring and Reporting</strong>: Capture and resolve application errors quickly with detailed insights.</p>
+</li>
+<li>
+<p><strong>CI/CD Integration</strong>: Seamlessly integrate with your continuous integration and delivery pipelines.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_credentials_for_sauce_labs"><a class="anchor" href="#_credentials_for_sauce_labs"></a>Credentials for Sauce Labs</h3>
+<div class="paragraph">
+<p>To execute tests on Sauce Labs, you need Sauce Labs credentials. These credentials are stored in a secret called sauce-labs-user-access-key, which by default is created with "changeme" values for both username and password. Users will need to update these values with their actual Sauce Labs credentials.</p>
+</div>
+<div class="paragraph">
+<p>In the Jenkinsfile, the credentials are retrieved as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">	// Use credentials for SauceLabs authentication
+	// You can remove this block if you are not using SauceLabs
+	withCredentials([
+	  usernamePassword(credentialsId: "${context.projectId}-cd-sauce-labs-user-access-key", passwordVariable: 'SAUCE_LABS_ACCESS_KEY', usernameVariable: 'SAUCE_LABS_USERNAME'),
+	]) {
+    ...
+	}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the GebConfig.groovy file, these credentials are used to configure the drivers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">	// Get SauceLabs environment variables for configuring iOS device
+	def sauceLabsUsername = System.getenv('SAUCE_LABS_USERNAME')
+	def sauceLabsAccessKey = System.getenv('SAUCE_LABS_ACCESS_KEY')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This setup ensures that your tests can authenticate with Sauce Labs and run on the specified virtual devices.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Run command <code>gradlew test</code> in project directory to execute the end-to-end tests via spock/geb against the demo pages and demo jUnit 5 tests.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will see the results inside a new folder 'build' in project directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.
+└── build
+    └── test-results
+        ├── acceptance-groovy-desktop
+        ├── acceptance-java-desktop
+        │   │── TEST-DemoAcceptanceTest.xml
+        │   │── TEST-specs.DemoGebHomePageSpec.xml
+        │   │── TEST-specs.DemoMobileAppSpec.xml
+        │   └── TEST-specs.DemoMobileGebHomePageSpec.xml
+        ├── installation-groovy-desktop
+        ├── installation-java-desktop
+        │   │── TEST-DemoInstallationSpec.xml
+        │   └── TEST-DemoInstallationTest.xml
+        ├── integration-groovy-desktop
+        └── integration-java-desktop
+            │── TEST-DemoIntegrationSpec.xml
+            └── TEST-DemoIntegrationTest.xml</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -489,41 +709,13 @@ nexus_pw=&lt;YOUR_NEXUS_PASSWORD&gt;</code></pre>
 <li>
 <p><a href="http://unirest.io/">unirest</a></p>
 </li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
 <li>
-<p>Run command <code>gradlew test</code> in project directory to execute the end-to-end tests via spock/geb against the Google Home page and demo jUnit 5 tests.</p>
+<p><a href="https://appium.io/">apium</a></p>
+</li>
+<li>
+<p><a href="https://saucelabs.com/">Sauce Labs</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>You will see the results inside a new folder 'build' in project directory.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>.
-└── build
-    └── test-results
-        ├── acceptance-groovy
-        │   └── TEST-DemoAcceptance.xml
-        ├── acceptance-java
-        │   └── TEST-DemoAcceptanceTest.xml
-        ├── installation-groovy
-        │   └── TEST-DemoInstallation.xml
-        ├── installation-java
-        │   └── TEST-DemoInstallationTest.xml
-        ├── integration-groovy
-        │   └── TEST-DemoIntegration.xml
-        └── integration-java
-            └── TEST-DemoIntegrationTest.xml</pre>
-</div>
 </div>
 </div>
 </div>
@@ -543,7 +735,7 @@ nexus_pw=&lt;YOUR_NEXUS_PASSWORD&gt;</code></pre>
 <p>The url to test with Geb is configured in the property <code>config.application.url</code> inside <code>application.properties</code></p>
 </li>
 <li>
-<p>Inside <code>GebConfig.groovy</code> you could change the default navigator (CHROME)</p>
+<p>Inside <code>GebConfig.groovy</code> you could see some environments with different drivers defined and a default browser. You could configure or change them as you need.</p>
 </li>
 </ul>
 </div>
@@ -590,9 +782,6 @@ In Jenkinsfile.template, there is the following stage:</p>
 </div>
 <div class="paragraph">
 <p>All the results are stashed and published through Jenkins jUnit publisher.</p>
-</div>
-<div class="paragraph">
-<p>include::partials$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>
