@@ -433,13 +433,19 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.rust-lang.org/">Rust 1.81.x</a></p>
+<p><a href="https://www.rust-lang.org/">Rust 1.83.x</a></p>
 </li>
 <li>
-<p><a href="https://github.com/tokio-rs/axum">Axum 0.7.x</a></p>
+<p><a href="https://github.com/tokio-rs/axum">Axum 0.8.x</a></p>
 </li>
 <li>
 <p><a href="https://nexte.st/">Nextest 0.9.x</a></p>
+</li>
+<li>
+<p><a href="https://github.com/taiki-e/cargo-llvm-cov/">LLVM coverage 0.6.x</a></p>
+</li>
+<li>
+<p><a href="https://github.com/EmbarkStudios/cargo-deny/">Deny 0.16.x</a></p>
 </li>
 </ul>
 </div>
@@ -518,7 +524,7 @@ version: 1.0.1
 type: ods
 role: backend
 runtime: rust
-runtimeVersion: 1.81.0</code></pre>
+runtimeVersion: 1.83.0</code></pre>
 </div>
 </div>
 </div>
@@ -569,7 +575,7 @@ runtimeVersion: 1.81.0</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo nextest run --profile ci
-  cargo llvm-cov nextest --lcov</code></pre>
+  cargo llvm-cov nextest --profile ci --lcov</code></pre>
 </div>
 </div>
 </li>
@@ -595,7 +601,7 @@ runtimeVersion: 1.81.0</code></pre>
 <p>This quickstarter uses <a href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/rust.html">Rust</a> Jenkins builder agent.</p>
 </div>
 <div class="paragraph">
-<p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.75.x and above.</p>
+<p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.83.x, and depending on project&#8217;s dependencies it can also handle Minor Rust versions above and below the supported one.</p>
 </div>
 <div class="paragraph">
 <p>See the docker spec and openshift templates <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">here</a>.</p>

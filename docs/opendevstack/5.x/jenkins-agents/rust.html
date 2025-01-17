@@ -357,7 +357,7 @@
 It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-rust</code>.</p>
 </div>
 <div class="paragraph">
-<p>Minimum Supported Rust Version (MSRV) <strong>1.79</strong>. It can build <strong>Rust</strong> versions <strong>1.79.x or higher</strong>.</p>
+<p>Minimum Supported Rust Version (MSRV) <strong>1.83</strong>.</p>
 </div>
 <div class="paragraph">
 <p><strong>NOTE</strong>: Current Rust edition in use is <strong>2021</strong>. See <a href="https://doc.rust-lang.org/edition-guide/introduction.html">Rust Edition Guide</a> for further information.</p>
@@ -395,7 +395,8 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No special HTTP Proxy configuration.</p>
+<p>No special HTTP Proxy configuration.
+Fixed Rust compiler version (although dependending on specific project&#8217;s dependencies, it can build on lower or higher Minor <strong>Rust</strong> versions from <strong>1.83.x</strong>).</p>
 </div>
 </div>
 </div>
