@@ -139,9 +139,6 @@
     <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -371,32 +368,36 @@
 <pre>.
 ├── fixtures
 │   └── example.json
-│── plugins
-│   └── index.js
-│── support
-│   ├── commands.ts
-│   ├── generic-login.ts
+├── plugins
 │   ├── index.ts
-│   ├── msalv2-login.ts
+│   ├── screenshot.ts
+│   └── screenshot.types.ts
+├── reporters
+│   └── custom-reporter.js
+├── support
+│   ├── commands.ts
+│   ├── e2e.ts
+│   ├── generic-login.ts
+│   ├── msalv2-login_obsolete.ts
 │   └── test-evidence.ts
 ├── tests
-|   ├── acceptance
-│   |   └── acceptance.spec.ts
-|   ├── installation
-│   |   └── installation.spec.ts
-|   └── integration
-│       └── integration.spec.ts
-├── cypress-acceptance.json
-├── cypress-installation.json
-├── cypress-integration.json
+│   ├── acceptance
+│   │   └── acceptance.spec.cy.ts
+│   ├── installation
+│   │   └── installation.spec.cy.ts
+│   └── integration
+│       └── integration.spec.cy.ts
+├── cypress-acceptance.config.ts
+├── cypress-installation.config.ts
+├── cypress-integration.config.ts
+├── cypress.config.ts
 ├── cypress.env.json.template
-├── cypress.json
 ├── Jenkinsfile
 ├── .pre-commit-config.yaml
 ├── metadata.yml - Component metadata
-│── package.json
+├── package.json
 ├── README.md
-│── release-manager.yml - Configuration file for the Release Manager
+├── release-manager.yml - Configuration file for the Release Manager
 └── tsconfig.json</pre>
 </div>
 </div>
@@ -453,9 +454,9 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker"># The following FROM tag is informational. It is overwritten by OpenShift.
-FROM ods/jenkins-agent-nodejs20:4.x
+FROM ods/jenkins-agent-nodejs22:4.x
 
-ARG cypressVersion=13.6.0
+ARG cypressVersion=13.13.1
 ARG cypressHash=...
 
 USER root
@@ -485,10 +486,34 @@ USER 1001</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_configuring_microsoft_account_with_google_authenticator"><a class="anchor" href="#_configuring_microsoft_account_with_google_authenticator"></a>Configuring Microsoft Account with Google Authenticator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the login with MFA function, the following requirements have to be met:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A testing account must be created with access to the application under test.</p>
+</li>
+<li>
+<p>The account must have MFA enabled.</p>
+</li>
+<li>
+<p>The MFA method used must be OTP (One Time Password).</p>
+</li>
+<li>
+<p>The secret key generated during the setup process must be used for the OTP generation. In the case of microsoft, it can be retrieved by clicking the "Can&#8217;t scan image" button during the setup process.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_cypress_cloud"><a class="anchor" href="#_cypress_cloud"></a>Cypress Cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To use Cypress Cloud  within the Cypress QuickSarter, follow these steps:</p>
+<p>To use Cypress Cloud  within the Cypress QuickStarter, follow these steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -502,26 +527,45 @@ USER 1001</code></pre>
 <p><strong>Set the Cypress Record Key as an environment variable in Openshift.</strong> To enable recording of your tests in Cypress Cloud, you will need to set the Cypress Record Key as an environment variable named CYPRESS_RECORD_KEY in Openshift. This key is provided by Cypress and is used to authenticate your tests and results. By setting it in Openshift, we ensure that the record functionality will only be used in official runs and not for local development.</p>
 </li>
 <li>
-<p><strong>Modify the Jenkinsfile for using the record script.</strong> In the Jenkinsfile, change the exeuction line:</p>
+<p><strong>Modify the Jenkinsfile for using the record script.</strong> In the Jenkinsfile, change the exeuction lines:</p>
 </li>
 </ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>def status = sh(script: 'npm run e2e', returnStatus: true)</pre>
+<pre>status = sh(script: 'npm run e2e', returnStatus: true)</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>for the following block of code, which will run the record script only when in master or in a release branch:</p>
+<p>and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Jenkinsfile hljs" data-lang="Jenkinsfile">status = sh(script: 'npm run e2e:prod', returnStatus: true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>for the following blocks of code, which will run the record script only when in master or in a release branch:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Jenkinsfile hljs" data-lang="Jenkinsfile">if (context.gitBranch == 'master' || context.gitBranch.startsWith('release/')) {
-    def status = sh(script: 'npm run e2e:jenkins:record', returnStatus: true)
+    status = sh(script: 'npm run e2e:jenkins:record', returnStatus: true)
 } else {
-    def status = sh(script: 'npm run e2e', returnStatus: true)
+    status = sh(script: 'npm run e2e', returnStatus: true)
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Jenkinsfile hljs" data-lang="Jenkinsfile">status = sh(script: 'npm run e2e:jenkins:record', returnStatus: true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the case of prod environment, the master or release check is not necessary, as the prod environment is only used in releases.</p>
 </div>
 <div class="paragraph">
 <p><strong>Only use this functionality in releases, not development.</strong> It is important to note that Cypress Cloud is intended for use in releases, not development. This ensures that your tests are run against stable and reliable code, and that the Dashboard does not get overflooded with non-relevant tests. For the same reason, the Jenkinsfile is configured to only pass the record parameter when running in the master branch, or in a release.</p>
@@ -530,7 +574,7 @@ USER 1001</code></pre>
 <p>You can find more information about using the Cypress Cloud in the official documentation for Cypress <a href="https://docs.cypress.io/guides/cloud/introduction" class="bare">https://docs.cypress.io/guides/cloud/introduction</a>.</p>
 </div>
 <div class="paragraph">
-<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
+<p>include::partials$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>
@@ -539,7 +583,7 @@ USER 1001</code></pre>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This quickstarter uses
-<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs20">Node.js 20 builder agent</a> for Jenkins.</p>
+<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/nodejs22">Node.js 22 builder agent</a> for Jenkins.</p>
 </div>
 </div>
 </div>

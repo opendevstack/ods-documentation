@@ -139,9 +139,6 @@
     <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -400,7 +397,7 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.python.org/3.11">Python 3.11</a></p>
+<p><a href="https://docs.python.org/3.12">Python 3.12</a></p>
 </li>
 <li>
 <p><a href="https://gunicorn.org/">gunicorn</a></p>
@@ -430,7 +427,7 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="paragraph">
 <p>It is strongly recommended when you are developing a Python project to use separated environments.
 For this purpose usually one can use Python&#8217;s
-<a href="https://docs.python.org/3.11/library/venv.html">venv</a> core package (check how to use it in the next steps).</p>
+<a href="https://docs.python.org/3.12/library/venv.html">venv</a> core package (check how to use it in the next steps).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -439,7 +436,7 @@ For this purpose usually one can use Python&#8217;s
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-since the version of Python is 3.11, ensure your system&#8217;s python executable is also in version 3.11
+since the version of Python is 3.12, ensure your system&#8217;s python executable is also in version 3.12
 </td>
 </tr>
 </table>
@@ -519,7 +516,7 @@ runtimeVersion: 3.0.0</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
+<p>include::partials$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>
@@ -530,7 +527,7 @@ runtimeVersion: 3.0.0</code></pre>
 <p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/python">Python</a> builder agent Jenkins builder agent.</p>
 </div>
 <div class="paragraph">
-<p><strong>NOTE</strong>: The ODS Jenkins Pytnon Agent supports Python versions 3.11, 3.9 and 3.8. See next chapter for further information.</p>
+<p><strong>NOTE</strong>: The ODS Jenkins Python Agent supports Python versions 3.12, 3.11, 3.9 and 3.8. See next chapter for further information.</p>
 </div>
 </div>
 </div>
@@ -538,18 +535,18 @@ runtimeVersion: 3.0.0</code></pre>
 <h2 id="_multiple_python_versions_support"><a class="anchor" href="#_multiple_python_versions_support"></a>Multiple Python versions support</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Build and run environment defaults to python3.11, but older python3.8 and python3.6 versions are also supported.</p>
+<p>Build and run environment defaults to python3.12, but python3.11, python3.9 and python3.8 versions are also supported.</p>
 </div>
 <div class="paragraph">
-<p>If you need older versions support in your project, change:</p>
+<p>If you need other versions support in your project, change:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>in the provided <code>Jenkinsfile</code>, the mentions of <code>python3.11</code> binary to, for example, <code>python3.9</code> binary,</p>
+<p>in the provided <code>Jenkinsfile</code>, the mentions of <code>python3.12</code> binary to, for example, <code>python3.9</code> binary,</p>
 </li>
 <li>
-<p>and switch the <code>FROM</code> statement in your <code>Dockerfile</code> to the python version required, for example, <code>registry.access.redhat.com/ubi8/python-38</code>.</p>
+<p>and switch the <code>FROM</code> statement in your <code>Dockerfile</code> to the python version required, for example, <code>registry.access.redhat.com/ubi8/python-39</code>.</p>
 </li>
 </ul>
 </div>

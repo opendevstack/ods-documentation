@@ -139,9 +139,6 @@
     <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -1328,6 +1325,11 @@ The pull request in Bitbucket shows the Code Insight of the latest commit of the
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Nexus repository where the scan report will be stored. Defaults to <code>leva-documentation</code>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pkgType</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of vulnerability types to scan. Defaults to <code>os,library</code>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reportFile</strong><br>
 <em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name of the file that will be archived in Jenkins and uploaded in Nexus.
@@ -1342,11 +1344,6 @@ The pull request in Bitbucket shows the Code Insight of the latest commit of the
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scanners</strong><br>
 <em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of what security issues to detect. Defaults to <code>vuln,config,secret,license</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>vulType</strong><br>
-<em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of vulnerability types to scan. Defaults to <code>os,library</code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1964,6 +1961,12 @@ Add labels either via the chart directly or via supplying them in the values or 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Branches to run stage for.
  Example: <code>['master', 'develop']</code>.
  Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preserveDigests</strong><br>
+<em>Boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">preserveDigests allows to sync the source and destination image digests</p>
+<p class="tableblock"> The default is false, set to true to preserve digests</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceCredential</strong><br>

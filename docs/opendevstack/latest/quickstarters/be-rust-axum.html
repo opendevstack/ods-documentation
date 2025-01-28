@@ -139,9 +139,6 @@
     <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-agents/nodejs16.html">Node.js 16</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -352,7 +349,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>The project supports generation of <a href="https://www.rust-lang.org/">Rust</a> programming language based projects, with the <a href="https://github.com/tokio-rs/axum/">Axum</a> web framework by default,
-and quick installation and integration within OpenShift Jenkins CICD pipelines.</p>
+and quick installation and integration within OpenShift Jenkins CICD pipelines within the [OpenDevStack](<a href="https://www.opendevstack.org/" class="bare">https://www.opendevstack.org/</a>) context.</p>
 </div>
 <div class="paragraph">
 <p>For Database/Postgres integration it is recommended to use <a href="https://github.com/launchbadge/sqlx/">SQLx</a>. Check the <a href="https://github.com/launchbadge/sqlx/tree/main/examples/postgres/axum-social-with-tests/">Axum with SQLx</a> example. Enjoy a full async, safe and high performant setup!</p>
@@ -381,21 +378,21 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="listingblock">
 <div class="content">
 <pre>├── 📂 .config - The local Rust project config folder
-│   └──  nextest.toml - The local Nextest config file (required for Jenkins CICD)
-├──  .pre-commit-config.yaml - The pre-commit config file one can extend, and providing gitleaks tool by default.
+│   └── 📄 nextest.toml - The local Nextest config file (required for Jenkins CICD)
 ├── 📂 chart - The Helm chart folder
 │   ├── 📂 templates - The resource files to define in your project (i.e.: deployment.yml, service.yml,...)
 │   │   ├── 📂 tests - Helm tests folder
-│   │   │   └──  test-connection.yaml - Helm test connection to app service after a new release
+│   │   │   └── 📄 test-connection.yaml - Helm test connection to app service after a new release
 │   │   ├── 📄 _helpers.tpl - Helm helpers template
-│   │   ├──  deployment.yaml - The k8s Deployment template for the app to release
-│   │   ├──  NOTES.txt - The release notes processed on each release
-│   │   └──  service.yaml - The k8s Service template for the app to release
-│   ├──  Chart.yaml - The Helm Chart main config file
-│   └──  values.yaml - The values to process on your Helm chart
+│   │   ├── 📄 deployment.yaml - The k8s Deployment template for the app to release
+│   │   ├── 📄 NOTES.txt - The release notes processed on each release
+│   │   └── 📄 service.yaml - The k8s Service template for the app to release
+│   ├── 📄 .helmignore - The Helm ignore file
+│   ├── 📄 Chart.yaml - The Helm Chart main config file
+│   └── 📄 values.yaml - The values to process on your Helm chart
 ├── 📂 docker - The docker context to build
-│   └──  Dockerfile - The docker file to deploy and run
-├── Jenkinsfile - This file contains Jenkins build configuration settings
+│   └── 📄 Dockerfile - The docker file to deploy and run
+├── 🤖 Jenkinsfile - This file contains Jenkins build configuration settings
 ├── 📂 src
 │   ├── 📂 api
 │   │   ├── 📂 routes
@@ -409,18 +406,23 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 │   ├── 📂 models
 │   │   ├── 🦀 mod.rs - The models module file
 │   │   └── 🦀 status.rs - The status model example file
-│   └── 🦀 main.rs
+│   ├── 🦀 lib.rs - The component's library exposing this project's crates to the main.rs
+│   └── 🦀 main.rs - The component's binary compilation
 ├── 📂 target - The target folder where all builds (debug, release, ...) are stored (do not commit to git!)
-├── 📂 tests
+├── 📂 tests - Integration tests folder for all exposed component's crates within the lib.rs
 │   ├── 🦀 common.rs - Common util implementations and functions
 │   └── 🦀 status_test.rs - Testing the status endpoint example
-├──  Cargo.lock - The Rust dependency hash tree of this project
-├──  Cargo.toml - The Rust project config file
-├──  metadata.yml - Component metadata
-├──  README.md - This README file
-├──  release-manager.yml - Configuration file for the Release Manager
-├──  rustfmt.toml
-└──  sonar-project.properties - This file contains SonarQube configuration settings</pre>
+├── 📄 .editorconfig - To share with your team IDEs some files formatting defaults
+├── 📄 .gitignore - The Git ignore file, with some Rust defaults
+├── 📄 .pre-commit-config.yaml - The pre-commit tool config file, prepared for a Rust project.
+├── 📄 Cargo.lock - The Rust dependency hash tree of this project
+├── 📄 Cargo.toml - The Rust project config file
+├── 📄 deny.toml - Cargo Deny TOML configuration based on defaults
+├── 📄 metadata.yml - Component metadata
+├── 📚 README.md - The README file
+├── 📄 release-manager.yml - Configuration file for the Release Manager
+├── 📄 rustfmt.toml - The Rust formatter configuration file (for cargo fmt)
+└── 📄 sonar-project.properties - This file contains SonarQube configuration settings</pre>
 </div>
 </div>
 </div>
@@ -431,10 +433,19 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://blog.rust-lang.org/2023/12/28/Rust-1.75.0.html">Rust 1.75.0</a></p>
+<p><a href="https://www.rust-lang.org/">Rust 1.83.x</a></p>
 </li>
 <li>
-<p><a href="https://github.com/tokio-rs/axum">Axum 0.7.x</a></p>
+<p><a href="https://github.com/tokio-rs/axum">Axum 0.8.x</a></p>
+</li>
+<li>
+<p><a href="https://nexte.st/">Nextest 0.9.x</a></p>
+</li>
+<li>
+<p><a href="https://github.com/taiki-e/cargo-llvm-cov/">LLVM coverage 0.6.x</a></p>
+</li>
+<li>
+<p><a href="https://github.com/EmbarkStudios/cargo-deny/">Deny 0.16.x</a></p>
 </li>
 </ul>
 </div>
@@ -461,8 +472,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # If you are new to Rust (also check the rustlings TUI)
 rustup doc --book
 
-# Run Unit, Integration and Documentation tests
-cargo test
+# Run Unit, Integration and Documentation tests in isolated processes on each test
+cargo install cargo-nextest  # install nextest!
+cargo nextest run
 
 # Cargo format source code
 cargo fmt
@@ -487,8 +499,10 @@ cargo install cargo-watch  # https://github.com/watchexec/cargo-watch
 # Then you can live reload by:
 cargo watch -x run
 
-# Nextest, with enhanced usage from default Rust cargo test
-cargo install cargo-nextest
+# Audit Cargo.lock against the advisory DB. The [RustSec Advisory Database](https://github.com/rustsec/rustsec) is a repository of security advisories filed against Rust crates published via crates.io.
+cargo install cargo-audit
+# Audit you dependencies on Licenses, Bans, Advisories and Sources, with [cargo-deny](https://github.com/EmbarkStudios/cargo-deny)
+cargo install cargo-deny
 # ...</code></pre>
 </div>
 </div>
@@ -510,7 +524,7 @@ version: 1.0.1
 type: ods
 role: backend
 runtime: rust
-runtimeVersion: 1.75.0</code></pre>
+runtimeVersion: 1.83.0</code></pre>
 </div>
 </div>
 </div>
@@ -549,11 +563,19 @@ runtimeVersion: 1.75.0</code></pre>
 </div>
 </li>
 <li>
-<p><strong>Cargo Test</strong> - Runs nextest (instead of <code>cargo test</code>) with xUnit test report generation (see .config/nextest.toml) and code coverage reports with LLVM coverage tool:</p>
+<p><strong>Cargo Deny</strong> - Collection of lints to catch dependency graph issues related to licenses, bans, advisories and sources:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo deny --all-features check</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Cargo Test</strong> - Runs nextest (instead of <code>cargo test</code>, see above why) with xUnit test report generation (see .config/nextest.toml) and code coverage reports with LLVM coverage tool:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  cargo nextest run --profile ci
-  cargo llvm-cov --lcov</code></pre>
+  cargo llvm-cov nextest --profile ci --lcov</code></pre>
 </div>
 </div>
 </li>
@@ -568,7 +590,7 @@ runtimeVersion: 1.75.0</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>include::partial$secret-scanning-with-gitleaks.adoc</p>
+<p>include::partials$secret-scanning-with-gitleaks.adoc</p>
 </div>
 </div>
 </div>
@@ -576,10 +598,13 @@ runtimeVersion: 1.75.0</code></pre>
 <h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">Rust</a> Jenkins builder agent.</p>
+<p>This quickstarter uses <a href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/rust.html">Rust</a> Jenkins builder agent.</p>
 </div>
 <div class="paragraph">
-<p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.75.x and above.</p>
+<p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.83.x, and depending on project&#8217;s dependencies it can also handle Minor Rust versions above and below the supported one.</p>
+</div>
+<div class="paragraph">
+<p>See the docker spec and openshift templates <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">here</a>.</p>
 </div>
 </div>
 </div>
@@ -587,7 +612,7 @@ runtimeVersion: 1.75.0</code></pre>
 <h2 id="_technologies_in_use"><a class="anchor" href="#_technologies_in_use"></a>Technologies in use</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following Rust technologies are in use when running this boilerplate:</p>
+<p>The following main Rust technologies are in use when running this boilerplate:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -611,7 +636,90 @@ runtimeVersion: 1.75.0</code></pre>
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let us know if you find any, thanks!</p>
+<p>First of all, please, let us know if you find any limitation or issue to comment on, thanks!</p>
+</div>
+<div class="sect2">
+<h3 id="_building_with_openssl_crate_or_using_alternatives"><a class="anchor" href="#_building_with_openssl_crate_or_using_alternatives"></a>Building with OpenSSL crate or using alternatives</h3>
+<div class="sect3">
+<h4 id="_recommended_first_approach"><a class="anchor" href="#_recommended_first_approach"></a>Recommended first approach</h4>
+<div class="paragraph">
+<p>Most of the crates out there, that require cryptographic related features, come with <code>openssl</code> crate as a default dependency feature, but
+one can check the crate&#8217;s docs in regards available features and disable openssl and/or default-features and enable provided alternatives,
+like <code>rustls`</code>.</p>
+</div>
+<div class="paragraph">
+<p>See some examples of known crates that can be configured to skip requiring OpenSSL C library:</p>
+</div>
+<div class="sect4">
+<h5 id="_sqlx_crate_without_openssl_dependency"><a class="anchor" href="#_sqlx_crate_without_openssl_dependency"></a>SQLx crate without openssl dependency</h5>
+<div class="paragraph">
+<p>With the <a href="https://crates.io/crates/sqlx">sqlx</a> crate, one can avoid <code>openssl</code> dependency by enabling the dependency feature <code>tls-rustls</code>
+which makes use of the crate <code>rustls</code>, like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[dependencies]
+sqlx = { version = "0.8", features = [ "runtime-tokio", "tls-rustls", "postgres", "uuid", "json", "chrono", "macros", "migrate" ] }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See SQLx&#8217;s <a href="https://docs.rs/sqlx/latest/sqlx/#tls-support">TLS features list support</a>, or <a href="https://github.com/launchbadge/sqlx?tab=readme-ov-file#cargo-feature-flags">all SQLx feature flags</a>, for further learning.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_reqwest_crate_without_openssl_dependency"><a class="anchor" href="#_reqwest_crate_without_openssl_dependency"></a>Reqwest crate without openssl dependency</h5>
+<div class="paragraph">
+<p>With the <a href="https://crates.io/crates/reqwest">reqwest</a> crate, one can avoid <code>openssl</code> dependency by enabling the dependency feature <code>rustls-tls</code>,
+which makes use of the crate <code>rustls</code> and disabling default features, like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See reqwest&#8217;s <a href="https://docs.rs/reqwest/latest/reqwest/#optional-features">features list</a> for further learning.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_using_openssl_crate"><a class="anchor" href="#_using_openssl_crate"></a>Using openssl crate</h4>
+<div class="paragraph">
+<p>In some cases one might not be able to skip requiring OpenSSL nor LibreSSL C libraries (see <a href="https://github.com/opendevstack/ods-quickstarters/issues/1026">issue</a>), but requires compiling them.</p>
+</div>
+<div class="paragraph">
+<p>To have a lean compilation and shipping experience with Rust, ODS Jenkins Rust agent provides already the dependencies to build OpenSSL from source and statically link them, hence avoiding any mismatch with existing/multiple OS libraries or none (at build or runtime), by enabling statically linking of the dependency within the binary.</p>
+</div>
+<div class="paragraph">
+<p>The only missing piece required is to enable the <code>vendored</code> feature in the crate in your <code>Cargo.toml</code>, see example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[dependencies]
+openssl = { version = "0.10", features = ["vendored"] }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By doing so, <code>cargo</code> will locally build OpenSSL and statically link the openssl dependencies into the binarie(s) generated, hence avoiding any OS existence nor dependency of the openssl library.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternatives_to_openssl_crate"><a class="anchor" href="#_alternatives_to_openssl_crate"></a>Alternatives to openssl crate</h4>
+<div class="paragraph">
+<p>In most of cases, one does not require OpenSSL, indeed it is recommended to use more modern alternatives like:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.rs/ring/latest/ring/">ring</a></p>
+</li>
+<li>
+<p><a href="https://docs.rs/rustls/latest/rustls">rustls</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
