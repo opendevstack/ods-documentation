@@ -381,10 +381,8 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    branch: master
   - id: B
     name: my-repo-B
-    branch: master
   - id: C</code></pre>
 </div>
 </div>
@@ -407,11 +405,9 @@ name: Project Phoenix
 
 repositories:
   - id: A
-    branch: master
     type: ods
   - id: B
     name: my-repo-B
-    branch: master
     type: ods
   - id: C
     type: ods</code></pre>
@@ -475,8 +471,7 @@ name: Project Phoenix
 
 repositories:
   - id: B
-    name: my-repo-B
-    branch: master</code></pre>
+    name: my-repo-B</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -502,7 +497,13 @@ repositories:
 <div class="sect2">
 <h3 id="_automated_resolution_of_repository_branch"><a class="anchor" href="#_automated_resolution_of_repository_branch"></a>Automated Resolution of Repository Branch</h3>
 <div class="paragraph">
-<p>If no <code>branch</code> parameter is provided for a repository, <code>master</code> will be assumed.</p>
+<p>The default branch of the repository will be assumed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_of_custom_branch_only_for_developer_preview"><a class="anchor" href="#_use_of_custom_branch_only_for_developer_preview"></a>Use of custom branch ONLY for Developer Preview</h3>
+<div class="paragraph">
+<p>If <code>preview-branch</code> parameter is provided for a repository, then it will be assumed as the default branch.</p>
 </div>
 </div>
 <div class="sect2">
@@ -646,10 +647,10 @@ It is assumed have the release manager quickstarter already provisioned and conf
 <div class="ulist">
 <ul>
 <li>
-<p>When no <code>version</code> is given, the orchestration pipeline will default to <code>WIP</code> (work in progress). In this scenario, source code for each repository is taken from the configured branch in the <code>metadata.yml</code> file (defaulting to <code>master</code> if no branch is specified there).</p>
+<p>When no <code>version</code> is given, the orchestration pipeline will default to <code>WIP</code> (work in progress). In this scenario, source code for each repository is taken from the default branch configured in repository.</p>
 </li>
 <li>
-<p>When a <code>version</code> is given, source code will be taken from a branch <code>release/$VERSION</code> in each repository. When this branch does not exist yet, it will be created (based on the configured branch in <code>metadata.yml</code>) by the pipeline. Subsequent runs with the same <code>version</code> input will take the source code from the created release branch - changes to the configured branch will have no effect on this version! This is by design: it allows some developers to work on new features on the mainline branch (typically <code>master</code>) while others polish the release branch. To this end, the orchestration pipeline allows to enable separate development environments per version to isolate changes in OpenShift resources (see section "Environments" further down).</p>
+<p>When a <code>version</code> is given, source code will be taken from a branch <code>release/$VERSION</code> in each repository. When this branch does not exist yet, it will be created by the pipeline. Subsequent runs with the same <code>version</code> input will take the source code from the created release branch - changes to the default branch will have no effect on this version! This is by design: it allows some developers to work on new features on the default branch (typically <code>master</code>) while others polish the release branch. To this end, the orchestration pipeline allows to enable separate development environments per version to isolate changes in OpenShift resources (see section "Environments" further down).</p>
 </li>
 <li>
 <p>The orchestration pipeline applies the same branching rules to the release manager repository - it will create a release branch per version. There is one small caveat here: Jenkins only considers the <code>Jenkinsfile</code> from the branch which is configured for a pipeline. That means that for a pipeline setup against <code>master</code>, Jenkins will always execute the latest <code>Jenkinsfile</code> from <code>master</code>, even when you pass an  explicit <code>version</code> to the pipeline. The orchestration pipeline will read e.g. the <code>metadata.yml</code> file from the matching release branch, but the <code>Jenkinsfile</code> itself will be from <code>master</code>. Usually, this should not be an issue as you should not make changes to the <code>Jenkinsfile</code> of the release manager repository anyway.</p>
