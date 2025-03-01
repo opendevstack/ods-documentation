@@ -1971,7 +1971,7 @@ Add labels either via the chart directly or via supplying them in the values or 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceCredential</strong><br>
 <em>String</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sourceCredential is the token to use, if any, to access the source registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sourceCredential is the credential to use, if any, to access the source registry</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sourceImageUrlIncludingRegistry</strong><br>
@@ -1983,6 +1983,11 @@ Add labels either via the chart directly or via supplying them in the values or 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tagIntoTargetEnv</strong><br>
 <em>Boolean</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true will tag the image from the -cd namespace into the targetEnvironment that the pipeline is running for</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>targetToken</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetToken is the bearer token to use, if any, to access the target registry</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>verifyTLS</strong><br>
