@@ -388,11 +388,14 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make migrate-pvc-data SOURCE_PVC=&lt;source-pvc-name&gt; TARGET_PVC=&lt;target-pvc-name&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make migrate-pvc-data SOURCE_PVC=&lt;source-pvc-name&gt; TARGET_PVC=&lt;target-pvc-name&gt; [THREADS=&lt;num-threads&gt;] [CPU_REQUEST=&lt;num-cpu&gt;] [MEMORY=&lt;memory-in-gb&gt;]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Replace <code>&lt;source-pvc-name&gt;</code>, and <code>&lt;target-pvc-name&gt;</code> with the appropriate values for your environment.</p>
+<p>Replace <code>&lt;source-pvc-name&gt;</code>, <code>&lt;target-pvc-name&gt;</code>, <code>&lt;num-threads&gt;</code>, <code>&lt;num-cpu&gt;</code>, and <code>&lt;memory-in-gb&gt;</code> with the appropriate values for your environment.
+- <code>THREADS</code> (optional): Number of parallel threads to use for migration (default: 5).
+- <code>CPU_REQUEST</code> (optional): Number of CPU cores to request for the migration pod (default: 1).
+- <code>MEMORY</code> (optional): Memory request and limit in Gigabytes for the migration pod (default: 2).</p>
 </div>
 </div>
 </div>
@@ -402,13 +405,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The migration process creates a temporary pod that uses <code>rsync</code> to copy data from the source PVC to the target PVC.</p>
+<p>The migration process creates a temporary pod that uses parallelized <code>rsync</code> to copy data from the source PVC to the target PVC.</p>
 </li>
 <li>
-<p>Logs of the migration are stored in <code>/tmp/target/rsync.log</code> within the target PVC.</p>
+<p>You can control the number of parallel threads and CPU/memory resources via the <code>THREADS</code>, <code>CPU_REQUEST</code>, and <code>MEMORY</code> options.</p>
 </li>
 <li>
-<p>After the migration, verify the data integrity and delete the temporary pod if necessary.</p>
+<p>After the migration, verify the data integrity and delete the temporary pod.</p>
 </li>
 </ul>
 </div>
