@@ -366,7 +366,7 @@ and quick installation and integration within OpenShift Jenkins CICD pipelines w
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is a Rust project with a common Rust project folder and files structure, with its <code>main.rs</code> file for the final binary to be built, and that makes use of the <code>lib.rs</code> file, which exposes the crates (AKA modules or packages) of the project (where the business logic happens). Similar to Python project structures.</p>
+<p>This is a Rust project with a common Rust project folder and files structure, with its <code>main.rs</code> file for the final binary to be built, and that makes use of the <code>lib.rs</code> file, which exposes the crates (AKA modules or packages) of the project (where the business logic happens). Similar to Python project structures. One could leverage the use of <a href="https://doc.rust-lang.org/cargo/reference/workspaces.html">workspaces</a> to split the project into multiple crates, but this is not the default behavior of this quickstarter.</p>
 </div>
 <div class="paragraph">
 <p>The quickstarter comes with a simple API-server example written in <a href="https://www.rust-lang.org/">Rust</a> and using the <a href="https://github.com/tokio-rs/axum/">Axum</a> web framework.
@@ -374,7 +374,7 @@ The package allows to easily build a Rust project, using different Rust crates (
 It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 </div>
 <div class="paragraph">
-<p><strong>NOTE</strong> The project can be also extended to build other types of solutions with, for example, <a href="https://www.rust-lang.org/what/wasm/">WASM</a> or <a href="https://esp-rs.github.io/book/introduction.html">IoT</a>.</p>
+<p><strong>NOTE</strong> The project can be also extended to build other types of solutions like, for example, <a href="https://www.rust-lang.org/what/wasm/">WASM</a> or <a href="https://esp-rs.github.io/book/introduction.html">IoT</a>.</p>
 </div>
 </div>
 </div>
@@ -428,8 +428,12 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 ├── 📚 README.md - The README file
 ├── 📄 release-manager.yml - Configuration file for the Release Manager
 ├── 📄 rustfmt.toml - The Rust formatter configuration file (for cargo fmt)
+├── 📄 rust-toolchain - Making sure teams and CICD use the same Rust toolchain for this project
 └── 📄 sonar-project.properties - This file contains SonarQube configuration settings</pre>
 </div>
+</div>
+<div class="paragraph">
+<p><strong>IMPORTANT</strong>: The Jenkins Rust Agent is using <code>rustup</code> to manage the Rust toolchain, so it is important to keep the <code>rust-toolchain</code> file up to date, in the root of the project. This file should contain the version of Rust in use for the project. The agent will automatically load (if not being the default at the moment) and use this version when building the project.</p>
 </div>
 </div>
 </div>
@@ -439,7 +443,7 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.rust-lang.org/">Rust 1.83.x</a></p>
+<p><a href="https://www.rust-lang.org/">Rust 1.88.x</a></p>
 </li>
 <li>
 <p><a href="https://github.com/tokio-rs/axum">Axum 0.8.x</a></p>
@@ -451,7 +455,7 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <p><a href="https://github.com/taiki-e/cargo-llvm-cov/">LLVM coverage 0.6.x</a></p>
 </li>
 <li>
-<p><a href="https://github.com/EmbarkStudios/cargo-deny/">Deny 0.16.x</a></p>
+<p><a href="https://github.com/EmbarkStudios/cargo-deny/">Deny 0.18.x</a></p>
 </li>
 </ul>
 </div>
@@ -513,7 +517,7 @@ cargo install cargo-deny
 </div>
 </div>
 <div class="paragraph">
-<p><strong>NOTE</strong> For an extended list of awesome <code>cargo</code> extensions and Rust tools check <a href="https://blessed.rs/crates/">here</a> and <a href="https://github.com/rust-unofficial/awesome-rust/">here</a>.</p>
+<p><strong>NOTE</strong> For an extended list of awesome <code>cargo</code> extensions and Rust tools check <a href="https://blessed.rs/">here</a> and <a href="https://github.com/rust-unofficial/awesome-rust/">here</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_metadata"><a class="anchor" href="#_metadata"></a>Metadata</h3>
@@ -601,13 +605,13 @@ runtimeVersion: 1.83.0</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
+<h2 id="_builder_agent_used_by_the_jenkins_cicd"><a class="anchor" href="#_builder_agent_used_by_the_jenkins_cicd"></a>Builder agent used by the Jenkins CICD</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This quickstarter uses <a href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/jenkins-agents/rust.html">Rust</a> Jenkins builder agent.</p>
 </div>
 <div class="paragraph">
-<p><strong>NOTE</strong>: The ODS Jenkins Rust Agent supports Rust versions 1.83.x, and depending on project&#8217;s dependencies it can also handle Minor Rust versions above and below the supported one.</p>
+<p><strong>IMPORTANT</strong>: By using <code>rustup</code> to manage the Rust toolchain, one can easily switch between different versions of Rust and toolchain as needed. This is particularly useful for projects that require specific versions of Rust or when working with multiple projects that have different requirements.</p>
 </div>
 <div class="paragraph">
 <p>See the docker spec and openshift templates <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/rust">here</a>.</p>
@@ -642,7 +646,7 @@ runtimeVersion: 1.83.0</code></pre>
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>First of all, please, let us know if you find any limitation or issue to comment on, thanks!</p>
+<p>If any, please, open a <a href="https://github.com/opendevstack/ods-quickstarters/issues/new?template=feature_request.md"><code>feature request</code></a> or <a href="https://github.com/opendevstack/ods-quickstarters/issues/new?template=bug_report.md">bug report</a> in the <code>ods-quickstarters</code> GitHub repository.</p>
 </div>
 <div class="sect2">
 <h3 id="_building_with_openssl_crate_or_using_alternatives"><a class="anchor" href="#_building_with_openssl_crate_or_using_alternatives"></a>Building with OpenSSL crate or using alternatives</h3>
