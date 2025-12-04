@@ -148,6 +148,9 @@
     <a class="nav-link" href="../jenkins-agents/nodejs22.html">Node.js 22</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs24.html">Node.js 24</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -935,6 +938,9 @@ If you are new to writing OpenShift templates, please read <a href="https://gith
 </li>
 <li>
 <p>An existing QA-tag cannot be deployed again in PROD. This has been intentionally designed that way as any change to PROD needs its unique change ID, which results in a new tag.</p>
+</li>
+<li>
+<p>The orchestration pipeline does not support more than one replica per Deployment or DeploymentConfig. If you decide to set up more than one replica, do it at your own risk.</p>
 </li>
 </ul>
 </div>

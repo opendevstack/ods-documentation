@@ -148,6 +148,9 @@
     <a class="nav-link" href="../jenkins-agents/nodejs22.html">Node.js 22</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs24.html">Node.js 24</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -369,10 +372,10 @@
 <p>This is implemented in the quickstarter jenkins build script called <code>Jenkinsfile</code> (open it to understand the internal of the code generation of this quickstarter).</p>
 </div>
 <div class="paragraph">
-<p>When provisioning this quickstarter in the provisioning app a spring boot project based on version <code>3.3.3</code> will be generated and pushed to your git repository.</p>
+<p>When provisioning this quickstarter in the provisioning app a spring boot project based on version <code>4.0.0</code> will be generated and pushed to your git repository.</p>
 </div>
 <div class="paragraph">
-<p>The generated project requires <code>java 21</code> and includes the required gradle build and wrapper artifact based on gradle version <code>8.10</code>.</p>
+<p>The generated project requires <code>java 21</code> and includes the required gradle build and wrapper artifact based on gradle version <code>9.2.1</code>.</p>
 </div>
 </div>
 </div>
@@ -561,7 +564,7 @@ version: 1.0.1
 type: ods
 role: backend
 runtime: spring-boot
-runtimeVersion: 3.3.3</code></pre>
+runtimeVersion: 4.0.0</code></pre>
 </div>
 </div>
 </div>
@@ -647,13 +650,13 @@ The default version is <code>java 17</code>. This makes the agent backwards comp
 <p>change the agent version as indicated in <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/jdk">jdk builder agent</a></p>
 </li>
 <li>
-<p>upgrade the gradle wrapper to version <code>8.10</code> running this gradle command at the root folder of your spring project:</p>
+<p>upgrade the gradle wrapper to version <code>9.2.1</code> running this gradle command at the root folder of your spring project:</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">gradle wrapper --gradle-version 8.10 --distribution-type bin</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">gradle wrapper --gradle-version 9.2.1 --distribution-type bin</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">

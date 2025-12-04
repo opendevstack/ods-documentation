@@ -148,6 +148,9 @@
     <a class="nav-link" href="nodejs22.html">Node.js 22</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nodejs24.html">Node.js 24</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="python.html">Python</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
@@ -359,38 +362,58 @@
 <p>The image is built in the global <code>ods</code> project and is named <code>jenkins-agent-rust</code>.
 It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-rust</code>.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_default_msrv_and_edition"><a class="anchor" href="#_default_msrv_and_edition"></a>Default MSRV and Edition</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Minimum Supported Rust Version (MSRV) <strong>1.83</strong>.</p>
+<p>Rust installation is managed by <code>rustup</code>, which offers a convenient way to load and manage Rust versions automatically.</p>
 </div>
 <div class="paragraph">
-<p><strong>NOTE</strong>: Current Rust edition in use is <strong>2021</strong>. See <a href="https://doc.rust-lang.org/edition-guide/introduction.html">Rust Edition Guide</a> for further information.</p>
+<p>And, the version defined in the <code>rust-toolchain</code> file is the one that the Jenkins Agent will use (even if it is not the default). That file MUST be in the root of the projects' repository.</p>
+</div>
+<div class="paragraph">
+<p>Default Minimum Supported Rust Version (MSRV) <strong>1.88</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Default Rust edition in use is <strong>2024</strong>. See <a href="https://doc.rust-lang.org/edition-guide/introduction.html">Rust Edition Guide</a> for further information.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_features"><a class="anchor" href="#_features"></a>Features</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
+<div class="paragraph">
+<p>The image contains the following tools:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><a href="https://www.rust-lang.org/">Rust</a></p>
+<p>Rust toolchain (<a href="https://www.rust-lang.org/tools/install">Rustup</a>)</p>
 </li>
 <li>
-<p><a href="https://github.com/tokio-rs/axum/">Axum</a></p>
+<p>Rust compiler (<a href="https://doc.rust-lang.org/rustc/">Rustc</a>)</p>
 </li>
 <li>
-<p><a href="https://doc.rust-lang.org/cargo/">Cargo</a></p>
+<p>Rust package manager (<a href="https://doc.rust-lang.org/cargo/">Cargo</a>)</p>
 </li>
 <li>
-<p><a href="https://nexte.st/">Nextest</a></p>
+<p>Rust Next generation test runner (<a href="https://nexte.st/">Cargo Nextest</a>)</p>
 </li>
 <li>
-<p><a href="https://github.com/taiki-e/cargo-llvm-cov">LLVM Coverage</a></p>
+<p>Rust code coverage (<a href="https://github.com/taiki-e/cargo-llvm-cov">Cargo LLVM Coverage</a>)</p>
 </li>
 <li>
-<p><a href="https://cargo-generate.github.io/cargo-generate/">Generate</a></p>
+<p>Rust code generation (<a href="https://cargo-generate.github.io/cargo-generate/">Cargo Generate</a>)</p>
 </li>
-</ol>
+<li>
+<p>Rust project&#8217;s dependency graph linter (<a href="https://embarkstudios.github.io/cargo-deny/">Cargo Deny</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Do you miss any tool?</strong> Open a <a href="https://github.com/opendevstack/ods-quickstarters/issues/new?template=feature_request.md"><code>feature request</code></a> in the <code>ods-quickstarters</code> GitHub repository.</p>
 </div>
 </div>
 </div>
@@ -398,8 +421,7 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No special HTTP Proxy configuration.
-Fixed Rust compiler version (although dependending on specific project&#8217;s dependencies, it can build on lower or higher Minor <strong>Rust</strong> versions from <strong>1.83.x</strong>).</p>
+<p>By default, no Nexus repository/registry nor mirror available for Rust packages and dependencies (only available in <a href="https://help.sonatype.com/en/rust-cargo.html">Nexus Pro from version 3.73.0</a> and/or <a href="https://help.sonatype.com/en/ce-onboarding.html">Nexus Community from version 3.77.0</a>). If not having Nexus Pro v3.37.0+, one can use git repositories or local file system to store and reference Rust packages and dependencies.</p>
 </div>
 </div>
 </div>
