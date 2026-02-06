@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quickstarters Test Framework :: OpenDevStack</title>
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="5.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-rust-axum.html">BE Rust/Axum</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-jupyter-lab.html">Data Science Jupyter Lab</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-streamlit.html">Data Science Streamlit app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-etl-python.html">ETL Python E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="inf-terraform-aws.html">INF Terraform AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="inf-terraform-azure.html">INF Terraform AZURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/inf-terraform.html">terraform</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/jdk.html">jdk</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs18.html">Node.js 18</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs20.html">Node.js 20</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs22.html">Node.js 22</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs24.html">Node.js 24</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/rust.html">Rust</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="quickstarters-automated-tests.html">Quickstarters Automated Tests</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/4x.html">Migrate to 4.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/helm-migration.html">Helm migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/pvc-migration.html">PVC Migration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../nexus/administration.html">Nexus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/image-lifecycle.html">Image Lifecycles</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">5.x Preview</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../latest/getting-started/index.html">OpenDevStack</a>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../getting-started/index.html">5.x Preview</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../latest/getting-started/index.html">4.x</a>
+        </li>
+        <li class="version">
+          <a href="../../3.x/getting-started/index.html">3.x</a>
+        </li>
+        <li class="version">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../latest/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="index.html">Quickstarters</a></li>
+    <li><a href="quickstarters-automated-tests.html">Quickstarters Automated Tests</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">5.x Preview</button>
+  <div class="version-menu">
+    <a class="version is-current" href="quickstarters-automated-tests.html">5.x Preview</a>
+    <a class="version is-missing" href="../../latest/getting-started/index.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/quickstarters-automated-tests.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Quickstarters Test Framework</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview">Overview</a></li>
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_how_to_run">How to Run</a></li>
+<li><a href="#_logging_and_output">Logging and Output</a>
+<ul class="sectlevel2">
+<li><a href="#_structured_logging_with_colors_and_emojis">Structured Logging with Colors and Emojis</a>
+<ul class="sectlevel3">
+<li><a href="#_output_features">Output Features</a></li>
+<li><a href="#_example_log_output">Example Log Output</a></li>
+<li><a href="#_environment_variable_support">Environment Variable Support</a></li>
+<li><a href="#_color_legend">Color Legend</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_templates_and_variables">Templates and Variables</a></li>
+<li><a href="#_testdata_layout">Testdata Layout</a></li>
+<li><a href="#_step_types_how_to_use">Step Types (How to Use)</a>
+<ul class="sectlevel2">
+<li><a href="#_provision">provision</a></li>
+<li><a href="#_build">build</a></li>
+<li><a href="#_upload">upload</a></li>
+<li><a href="#_wait">wait</a></li>
+<li><a href="#_http">http</a></li>
+<li><a href="#_inspect">inspect</a></li>
+<li><a href="#_expose_service">expose-service</a></li>
+<li><a href="#_run">run</a></li>
+</ul>
+</li>
+<li><a href="#_advanced_features">Advanced Features</a>
+<ul class="sectlevel2">
+<li><a href="#_test_lifecycle_hooks">Test Lifecycle Hooks</a>
+<ul class="sectlevel3">
+<li><a href="#_beforestep_hook">beforeStep Hook</a></li>
+<li><a href="#_afterstep_hook">afterStep Hook</a></li>
+</ul>
+</li>
+<li><a href="#_step_execution_control">Step Execution Control</a>
+<ul class="sectlevel3">
+<li><a href="#_skip_steps_conditionally">Skip Steps Conditionally</a></li>
+<li><a href="#_step_level_timeout">Step-Level Timeout</a></li>
+</ul>
+</li>
+<li><a href="#_retry_logic">Retry Logic</a>
+<ul class="sectlevel3">
+<li><a href="#_basic_retry">Basic Retry</a></li>
+<li><a href="#_smart_transient_error_retry">Smart Transient Error Retry</a></li>
+</ul>
+</li>
+<li><a href="#_test_reporting">Test Reporting</a>
+<ul class="sectlevel3">
+<li><a href="#_automatic_report_generation">Automatic Report Generation</a></li>
+<li><a href="#_export_reports_to_file">Export Reports to File</a></li>
+<li><a href="#_report_contents">Report Contents</a></li>
+<li><a href="#_cicd_integration">CI/CD Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_complete_example_steps_yml_run_script">Complete Example (steps.yml + run script)</a></li>
+<li><a href="#_service_url_resolution">Service URL Resolution</a></li>
+<li><a href="#_migration_guidance">Migration Guidance</a></li>
+<li><a href="#_developing_custom_step_types">Developing Custom Step Types</a>
+<ul class="sectlevel2">
+<li><a href="#_architecture_overview">Architecture Overview</a></li>
+<li><a href="#_step_1_define_the_step_type_constant">Step 1: Define the Step Type Constant</a></li>
+<li><a href="#_step_2_add_step_parameters_to_teststep">Step 2: Add Step Parameters to TestStep</a></li>
+<li><a href="#_step_3_implement_the_execution_logic">Step 3: Implement the Execution Logic</a></li>
+<li><a href="#_step_4_create_a_handler_adapter">Step 4: Create a Handler Adapter</a></li>
+<li><a href="#_step_5_register_the_handler">Step 5: Register the Handler</a></li>
+<li><a href="#_step_6_add_documentation">Step 6: Add Documentation</a></li>
+<li><a href="#_step_7_write_unit_tests">Step 7: Write Unit Tests</a></li>
+<li><a href="#_step_8_use_your_new_step_in_tests">Step 8: Use Your New Step in Tests</a></li>
+<li><a href="#_best_practices_for_custom_steps">Best Practices for Custom Steps</a></li>
+<li><a href="#_example_complete_custom_step">Example: Complete Custom Step</a></li>
+<li><a href="#_advanced_handler_parameters">Advanced: Handler Parameters</a></li>
+<li><a href="#_registry_pattern_benefits">Registry Pattern Benefits</a></li>
+<li><a href="#_troubleshooting_custom_steps">Troubleshooting Custom Steps</a></li>
+</ul>
+</li>
+<li><a href="#_troubleshooting">Troubleshooting</a></li>
+<li><a href="#_best_practices">Best Practices</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Step-based tests driven by <code>testdata/steps.yml</code> to validate quickstarters.</p>
+</div>
+<div class="paragraph">
+<p>A test is a sequence of steps such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>provision a quickstarter</p>
+</li>
+<li>
+<p>upload config/fixtures</p>
+</li>
+<li>
+<p>build/deploy</p>
+</li>
+<li>
+<p>wait for readiness</p>
+</li>
+<li>
+<p>expose service URLs</p>
+</li>
+<li>
+<p>call HTTP endpoints</p>
+</li>
+<li>
+<p>inspect logs/env/resources</p>
+</li>
+<li>
+<p>run an end-to-end shell script</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Logged in to the target OpenShift cluster (<code>oc whoami</code>).</p>
+</li>
+<li>
+<p><code>oc</code>, <code>curl</code>, and <code>jq</code> available locally.</p>
+</li>
+<li>
+<p>Quickstarter repo contains a <code>testdata</code> folder with <code>steps.yml</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_run"><a class="anchor" href="#_how_to_run"></a>How to Run</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Wrapper (recommended):</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ods-core/tests
+./dev-test.sh &lt;quickstarter&gt; &lt;project&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Make:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ods-core/tests
+make test-quickstarter QS=&lt;quickstarter&gt; PROJECT_NAME=&lt;project&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Go test directly:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ods-core/tests/quickstarter
+go test -v -run TestQuickstarter -timeout 30m \
+  -args -quickstarter=&lt;quickstarter&gt; -project=&lt;project&gt; -testPhase=devtest</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_and_output"><a class="anchor" href="#_logging_and_output"></a>Logging and Output</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_structured_logging_with_colors_and_emojis"><a class="anchor" href="#_structured_logging_with_colors_and_emojis"></a>Structured Logging with Colors and Emojis</h3>
+<div class="paragraph">
+<p>The test framework uses <a href="https://github.com/charmbracelet/log">charmbracelet/log</a> to provide structured, readable logging with colors and emojis for better visibility and ease of following test execution.</p>
+</div>
+<div class="sect3">
+<h4 id="_output_features"><a class="anchor" href="#_output_features"></a>Output Features</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>🚀 Sections</strong>: Major test milestones are marked with visual section headers</p>
+</li>
+<li>
+<p><strong>📋 Sub-sections</strong>: Logical groupings within a test use sub-section headers</p>
+</li>
+<li>
+<p><strong>▶️ Step Markers</strong>: Each step execution is prefixed with the step number and type</p>
+</li>
+<li>
+<p><strong>✅ Success Messages</strong>: Completed operations are marked with green checkmarks</p>
+</li>
+<li>
+<p><strong>❌ Error Messages</strong>: Failed operations are marked with red X symbols</p>
+</li>
+<li>
+<p><strong>⚙️ Running Operations</strong>: Ongoing operations show a gear symbol</p>
+</li>
+<li>
+<p><strong>⏳ Waiting Indicators</strong>: Operations in waiting states show a hourglass</p>
+</li>
+<li>
+<p><strong>⚠️ Warnings</strong>: Important warnings use the warning symbol</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_log_output"><a class="anchor" href="#_example_log_output"></a>Example Log Output</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">🚀 ╔═════════════════════════════════════════════════════════════╗
+  🚀 Starting Quickstarter Test Framework
+🚀 ╚═════════════════════════════════════════════════════════════╝
+
+🚀 ╔═════════════════════════════════════════════════════════════╗
+  🚀 Test Paths
+🚀 ╚═════════════════════════════════════════════════════════════╝
+
+  • Found 2 quickstarter(s) to test:
+  • ./quickstarters/be-java-springboot
+  • ./quickstarters/fe-angular
+
+🚀 ╔═════════════════════════════════════════════════════════════╗
+  🚀 Testing Quickstarter: be-java-springboot
+🚀 ╚═════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────
+  📋 Component: myapp
+┌─────────────────────────────────────────────────────────────────
+
+  • Total steps to execute: 3
+
+▶️  Step 1/3 [provision]: Provision quickstarter
+
+⚙️  Running: Provision for test-myapp
+✅ Success: BitBucket repo created/updated
+
+⏳ Waiting: Jenkins pipeline execution
+✅ Success: Build triggered with name jenkins-1234
+
+▶️  Step 2/3 [build]: Trigger build pipeline
+
+...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_environment_variable_support"><a class="anchor" href="#_environment_variable_support"></a>Environment Variable Support</h4>
+<div class="paragraph">
+<p>You can control logging verbosity by setting the <code>LOG_LEVEL</code> environment variable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">LOG_LEVEL=debug go test -v -run TestQuickstarter -timeout 30m \
+  -args -quickstarter=&lt;quickstarter&gt; -project=&lt;project&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_color_legend"><a class="anchor" href="#_color_legend"></a>Color Legend</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cyan</strong> (#00d7ff): Information messages</p>
+</li>
+<li>
+<p><strong>Yellow</strong> (#ffaf00): Warning messages</p>
+</li>
+<li>
+<p><strong>Red</strong> (#ff005f): Error messages</p>
+</li>
+<li>
+<p><strong>Green</strong> (#00ff00): Success indicators</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_templates_and_variables"><a class="anchor" href="#_templates_and_variables"></a>Templates and Variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All string fields in <code>steps.yml</code> support Go-template rendering.</p>
+</div>
+<div class="paragraph">
+<p><strong>Common template variables:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>{{.ProjectID}}</code>: the project passed to the test</p>
+</li>
+<li>
+<p><code>{{.ComponentID}}</code>: the component passed to the test (or overridden per step via <code>componentID</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Common environment variables passed to <code>run</code> scripts:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>PROJECT_ID</code>, <code>COMPONENT_ID</code>, <code>NAMESPACE</code> (defaults to <code>&lt;project&gt;-dev</code>)</p>
+</li>
+<li>
+<p><code>ODS_NAMESPACE</code>, <code>ODS_GIT_REF</code>, <code>ODS_IMAGE_TAG</code> (when available)</p>
+</li>
+<li>
+<p><code>{ALIAS}_SERVICE_URL</code> for each entry under <code>runParams.services</code> (e.g. <code>API_SERVICE_URL</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testdata_layout"><a class="anchor" href="#_testdata_layout"></a>Testdata Layout</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Typical structure in a quickstarter repo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">testdata/
+├── steps.yml
+├── golden/
+│   ├── jenkins-provision-stages.json
+│   ├── jenkins-build-stages.json
+│   └── sonar-scan.json
+└── functional/
+    ├── api/
+    │   └── health-response.json
+    └── integration/
+        └── e2e_test.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Key principles:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use templates and internal service DNS in <code>steps.yml</code> URLs.</p>
+</li>
+<li>
+<p>Avoid hardcoding localhost and manual port-forwarding.</p>
+</li>
+<li>
+<p>For <code>run</code> steps that need URLs, declare services in <code>runParams.services</code> and consume <code>{ALIAS}_SERVICE_URL</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_types_how_to_use"><a class="anchor" href="#_step_types_how_to_use"></a>Step Types (How to Use)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The YAML file is a list under <code>steps:</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">steps:
+  - type: &lt;step-type&gt;
+    description: Optional human-friendly description
+    componentID: Optional override for this step
+    &lt;step-type&gt;Params:
+      ...</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provision"><a class="anchor" href="#_provision"></a>provision</h3>
+<div class="paragraph">
+<p>Provision via ODS; optionally verify Jenkins provision stages.</p>
+</div>
+<div class="paragraph">
+<p><strong>Minimal example:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: provision
+  provisionParams:
+    quickstarter: be-python-flask</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>With common options:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: provision
+  description: Provision quickstarter
+  provisionParams:
+    quickstarter: be-python-flask
+    pipeline: "{{.ProjectID}}-{{.ComponentID}}"
+    branch: "master"
+    env:
+      - key: SOME_PARAM
+        value: "some-value"
+    verify:
+      strategy: fail-fast
+      jenkinsStages: golden/jenkins-provision-stages.json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build"><a class="anchor" href="#_build"></a>build</h3>
+<div class="paragraph">
+<p>Build/deploy; optionally verify Jenkins stages, Sonar scan, test results, and OpenShift resources.</p>
+</div>
+<div class="paragraph">
+<p><strong>Minimal example:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: build
+  buildParams: {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>With verification:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: build
+  description: Build and deploy
+  buildParams:
+    verify:
+      strategy: aggregate
+      jenkinsStages: golden/jenkins-build-stages.json
+      sonarScan: golden/sonar-scan.json
+      runAttachments: ["metadata.json"]
+      testResults: 5
+      openShiftResources:
+        deployments: ["{{.ComponentID}}"]
+        services: ["{{.ComponentID}}", "{{.ComponentID}}-backend"]
+        routes: ["{{.ComponentID}}"]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_upload"><a class="anchor" href="#_upload"></a>upload</h3>
+<div class="paragraph">
+<p>Add a file into the created repository.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: upload
+  description: Upload config into repo
+  uploadParams:
+    file: fixtures/app-config.json
+    filename: config/app-config.json
+    render: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Notes:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>file</code> is relative to <code>testdata/</code>.</p>
+</li>
+<li>
+<p><code>filename</code> is the destination path inside the provisioned repository.</p>
+</li>
+<li>
+<p><code>render: true</code> applies templating to the file contents.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait"><a class="anchor" href="#_wait"></a>wait</h3>
+<div class="paragraph">
+<p>Poll for readiness/conditions.</p>
+</div>
+<div class="paragraph">
+<p><strong>Supported conditions:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pod-ready</code> (resource: selector like <code>-l app=&#8230;&#8203;</code> or a pod name)</p>
+</li>
+<li>
+<p><code>deployment-complete</code> (resource: <code>deployment/&lt;name&gt;</code> or <code>dc/&lt;name&gt;</code>)</p>
+</li>
+<li>
+<p><code>job-complete</code> (resource: <code>job/&lt;name&gt;</code>)</p>
+</li>
+<li>
+<p><code>route-accessible</code> (resource: <code>route/&lt;name&gt;</code>)</p>
+</li>
+<li>
+<p><code>http-accessible</code> (url: <code>&#8230;&#8203;</code>)</p>
+</li>
+<li>
+<p><code>log-contains</code> (resource: <code>pod/&lt;name&gt;</code>, <code>deployment/&lt;name&gt;</code>, <code>dc/&lt;name&gt;</code>; message: <code>&#8230;&#8203;</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Examples:</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Deployment rollout:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  waitParams:
+    condition: deployment-complete
+    resource: "deployment/{{.ComponentID}}"
+    timeout: "10m"
+    interval: "5s"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Pod readiness by label:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  waitParams:
+    condition: pod-ready
+    resource: "-l app={{.ProjectID}}-{{.ComponentID}}"
+    timeout: "5m"
+    interval: "5s"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Log message appears:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  waitParams:
+    condition: log-contains
+    resource: "deployment/{{.ComponentID}}"
+    message: "Server listening"
+    timeout: "5m"
+    interval: "10s"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Route exists and is reachable:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  waitParams:
+    condition: route-accessible
+    resource: "route/{{.ComponentID}}"
+    timeout: "5m"
+    interval: "5s"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Arbitrary URL becomes reachable:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  waitParams:
+    condition: http-accessible
+    url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080/health"
+    timeout: "5m"
+    interval: "2s"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Job completes:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  waitParams:
+    condition: job-complete
+    resource: "job/{{.ProjectID}}-{{.ComponentID}}-migration"
+    timeout: "10m"
+    interval: "5s"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http"><a class="anchor" href="#_http"></a>http</h3>
+<div class="paragraph">
+<p>Call endpoints with status/body/assertions and optional retries.</p>
+</div>
+<div class="paragraph">
+<p><strong>Status + golden JSON body:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: http
+  description: Health endpoint returns expected JSON
+  httpParams:
+    url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080/health"
+    method: GET
+    headers:
+      Accept: application/json
+    expectedStatus: 200
+    expectedBody: functional/api/health-response.json
+    retry:
+      attempts: 10
+      delay: "2s"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Assertions (JSONPath via <code>path</code>):</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: http
+  description: Assert JSON fields
+  httpParams:
+    url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080/health"
+    expectedStatus: 200
+    assertions:
+      - path: "status"
+        equals: "ok"
+      - path: "version"
+        exists: true
+      - path: "message"
+        contains: "ready"
+      - path: "commit"
+        matches: "^[a-f0-9]{7,}$"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>POST with JSON body and custom timeout:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: http
+  description: Create resource
+  httpParams:
+    url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080/api/v1/items"
+    method: POST
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    body: '{"name":"example"}'
+    expectedStatus: 201
+    timeout: 60</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inspect"><a class="anchor" href="#_inspect"></a>inspect</h3>
+<div class="paragraph">
+<p>Check logs/env/resources for a resource.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: inspect
+  description: Verify runtime signals
+  inspectParams:
+    resource: "deployment/{{.ComponentID}}"
+    namespace: "{{.ProjectID}}-dev"
+    checks:
+      logs:
+        contains: ["Server listening on :8080"]
+        notContains: ["Traceback", "panic:"]
+        matches: ["Listening on.*8080"]
+      env:
+        APP_ENV: "dev"
+        ODS_PROJECT: "{{.ProjectID}}"
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "512Mi"
+        requests:
+          cpu: "100m"
+          memory: "128Mi"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_expose_service"><a class="anchor" href="#_expose_service"></a>expose-service</h3>
+<div class="paragraph">
+<p>Resolve stable URLs for one or more services and make them available to later <code>http</code> / <code>run</code> steps.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: expose-service
+  description: Expose services for local/Jenkins runs
+  exposeServiceParams:
+    services:
+      - serviceName: "{{.ComponentID}}"
+        namespace: "{{.ProjectID}}-dev"
+        port: "8080"
+      - serviceName: "{{.ComponentID}}-backend"
+        # namespace defaults to "&lt;project&gt;-dev" if omitted
+        # port defaults to 8080 if omitted</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Notes:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use one entry per Kubernetes/OpenShift Service.</p>
+</li>
+<li>
+<p>If you use <code>runParams.services</code>, ensure those service names are exposed here first.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run"><a class="anchor" href="#_run"></a>run</h3>
+<div class="paragraph">
+<p>Execute a shell script. If <code>runParams.services</code> is set, the script receives one env var per alias: <code>{ALIAS}_SERVICE_URL</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: run
+  description: End-to-end tests
+  runParams:
+    file: functional/integration/e2e_test.sh
+    services:
+      api: "{{.ComponentID}}"
+      backend: "{{.ComponentID}}-backend"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Minimal script pattern:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+set -euo pipefail
+
+: "${API_SERVICE_URL:?missing API_SERVICE_URL}"
+: "${BACKEND_SERVICE_URL:?missing BACKEND_SERVICE_URL}"
+
+curl -fsS "$API_SERVICE_URL/health" | jq -e '.status == "ok"' &gt;/dev/null
+curl -fsS "$BACKEND_SERVICE_URL/metrics" &gt;/dev/null</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_features"><a class="anchor" href="#_advanced_features"></a>Advanced Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_test_lifecycle_hooks"><a class="anchor" href="#_test_lifecycle_hooks"></a>Test Lifecycle Hooks</h3>
+<div class="paragraph">
+<p>Each step can execute shell scripts before and after execution. This is useful for setup, cleanup, or custom validation logic.</p>
+</div>
+<div class="sect3">
+<h4 id="_beforestep_hook"><a class="anchor" href="#_beforestep_hook"></a>beforeStep Hook</h4>
+<div class="paragraph">
+<p>Executes a script before the main step. Useful for setup operations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: build
+  description: Build and deploy with custom setup
+  beforeStep: "hooks/pre-build-setup.sh"
+  buildParams:
+    verify:
+      jenkinsStages: golden/jenkins-build-stages.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example <code>testdata/hooks/pre-build-setup.sh</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Setting up build environment..."
+export CUSTOM_BUILD_VAR="custom-value"
+# Additional setup logic</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_afterstep_hook"><a class="anchor" href="#_afterstep_hook"></a>afterStep Hook</h4>
+<div class="paragraph">
+<p>Executes a script after the main step, even if the step fails. Useful for cleanup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: http
+  description: Call API endpoint
+  afterStep: "hooks/post-http-cleanup.sh"
+  httpParams:
+    url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080/health"
+    expectedStatus: 200</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example <code>testdata/hooks/post-http-cleanup.sh</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Cleaning up HTTP test artifacts..."
+# Cleanup logic that always runs</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Notes:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hooks are executed relative to the <code>testdata/</code> directory.</p>
+</li>
+<li>
+<p>Hooks receive environment variables from template data.</p>
+</li>
+<li>
+<p>Hook failures in <code>beforeStep</code> will prevent the main step from executing.</p>
+</li>
+<li>
+<p>Hook failures in <code>afterStep</code> are logged but don&#8217;t fail the test (useful for cleanup).</p>
+</li>
+<li>
+<p>Hooks support full bash scripting, including conditional logic.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_execution_control"><a class="anchor" href="#_step_execution_control"></a>Step Execution Control</h3>
+<div class="sect3">
+<h4 id="_skip_steps_conditionally"><a class="anchor" href="#_skip_steps_conditionally"></a>Skip Steps Conditionally</h4>
+<div class="paragraph">
+<p>You can skip steps based on static conditions or template expressions:</p>
+</div>
+<div class="paragraph">
+<p><strong>Static Skip:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: inspect
+  description: Optional diagnostic step (skipped in CI)
+  skip: true
+  inspectParams:
+    resource: "deployment/{{.ComponentID}}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Conditional Skip (Template Expression):</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: build
+  description: Only build in non-production environments
+  skipIf: "{{eq .Environment \"production\"}}"
+  buildParams: {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Template variables can be any standard Go template expression. Examples:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- skipIf: "{{.IsProduction}}"        # Boolean variable
+- skipIf: "{{eq .Environment \"ci\"}}" # Environment comparison
+- skipIf: "{{gt .Replicas 1}}"       # Numeric comparison</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_level_timeout"><a class="anchor" href="#_step_level_timeout"></a>Step-Level Timeout</h4>
+<div class="paragraph">
+<p>Override the default timeout for individual steps:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  description: Wait for slow deployment
+  timeout: 900  # seconds (overrides default)
+  waitParams:
+    condition: deployment-complete
+    resource: "deployment/{{.ComponentID}}"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_retry_logic"><a class="anchor" href="#_retry_logic"></a>Retry Logic</h3>
+<div class="paragraph">
+<p>Automatically retry steps on failure with configurable behavior:</p>
+</div>
+<div class="sect3">
+<h4 id="_basic_retry"><a class="anchor" href="#_basic_retry"></a>Basic Retry</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: http
+  description: API call with retry
+  retry:
+    attempts: 5        # Retry up to 5 times
+    delay: "2s"        # Wait 2 seconds between attempts
+  httpParams:
+    url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080/health"
+    expectedStatus: 200</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_smart_transient_error_retry"><a class="anchor" href="#_smart_transient_error_retry"></a>Smart Transient Error Retry</h4>
+<div class="paragraph">
+<p>Only retry on transient errors (timeouts, connection issues):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- type: wait
+  description: Wait with smart retry
+  retry:
+    attempts: 10
+    delay: "1s"
+    onlyTransient: true  # Skip retries for permanent errors
+  waitParams:
+    condition: http-accessible
+    url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080"
+    timeout: "5m"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Transient Errors:</strong> The framework automatically detects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Connection timeouts</p>
+</li>
+<li>
+<p>Connection refused</p>
+</li>
+<li>
+<p>Temporary unavailability</p>
+</li>
+<li>
+<p>EOF and broken pipes</p>
+</li>
+<li>
+<p>I/O timeouts</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test_reporting"><a class="anchor" href="#_test_reporting"></a>Test Reporting</h3>
+<div class="paragraph">
+<p>The test framework generates structured reports with execution metrics and can export to multiple formats.</p>
+</div>
+<div class="sect3">
+<h4 id="_automatic_report_generation"><a class="anchor" href="#_automatic_report_generation"></a>Automatic Report Generation</h4>
+<div class="paragraph">
+<p>Test reports are automatically generated and printed to console:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Test Report: be-java-springboot
+  Total Steps:     5
+  Passed:          5
+  Failed:          0
+  Skipped:         0
+  Success Rate:    100.00%
+  Total Duration:  2m30s
+  Avg Per Step:    30s</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_export_reports_to_file"><a class="anchor" href="#_export_reports_to_file"></a>Export Reports to File</h4>
+<div class="paragraph">
+<p>Enable report export by setting an environment variable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">EXPORT_TEST_REPORTS=true go test -v -run TestQuickstarter -timeout 30m \
+  -args -quickstarter=&lt;quickstarter&gt; -project=&lt;project&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This generates a <code>test-report-&lt;quickstarter&gt;.json</code> file with detailed metrics:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "startTime": "2024-01-21T10:30:00Z",
+  "endTime": "2024-01-21T10:32:30Z",
+  "totalDuration": 150000000000,
+  "quickstarterID": "be-java-springboot",
+  "steps": [
+    {
+      "index": 0,
+      "type": "provision",
+      "description": "Provision quickstarter",
+      "startTime": "2024-01-21T10:30:00Z",
+      "endTime": "2024-01-21T10:30:30Z",
+      "duration": 30000000000,
+      "status": "passed",
+      "error": null,
+      "context": {}
+    }
+  ],
+  "summary": {
+    "totalSteps": 5,
+    "passedSteps": 5,
+    "failedSteps": 0,
+    "skippedSteps": 0,
+    "successRate": 100.0,
+    "averageDuration": 30000000000
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_report_contents"><a class="anchor" href="#_report_contents"></a>Report Contents</h4>
+<div class="paragraph">
+<p>Each report includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Execution Timeline:</strong> Start/end times and duration for each step</p>
+</li>
+<li>
+<p><strong>Step Status:</strong> Passed, failed, or skipped</p>
+</li>
+<li>
+<p><strong>Error Details:</strong> Full error messages for failed steps</p>
+</li>
+<li>
+<p><strong>Context Information:</strong> Pod logs, events, and environment at time of failure</p>
+</li>
+<li>
+<p><strong>Aggregate Statistics:</strong> Pass rate, timing averages, counts by status</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cicd_integration"><a class="anchor" href="#_cicd_integration"></a>CI/CD Integration</h4>
+<div class="paragraph">
+<p>Reports can be processed by CI/CD systems for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Trend analysis (run-to-run metrics)</p>
+</li>
+<li>
+<p>Performance regression detection</p>
+</li>
+<li>
+<p>Test flakiness tracking</p>
+</li>
+<li>
+<p>Automated failure notifications</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_complete_example_steps_yml_run_script"><a class="anchor" href="#_complete_example_steps_yml_run_script"></a>Complete Example (steps.yml + run script)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Example <code>testdata/steps.yml</code> using all step types with advanced features:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">steps:
+  - type: provision
+    description: Provision quickstarter
+    beforeStep: "hooks/pre-provision.sh"
+    provisionParams:
+      quickstarter: be-python-flask
+      branch: master
+      verify:
+        jenkinsStages: golden/jenkins-provision-stages.json
+
+  - type: upload
+    description: Add runtime config
+    uploadParams:
+      file: fixtures/app-config.json
+      filename: config/app-config.json
+      render: true
+
+  - type: build
+    description: Build and deploy
+    retry:
+      attempts: 2
+      delay: "5s"
+    buildParams:
+      verify:
+        jenkinsStages: golden/jenkins-build-stages.json
+        sonarScan: golden/sonar-scan.json
+        testResults: 1
+        openShiftResources:
+          deployments: ["{{.ComponentID}}"]
+          services: ["{{.ComponentID}}", "{{.ComponentID}}-backend"]
+
+  - type: wait
+    description: Wait for rollout
+    waitParams:
+      condition: deployment-complete
+      resource: "deployment/{{.ComponentID}}"
+      timeout: 10m
+      interval: 5s
+
+  - type: expose-service
+    description: Resolve external/local URLs for tests
+    exposeServiceParams:
+      services:
+        - serviceName: "{{.ComponentID}}"
+          port: "8080"
+        - serviceName: "{{.ComponentID}}-backend"
+          port: "8080"
+
+  - type: http
+    description: Healthcheck with retry and assertions
+    retry:
+      attempts: 10
+      delay: 2s
+      onlyTransient: true
+    httpParams:
+      url: "http://{{.ComponentID}}.{{.ProjectID}}-dev.svc.cluster.local:8080/health"
+      expectedStatus: 200
+      assertions:
+        - path: "status"
+          equals: "ok"
+
+  - type: inspect
+    description: Verify logs and env
+    inspectParams:
+      resource: "deployment/{{.ComponentID}}"
+      checks:
+        logs:
+          notContains: ["Traceback", "panic:"]
+        env:
+          ODS_PROJECT: "{{.ProjectID}}"
+
+  - type: run
+    description: End-to-end shell test
+    runParams:
+      file: functional/integration/e2e_test.sh
+      services:
+        api: "{{.ComponentID}}"
+        backend: "{{.ComponentID}}-backend"
+
+  # Optional: diagnostic step (skipped by default in CI)
+  - type: inspect
+    description: Diagnostic pod inspection (optional)
+    skip: true
+    inspectParams:
+      resource: "deployment/{{.ComponentID}}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example <code>testdata/functional/integration/e2e_test.sh</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+set -euo pipefail
+
+: "${PROJECT_ID:?missing PROJECT_ID}"
+: "${COMPONENT_ID:?missing COMPONENT_ID}"
+: "${NAMESPACE:?missing NAMESPACE}"
+
+: "${API_SERVICE_URL:?missing API_SERVICE_URL}"
+: "${BACKEND_SERVICE_URL:?missing BACKEND_SERVICE_URL}"
+
+echo "Project: $PROJECT_ID"
+echo "Component: $COMPONENT_ID"
+echo "Namespace: $NAMESPACE"
+echo "API: $API_SERVICE_URL"
+echo "Backend: $BACKEND_SERVICE_URL"
+
+curl -fsS "$API_SERVICE_URL/health" | jq -e '.status == "ok"' &gt;/dev/null
+curl -fsS "$API_SERVICE_URL/api/v1/info" | jq -e '.name != null' &gt;/dev/null
+curl -fsS "$BACKEND_SERVICE_URL/metrics" &gt;/dev/null
+
+echo "OK"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example <code>testdata/hooks/pre-provision.sh</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Pre-provisioning checks..."
+# Verify cluster connectivity
+oc whoami &gt; /dev/null || exit 1
+# Any custom setup logic
+echo "Pre-provisioning checks passed"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_service_url_resolution"><a class="anchor" href="#_service_url_resolution"></a>Service URL Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Priority:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Route exists → use route URL (https/http).</p>
+</li>
+<li>
+<p>In-cluster (Jenkins) → use service DNS.</p>
+</li>
+<li>
+<p>Local → automatic <code>oc port-forward</code> on 8000–8009 with cleanup and reuse.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_migration_guidance"><a class="anchor" href="#_migration_guidance"></a>Migration Guidance</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Replace hardcoded localhost URLs with templated service DNS in <code>steps.yml</code>.</p>
+</li>
+<li>
+<p>Add an <code>expose-service</code> step for every service you need to access from local runs.</p>
+</li>
+<li>
+<p>Remove manual port-forwarding from scripts.</p>
+</li>
+<li>
+<p>In <code>run</code> steps, declare services under <code>runParams.services</code> and consume <code>{ALIAS}_SERVICE_URL</code>.</p>
+</li>
+<li>
+<p>Validate with <code>./dev-test.sh &lt;quickstarter&gt; &lt;project&gt;</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_developing_custom_step_types"><a class="anchor" href="#_developing_custom_step_types"></a>Developing Custom Step Types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The quickstarter test framework uses a <strong>registry pattern</strong> that makes it easy to add new step types without modifying the core test execution logic. This section explains how to implement and register custom step types.</p>
+</div>
+<div class="sect2">
+<h3 id="_architecture_overview"><a class="anchor" href="#_architecture_overview"></a>Architecture Overview</h3>
+<div class="paragraph">
+<p>The framework consists of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>StepHandler Interface</strong>: Defines the contract all step types must implement</p>
+</li>
+<li>
+<p><strong>StepRegistry</strong>: Maps step type names to their handler implementations</p>
+</li>
+<li>
+<p><strong>ExecutionParams</strong>: Consolidates all context needed for step execution</p>
+</li>
+<li>
+<p><strong>Handler Implementations</strong>: Individual step type logic (upload, build, http, etc.)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_1_define_the_step_type_constant"><a class="anchor" href="#_step_1_define_the_step_type_constant"></a>Step 1: Define the Step Type Constant</h3>
+<div class="paragraph">
+<p>Add your new step type constant to <code>steps/types.go</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">const (
+    StepTypeUpload        = "upload"
+    StepTypeRun           = "run"
+    // ... existing types ...
+    StepTypeMyCustom      = "my-custom"  // Add your new type here
+)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_2_add_step_parameters_to_teststep"><a class="anchor" href="#_step_2_add_step_parameters_to_teststep"></a>Step 2: Add Step Parameters to TestStep</h3>
+<div class="paragraph">
+<p>In <code>steps/types.go</code>, add a parameters struct for your step if needed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">// MyCustomParams defines parameters for the my-custom step type
+type MyCustomParams struct {
+    // Add your custom fields here
+    Target      string   `json:"target"`
+    Options     []string `json:"options"`
+    RetryCount  int      `json:"retryCount"`
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then add a field to the <code>TestStep</code> struct:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type TestStep struct {
+    Type        string `json:"type"`
+    Description string `json:"description"`
+    // ... existing params ...
+    MyCustomParams *MyCustomParams `json:"myCustomParams,omitempty"`
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_3_implement_the_execution_logic"><a class="anchor" href="#_step_3_implement_the_execution_logic"></a>Step 3: Implement the Execution Logic</h3>
+<div class="paragraph">
+<p>Create a new file <code>steps/my_custom.go</code> with your step implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package steps
+
+import (
+    "fmt"
+    "testing"
+)
+
+// ExecuteMyCustom handles the my-custom step type.
+// This function contains the actual logic for your step.
+func ExecuteMyCustom(t *testing.T, step TestStep, testdataPath string,
+                     tmplData TemplateData, projectName string) {
+
+    // Validate parameters
+    if step.MyCustomParams == nil {
+        t.Fatalf("Missing my-custom parameters")
+    }
+
+    params := step.MyCustomParams
+
+    // Implement your step logic here
+    fmt.Printf("Executing custom step with target: %s\n", params.Target)
+
+    // Example: Run some operation
+    for _, option := range params.Options {
+        fmt.Printf("Processing option: %s\n", option)
+        // Your custom logic here
+    }
+
+    // Use template data for dynamic values
+    renderedTarget := RenderTemplate(t, params.Target, tmplData)
+    fmt.Printf("Rendered target: %s\n", renderedTarget)
+
+    // Fail the test if something goes wrong
+    if someCondition {
+        t.Fatalf("Custom step failed: %v", err)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_4_create_a_handler_adapter"><a class="anchor" href="#_step_4_create_a_handler_adapter"></a>Step 4: Create a Handler Adapter</h3>
+<div class="paragraph">
+<p>In <code>steps/registry.go</code>, add a handler struct that implements the <code>StepHandler</code> interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">// MyCustomHandler implements the handler for my-custom steps.
+type MyCustomHandler struct{}
+
+func (h *MyCustomHandler) Execute(t *testing.T, step *TestStep, params *ExecutionParams) error {
+    ExecuteMyCustom(t, *step, params.TestdataPath, params.TmplData, params.ProjectName)
+    return nil
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong>: The handler adapter maps between the <code>StepHandler</code> interface (which receives <code>ExecutionParams</code>) and your specific execution function signature.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_5_register_the_handler"><a class="anchor" href="#_step_5_register_the_handler"></a>Step 5: Register the Handler</h3>
+<div class="paragraph">
+<p>In <code>steps/registry.go</code>, add your handler to the <code>registerDefaultHandlers()</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func registerDefaultHandlers() {
+    defaultRegistry.Register(StepTypeUpload, &amp;UploadHandler{})
+    defaultRegistry.Register(StepTypeRun, &amp;RunHandler{})
+    // ... existing registrations ...
+    defaultRegistry.Register(StepTypeMyCustom, &amp;MyCustomHandler{})  // Add this line
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_6_add_documentation"><a class="anchor" href="#_step_6_add_documentation"></a>Step 6: Add Documentation</h3>
+<div class="paragraph">
+<p>Create <code>docs/steps/my-custom.md</code> documenting your new step type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown"># my-custom Step
+
+## Purpose
+Brief description of what this step does.
+
+## Parameters
+
+- `target` (string, required): Description of target parameter
+- `options` (array, optional): Description of options
+- `retryCount` (int, optional): Number of retry attempts
+
+## Example
+
+\```yaml
+- type: my-custom
+  description: "Execute custom operation"
+  myCustomParams:
+    target: "{{.ComponentID}}"
+    options:
+      - "verbose"
+      - "debug"
+    retryCount: 3
+\```
+
+## Common Use Cases
+- Use case 1
+- Use case 2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Update <code>docs/steps.md</code> to include your new step in the overview table.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_7_write_unit_tests"><a class="anchor" href="#_step_7_write_unit_tests"></a>Step 7: Write Unit Tests</h3>
+<div class="paragraph">
+<p>Create <code>steps/my_custom_test.go</code> to test your handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package steps
+
+import (
+    "testing"
+)
+
+func TestMyCustomHandler(t *testing.T) {
+    registry := DefaultRegistry()
+
+    handler, err := registry.Get(StepTypeMyCustom)
+    if err != nil {
+        t.Fatalf("Expected my-custom handler to be registered: %v", err)
+    }
+
+    if handler == nil {
+        t.Fatal("Handler should not be nil")
+    }
+
+    // Test execution (may need mocking for complex steps)
+    step := &amp;TestStep{
+        Type: StepTypeMyCustom,
+        MyCustomParams: &amp;MyCustomParams{
+            Target: "test-target",
+            Options: []string{"opt1"},
+        },
+    }
+
+    params := &amp;ExecutionParams{
+        TestdataPath: "/tmp/testdata",
+        TmplData:     TemplateData{},
+        ProjectName:  "test-project",
+    }
+
+    // Test that handler executes without panic
+    // (Actual behavior testing may require more setup)
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_8_use_your_new_step_in_tests"><a class="anchor" href="#_step_8_use_your_new_step_in_tests"></a>Step 8: Use Your New Step in Tests</h3>
+<div class="paragraph">
+<p>Add your step to any <code>testdata/steps.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">componentID: my-component
+
+steps:
+  - type: provision
+    # ... provision step ...
+
+  - type: my-custom
+    description: "Run my custom operation"
+    myCustomParams:
+      target: "{{.ComponentID}}-resource"
+      options:
+        - "enable-feature-x"
+        - "debug-mode"
+      retryCount: 2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_best_practices_for_custom_steps"><a class="anchor" href="#_best_practices_for_custom_steps"></a>Best Practices for Custom Steps</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Keep Steps Focused</strong>: Each step should do one thing well</p>
+</li>
+<li>
+<p><strong>Use Template Data</strong>: Leverage <code>{{.Variable}}</code> syntax for dynamic values</p>
+</li>
+<li>
+<p><strong>Fail Fast</strong>: Use <code>t.Fatalf()</code> for unrecoverable errors</p>
+</li>
+<li>
+<p><strong>Add Logging</strong>: Use <code>fmt.Printf()</code> or the logger package for visibility</p>
+</li>
+<li>
+<p><strong>Parameter Validation</strong>: Always validate required parameters at the start</p>
+</li>
+<li>
+<p><strong>Error Context</strong>: Provide clear error messages with context</p>
+</li>
+<li>
+<p><strong>Idempotency</strong>: Consider making steps idempotent when possible</p>
+</li>
+<li>
+<p><strong>Documentation</strong>: Document all parameters and provide examples</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_complete_custom_step"><a class="anchor" href="#_example_complete_custom_step"></a>Example: Complete Custom Step</h3>
+<div class="paragraph">
+<p>Here&#8217;s a complete example of a custom step that validates database connectivity:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">// steps/database.go
+package steps
+
+import (
+    "fmt"
+    "testing"
+    "database/sql"
+    _ "github.com/lib/pq"
+)
+
+type DatabaseParams struct {
+    ConnectionString string `json:"connectionString"`
+    Query           string `json:"query"`
+    ExpectedRows    int    `json:"expectedRows"`
+}
+
+func ExecuteDatabase(t *testing.T, step TestStep, testdataPath string,
+                     tmplData TemplateData, projectName string) {
+    if step.DatabaseParams == nil {
+        t.Fatalf("Missing database parameters")
+    }
+
+    params := step.DatabaseParams
+    connStr := RenderTemplate(t, params.ConnectionString, tmplData)
+    query := RenderTemplate(t, params.Query, tmplData)
+
+    db, err := sql.Open("postgres", connStr)
+    if err != nil {
+        t.Fatalf("Failed to connect to database: %v", err)
+    }
+    defer db.Close()
+
+    rows, err := db.Query(query)
+    if err != nil {
+        t.Fatalf("Query failed: %v", err)
+    }
+    defer rows.Close()
+
+    count := 0
+    for rows.Next() {
+        count++
+    }
+
+    if count != params.ExpectedRows {
+        t.Fatalf("Expected %d rows, got %d", params.ExpectedRows, count)
+    }
+
+    fmt.Printf("✅ Database validation passed: %d rows\n", count)
+}
+
+// steps/registry.go - add this handler
+type DatabaseHandler struct{}
+
+func (h *DatabaseHandler) Execute(t *testing.T, step *TestStep, params *ExecutionParams) error {
+    ExecuteDatabase(t, *step, params.TestdataPath, params.TmplData, params.ProjectName)
+    return nil
+}
+
+// In registerDefaultHandlers():
+// defaultRegistry.Register("database", &amp;DatabaseHandler{})</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_advanced_handler_parameters"><a class="anchor" href="#_advanced_handler_parameters"></a>Advanced: Handler Parameters</h3>
+<div class="paragraph">
+<p>If your step needs additional context beyond <code>ExecutionParams</code>, you can:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Add to ExecutionParams</strong>: Extend the struct if the parameter is commonly needed</p>
+</li>
+<li>
+<p><strong>Use TestStep Fields</strong>: Store step-specific data in your params struct</p>
+</li>
+<li>
+<p><strong>Access Global Config</strong>: Use the <code>config</code> map in ExecutionParams</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_registry_pattern_benefits"><a class="anchor" href="#_registry_pattern_benefits"></a>Registry Pattern Benefits</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>✅ <strong>No Switch Statements</strong>: Add steps without modifying test runner code</p>
+</li>
+<li>
+<p>✅ <strong>Plugin Architecture</strong>: External packages can register custom steps</p>
+</li>
+<li>
+<p>✅ <strong>Testability</strong>: Individual handlers can be unit tested in isolation</p>
+</li>
+<li>
+<p>✅ <strong>Type Safety</strong>: Go compiler ensures all handlers implement the interface</p>
+</li>
+<li>
+<p>✅ <strong>Maintainability</strong>: Step logic is cleanly separated and organized</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_troubleshooting_custom_steps"><a class="anchor" href="#_troubleshooting_custom_steps"></a>Troubleshooting Custom Steps</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Handler not found</strong></dt>
+<dd>
+<p>Ensure you&#8217;ve registered it in <code>registerDefaultHandlers()</code></p>
+</dd>
+<dt class="hdlist1"><strong>Parameters nil</strong></dt>
+<dd>
+<p>Check YAML structure and JSON tags match</p>
+</dd>
+<dt class="hdlist1"><strong>Template errors</strong></dt>
+<dd>
+<p>Verify template syntax and that variables exist in <code>TemplateData</code></p>
+</dd>
+<dt class="hdlist1"><strong>Import cycles</strong></dt>
+<dd>
+<p>Keep step implementations in the <code>steps</code> package</p>
+</dd>
+<dt class="hdlist1"><strong>Test failures</strong></dt>
+<dd>
+<p>Check parameter validation and error handling</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Login: <code>oc whoami</code>.</p>
+</li>
+<li>
+<p>Port-forwards: <code>ps aux | grep "oc port-forward" | grep -v grep</code>; kill with <code>pkill -f "oc port-forward"</code>.</p>
+</li>
+<li>
+<p>Ports in use: <code>lsof -i :8000-8009</code>.</p>
+</li>
+<li>
+<p>Resources: <code>oc get svc -n &lt;project&gt;-dev</code>, <code>oc get pods -n &lt;project&gt;-dev</code>.</p>
+</li>
+<li>
+<p>Add/extend <code>wait</code> steps if endpoints are not ready.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>Best Practices</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Add <code>wait</code> before <code>http</code>/<code>run</code> to avoid races.</p>
+</li>
+<li>
+<p>Use retries for early endpoints.</p>
+</li>
+<li>
+<p>Keep scripts small; fail fast when expected <code>{ALIAS}_SERVICE_URL</code> is missing.</p>
+</li>
+<li>
+<p>Prefer templates for names/namespaces; avoid hardcoded hostnames.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>
