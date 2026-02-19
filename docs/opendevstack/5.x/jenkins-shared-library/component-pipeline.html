@@ -1783,6 +1783,14 @@ In addition to the configuration options below, one can use e.g. a <code>Tailorf
  referenced by <code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmReleasesHistoryLimit</strong><br>
+<em>Integer</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of historical Helm release secrets to keep (defaults to 5).
+ Helm stores release state in secrets. This limit controls how many
+ previous releases are retained before old ones are deleted. Only relevant
+ if the directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmValues</strong><br>
 <em>Map&lt;String,&nbsp;String&gt;</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Key/value pairs to pass as values (by default, the key <code>imageTag</code> is set
