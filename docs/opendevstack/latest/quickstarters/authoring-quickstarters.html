@@ -164,6 +164,9 @@
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="authoring-quickstarters.html">Authoring Quickstarters</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters-automated-tests.html">Quickstarters Automated Tests</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -430,6 +433,14 @@
 </div>
 <div class="paragraph">
 <p>If you want to contribute your Jenkins agent image to OpenDevStack, make sure to add documentation according to the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages/__JENKINS_agent_TEMPLATE_README.adoc">agent image template</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_quickstarters"><a class="anchor" href="#_testing_quickstarters"></a>Testing Quickstarters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every quickstarter must include a complete end-to-end (e2e) test that exercises the generated project; these tests are executed using the testing framework provided in the ods-core/test project. See <a href="quickstarters-automated-tests.html" class="xref page">Quickstarter automated tests</a> for additional details and guidelines.</p>
 </div>
 </div>
 </div>

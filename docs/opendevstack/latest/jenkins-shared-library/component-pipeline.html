@@ -164,6 +164,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/quickstarters-automated-tests.html">Quickstarters Automated Tests</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -1778,6 +1781,14 @@ In addition to the configuration options below, one can use e.g. a <code>Tailorf
  same namespace. In that case, make sure to use <code>{{ .Release.Name }}</code> in
  resource names to avoid conflicts.  Only relevant if the directory
  referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmReleasesHistoryLimit</strong><br>
+<em>Integer</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of historical Helm release secrets to keep (defaults to 5).
+ Helm stores release state in secrets. This limit controls how many
+ previous releases are retained before old ones are deleted. Only relevant
+ if the directory referenced by <code>chartDir</code> exists.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmValues</strong><br>
