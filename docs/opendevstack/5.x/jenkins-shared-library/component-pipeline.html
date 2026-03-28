@@ -1702,6 +1702,19 @@ In addition to the configuration options below, one can use e.g. a <code>Tailorf
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>awsEnvPath</strong><br>
+<em>String</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to AWS environment configuration env files (defaults to <code>./environments</code>).
+ Files (dev.yml, test.yaml, prod.yaml) must contain the following keys:
+  account: "&#8230;&#8203;"
+  eksCluster: "&#8230;&#8203;"
+  region: &#8230;&#8203;
+  credentials:
+      key: &#8230;&#8203; (e.g. projectName-cd-aws-us-access-key-id-dev)
+      secret: &#8230;&#8203; (e.g. projectName-cd-aws-us-secret-access-key-dev)
+ Only relevant for AWS-based deployments (odsComponentStageRolloutAWSDeployment)</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branch</strong><br>
 <em>String</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Branch to run stage for.
@@ -1802,6 +1815,14 @@ In addition to the configuration options below, one can use e.g. a <code>Tailorf
 <em>List&lt;String&gt;</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of paths to values files (empty by default). Only relevant if the
  directory referenced by <code>chartDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>helmWithOnlyECR</strong><br>
+<em>Boolean</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to use Helm for deployment or only sync with ECR (defaults to <code>false</code>)
+ If <code>true</code>, the process will only use the ECR repository to store the image. So, no Helm deployment will be done.
+ If <code>false</code>, the image will be stored in ECR and the helm deployment will be executed.
+ Only relevant for AWS-based deployments (odsComponentStageRolloutAWSDeployment)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>imageTag</strong><br>
