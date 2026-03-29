@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
       with:
-        node-version: 16
-    - uses: rlespinasse/github-slug-action@v4.x
+        node-version: 24
+    - uses: rlespinasse/github-slug-action@v5.x
     - name: Install antora
       run: |
         npm i @antora/cli@3.1 @antora/site-generator@3.1 @antora/lunr-extension
