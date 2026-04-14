@@ -446,7 +446,7 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.rust-lang.org/">Rust 1.88.x</a></p>
+<p><a href="https://www.rust-lang.org/">Rust 1.94.x</a></p>
 </li>
 <li>
 <p><a href="https://github.com/tokio-rs/axum">Axum 0.8.x</a></p>
@@ -455,10 +455,10 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <p><a href="https://nexte.st/">Nextest 0.9.x</a></p>
 </li>
 <li>
-<p><a href="https://github.com/taiki-e/cargo-llvm-cov/">LLVM coverage 0.6.x</a></p>
+<p><a href="https://github.com/taiki-e/cargo-llvm-cov/">LLVM coverage 0.8.x</a></p>
 </li>
 <li>
-<p><a href="https://github.com/EmbarkStudios/cargo-deny/">Deny 0.18.x</a></p>
+<p><a href="https://github.com/EmbarkStudios/cargo-deny/">Deny 0.19.x</a></p>
 </li>
 </ul>
 </div>
@@ -688,7 +688,7 @@ which makes use of the crate <code>rustls</code> and disabling default features,
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">[dependencies]
-reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }</code></pre>
+reqwest = { version = "0.13", features = ["stream", "json"]}</code></pre>
 </div>
 </div>
 <div class="paragraph">
