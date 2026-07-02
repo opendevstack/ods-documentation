@@ -800,7 +800,6 @@ go test -v -run TestQuickstarter -timeout 30m \
     verify:
       strategy: aggregate
       jenkinsStages: golden/jenkins-build-stages.json
-      sonarScan: golden/sonar-scan.json
       runAttachments: ["metadata.json"]
       testResults: 5
       openShiftResources:
@@ -1477,7 +1476,6 @@ echo "Cleaning up HTTP test artifacts..."
     buildParams:
       verify:
         jenkinsStages: golden/jenkins-build-stages.json
-        sonarScan: golden/sonar-scan.json
         testResults: 1
         openShiftResources:
           deployments: ["{{.ComponentID}}"]

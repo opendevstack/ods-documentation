@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Backend Python Flask Quickstarter (be-python-flask) :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/be-python-flask.html">
+    <title>Renovate :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/quickstarters/renovate.html">
     <meta name="generator" content="Antora 3.1.15">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -80,7 +80,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="be-typescript-express.html">BE TypeScript/Express</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -332,70 +332,54 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="index.html">Quickstarters</a></li>
-    <li><a href="be-python-flask.html">BE Python/Flask</a></li>
+    <li><a href="renovate.html">Renovate</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">4.x</button>
   <div class="version-menu">
-    <a class="version" href="../../5.x/quickstarters/be-python-flask.html">5.x Preview</a>
-    <a class="version is-current" href="be-python-flask.html">4.x</a>
-    <a class="version" href="../../3.x/quickstarters/be-python-flask.html">3.x</a>
-    <a class="version" href="../../2.x/quickstarters/be-python-flask.html">2.x</a>
-    <a class="version" href="../../1.x/quickstarters/be-python-flask.html">1.x</a>
+    <a class="version" href="../../5.x/quickstarters/renovate.html">5.x Preview</a>
+    <a class="version is-current" href="renovate.html">4.x</a>
+    <a class="version is-missing" href="../../3.x/getting-started/index.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/quickstarters/pages/be-python-flask.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/4.x/docs/modules/quickstarters/pages/renovate.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Backend Python Flask Quickstarter (be-python-flask)</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>The project supports generation of Python Flask project boilerplate and quick
-installation and integration of it with OpenShift CD pipelines.</p>
-</div>
-</div>
-</div>
+<h1 class="page">Renovate</h1>
 <div class="sect1">
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The quickstarter comes with a simple API-server example written in Python and using Flask framework.
-The package allows easily build a Python project, using different Python modules
-and frameworks.
-It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
+<p>Use this for automating dependency updates in software projects. Lives in your cd-namespace.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
+<h2 id="_what_files_which_architecture_is_generated"><a class="anchor" href="#_what_files_which_architecture_is_generated"></a>What files / which architecture is generated?</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>├── Jenkinsfile - This file contains Jenkins build configuration settings
-├── .pre-commit-config.yaml
-├── README.md
-├── docker - This folder contains Docker configuration settings
-│   ├── Dockerfile
-│   └── run.sh - This bash script solves issue with permissions for a container user
-├── src
-│   └── main.py - This file is the main entry point in the project.
-├── tests
-│   ├── __init__.py
-│   └── main_test.py - Unit testing src/main.py
-├── .coveragerc - Coverage configuration file
-├── metadata.yml - Component metadata
-├── mypy.ini - mypy configuration file
-├── release-manager.yml - Configuration file for the Release Manager
-├── requirements.txt - This file contains a list of required Python modules to run your application
-├── tests_requirements.txt - required Python modules for the Test Suite (includes requirements.txt) and IDE integration
-└── sonar-project.properties - This file contains SonarQube configuration settings</pre>
+<pre>├── README.md
+├── chart
+│   ├── Chart.lock
+│   ├── Chart.yaml
+│   ├── charts
+│   │   └── renovate-46.8.4.tgz
+│   ├── templates
+│   │   ├── configmap.yaml
+│   │   └── secret.yaml
+│   ├── values.yaml
+│   └── values.yaml.secret.example
+├── import-certs.sh
+├── metadata.yml
+└── release-manager.yml</pre>
 </div>
 </div>
 </div>
@@ -406,158 +390,25 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.python.org/3.12">Python 3.12</a></p>
-</li>
-<li>
-<p><a href="https://gunicorn.org/">gunicorn</a></p>
-</li>
-<li>
-<p><a href="http://flask.pocoo.org/">flask</a></p>
-</li>
-<li>
-<p><a href="https://docs.pytest.org/en/stable/">pytest</a></p>
-</li>
-<li>
-<p><a href="https://mypy.readthedocs.io/en/stable/">mypy</a></p>
-</li>
-<li>
-<p><a href="https://flake8.pycqa.org/en/stable/">flake8</a></p>
+<p><a href="https://docs.renovatebot.com">Renovate</a></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
+<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - How do you start after you provisioned this quickstarter?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The project is production ready when deployed in OpenShift thanks to gunicorn.</p>
-</div>
-<div class="paragraph">
-<p>It is strongly recommended when you are developing a Python project to use separated environments.
-For this purpose usually one can use Python&#8217;s
-<a href="https://docs.python.org/3.12/library/venv.html">venv</a> core package (check how to use it in the next steps).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-since the version of Python is 3.12, ensure your system&#8217;s python executable is also in version 3.12
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Create virtual environment 'mylocaldevelopment' (will be located in the folder mylocaldevelopment) (run only once)
-python -m venv mylocaldevelopment
-
-# Initiate virtual environment for the project (every time)
-source mylocaldevelopment/bin/activate
-
-# Runs installation of required modules in the virtual environment (run only once)
-pip install -r requirements.txt
-
-# Start your application
-PYTHONPATH=src python src/main.py</code></pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_metadata"><a class="anchor" href="#_metadata"></a>Metadata</h3>
-<div class="paragraph">
-<p>The following are typical <a href="metadata.html" class="xref page">metadata</a> values that can be used for components based on this quickstarter:
-Note that the <a href="../jenkins-shared-library/labelling.html" class="xref page">OpenShift resources will be labeled</a> based on this metadata.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: &lt;the component id (this is the default, if omitted)&gt;
-description: "Some microservice implemented in Python over Flask"
-supplier: https://example.com
-version: 1.0.1
-type: ods
-role: backend
-runtime: flask
-runtimeVersion: 3.0.0</code></pre>
-</div>
-</div>
+<p>See README.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
+<h2 id="_jenkins_agent_image_used"><a class="anchor" href="#_jenkins_agent_image_used"></a>Jenkins agent image used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Jenkinsfile is provisioned with this quick starter to ease CI/CD process. In Jenkinsfile, there are various stages:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Prepare Test Suite</strong> - Prepares the virtual environment for testing and linting:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  pip install -r tests_requirements.txt</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Lint</strong> - Runs mypy and flake8 for increasing code quality:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  mypy src
-  flake8 --max-line-length=120 src</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Test</strong> - Runs pytest and generates xUnit and code coverage reports:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  PYTHONPATH=src python -m pytest --junitxml=tests.xml -o junit_family=xunit2 --cov-report term-missing --cov-report xml --cov=src -o testpaths=tests</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Build</strong> - Builds the application: copies src folder into docker/dist folder.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>include::partials$secret-scanning-with-gitleaks.adoc</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_builder_agent_used"><a class="anchor" href="#_builder_agent_used"></a>Builder agent used</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents/python">Python</a> builder agent Jenkins builder agent.</p>
-</div>
-<div class="paragraph">
-<p><strong>NOTE</strong>: The ODS Jenkins Python Agent supports Python versions 3.12, 3.11, 3.9 and 3.8. See next chapter for further information.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_multiple_python_versions_support"><a class="anchor" href="#_multiple_python_versions_support"></a>Multiple Python versions support</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Build and run environment defaults to python3.12, but python3.11, python3.9 and python3.8 versions are also supported.</p>
-</div>
-<div class="paragraph">
-<p>If you need other versions support in your project, change:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>in the provided <code>Jenkinsfile</code>, the mentions of <code>python3.12</code> binary to, for example, <code>python3.9</code> binary,</p>
-</li>
-<li>
-<p>and switch the <code>FROM</code> statement in your <code>Dockerfile</code> to the python version required, for example, <code>registry.access.redhat.com/ubi9/python-39</code>.</p>
-</li>
-</ul>
+<p>ods/jenkins-agent-base:4.x</p>
 </div>
 </div>
 </div>
@@ -565,7 +416,7 @@ runtimeVersion: 3.0.0</code></pre>
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let us know if you find any, thanks!</p>
+<p>Let us know if you find any. Feel free to open issues and pull requests, thank you!</p>
 </div>
 </div>
 </div>
