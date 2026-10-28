@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- Antora (3.1) has to be installed according to the https://docs.antora.org/antora/3.1/install/install-antora/[Install Antora] guide.
+- Antora (3.2) has to be installed according to the https://docs.antora.org/antora/3.2/install/install-antora/[Install Antora] guide.
 - The following OpenDevStack repositories have to be cloned and stored beside the `ods-documentation` repository: `ods-core`, `ods-jenkins-shared-library`, `ods-provisioning-app` and `ods-quickstarters`.
 
 ### Generate docs using `site-workspace.yml`
